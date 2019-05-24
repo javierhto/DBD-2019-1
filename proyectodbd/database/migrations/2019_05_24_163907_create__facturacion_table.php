@@ -16,6 +16,8 @@ class CreateFacturacionTable extends Migration
         Schema::create('_facturacion', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->integer('estado');
+            $table->integer('monto'); 
         });
     }
 
