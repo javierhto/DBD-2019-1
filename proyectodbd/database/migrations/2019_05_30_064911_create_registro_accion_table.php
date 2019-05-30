@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateRegistroAccionTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('registro_accion', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamps();
+            $table->string('rol');
+            $table->integer('accion');
+            $table->timestamp('time_stamp');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('registro_accion');
+    }
+}

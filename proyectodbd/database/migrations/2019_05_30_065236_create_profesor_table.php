@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCoordinadorDocenteTable extends Migration
+class CreateProfesorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateCoordinadorDocenteTable extends Migration
      */
     public function up()
     {
-        Schema::create('_coordinador_docente', function (Blueprint $table) {
+        Schema::create('profesor', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->date('fecha_nacimiento');
             $table->string('nombre');
             $table->string('correo');
             $table->string('direccion');
@@ -24,8 +25,9 @@ class CreateCoordinadorDocenteTable extends Migration
             $table->string('contrasena');
             $table->string('jornada');
             $table->string('situacion');
+            $table->date('fecha_ingreso');
             $table->string('estado_cuenta');
-
+            $table->string('grado_academico');
         });
     }
 
@@ -36,6 +38,6 @@ class CreateCoordinadorDocenteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_coordinador_docente');
+        Schema::dropIfExists('profesor');
     }
 }

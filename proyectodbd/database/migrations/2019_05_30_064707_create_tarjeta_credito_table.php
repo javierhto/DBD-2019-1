@@ -13,10 +13,11 @@ class CreateTarjetaCreditoTable extends Migration
      */
     public function up()
     {
-        Schema::create('_tarjeta_credito', function (Blueprint $table) {
+        Schema::create('tarjeta_credito', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
             $table->integer('numero');
+            $table->date('fecha_expiracion');
             $table->string('nombre_titular');
             $table->string('pais_facturacion');
             $table->string('cuidad_facturacion');
@@ -31,6 +32,6 @@ class CreateTarjetaCreditoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_tarjeta_credito');
+        Schema::dropIfExists('tarjeta_credito');
     }
 }

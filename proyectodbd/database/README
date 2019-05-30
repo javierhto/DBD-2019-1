@@ -1,0 +1,8 @@
+php artisan mirgate:fresh --seed  //Crea tablas
+
+php artisan make:seeder UsersTableSeeder ->Crea el seeder
+Hay que especificar la ruta de la tabla, ej: use App\User;
+
+factory(User::class, 20)->create();
+dentro del seeder
+

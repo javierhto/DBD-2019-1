@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacturacionTable extends Migration
+class CreateComunaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateFacturacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('_facturacion', function (Blueprint $table) {
+        Schema::create('comuna', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('estado');
-            $table->integer('monto'); 
+            $table->string('nombre');
         });
     }
 
@@ -28,6 +27,6 @@ class CreateFacturacionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_facturacion');
+        Schema::dropIfExists('comuna');
     }
 }
