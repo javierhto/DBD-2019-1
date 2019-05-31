@@ -16,7 +16,7 @@ class CreateHistorialAlumnoTable extends Migration
         Schema::create('historial_alumno', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('semestre');
+            $table->integer('semestre'); 
         });
     }
 

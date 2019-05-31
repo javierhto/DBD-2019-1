@@ -27,6 +27,7 @@ class CreateCoordinadorDocenteTable extends Migration
             $table->string('situacion');
             $table->date('fecha_ingreso');
             $table->string('estado_cuenta');
+            
         });
     }
 

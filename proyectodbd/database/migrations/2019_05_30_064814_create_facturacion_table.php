@@ -20,7 +20,6 @@ class CreateFacturacionTable extends Migration
             $table->integer('monto'); 
             $table->date('fecha');
             $table->date('fecha_expiracion');
-
         });
     }
 

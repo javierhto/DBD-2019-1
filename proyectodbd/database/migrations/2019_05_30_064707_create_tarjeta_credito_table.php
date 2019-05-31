@@ -22,6 +22,7 @@ class CreateTarjetaCreditoTable extends Migration
             $table->string('pais_facturacion');
             $table->string('cuidad_facturacion');
             $table->string('direccion_facturacion');
+            
         });
     }
 
