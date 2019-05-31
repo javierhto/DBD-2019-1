@@ -18,6 +18,7 @@ class CreateCoordinacionTable extends Migration
             $table->timestamps();
             $table->integer('semestre');
             $table->boolean('laboratorio');
+            $table->integer('cupo');
         });
     }
 
