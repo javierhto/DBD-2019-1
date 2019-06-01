@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Facturacion extends Model
 {
     //
-    return $this->belongsTo(Alumno::class);
+    protected $table = 'facturacion';
+
+    public function alumno() {
+    	return $this->belongsTo('App\Alumno');
+    }
 }
