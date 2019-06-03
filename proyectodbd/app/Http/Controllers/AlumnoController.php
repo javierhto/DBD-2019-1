@@ -68,9 +68,30 @@ class AlumnoController extends Controller
      * @param  \App\Alumno  $alumno
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alumno $alumno)
+    public function update(Request $request, $id)
     {
-        //
+        /*
+        $alumno = Alumno::find($id);
+        $outcome = $alumno->fill($this->validate($request,[
+            'ano_ingreso'=> 'required',
+            'asignaturas_aprovadas'=> 'required',
+            'avance'=> 'required',
+            'celular'=> 'required',
+            'contrasena'=> 'required',
+            'correo'=> 'required',
+            'direccion'=> 'required',
+            'eficiencia'=> 'required',
+
+        ]))->save();
+        if($outcome)
+        {
+            return 'Bieeeen';
+        }
+        else
+        {
+            return 'LLoraaaaar';
+        }
+        */
     }
 
     /**
