@@ -35,3 +35,4 @@ Route::resource('profesor', 'ProfesorController')->parameters(['profesor' => 'id
 Route::resource('region', 'RegionController')->parameters(['region' => 'id']);
 Route::resource('registroDeAccion', 'RegistroDeAccionController')->parameters(['registroDeAccion' => 'id']);
 Route::resource('tarjetaCredito', 'TarjetaCreditoController')->parameters(['tarjetaCredito' => 'id']);
+
