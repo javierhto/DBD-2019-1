@@ -15,7 +15,7 @@ class AddForeignKeyComunaTable extends Migration
     {
         Schema::table('comuna', function (Blueprint $table) {
             //
-            $table->bigInteger('id_region');
+            $table->bigInteger('id_region')->unsigned()->nullable();
             $table->foreign('id_region')
                     ->references('id')->on('region')
                     ->onDelete('cascade');

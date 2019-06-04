@@ -11,6 +11,6 @@ class ComunasTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+    	factory(App\Comuna::class, 50)->create();
     }
 }

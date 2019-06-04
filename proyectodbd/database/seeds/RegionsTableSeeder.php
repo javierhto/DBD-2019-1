@@ -11,6 +11,6 @@ class RegionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Region::class, 50)->create();
     }
 }
