@@ -46,7 +46,7 @@ class TarjetaCreditoController extends Controller
      */
     public function show($id)
     {
-        return TarjetaCredito::find($id);
+        return TarjetaCredito::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,26 @@ class TarjetaCreditoController extends Controller
      * @param  \App\TarjetaCredito  $tarjetaCredito
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TarjetaCredito $tarjetaCredito)
+    public function update(Request $request, $id)
     {
-        //
+        $tarjeta = TarjetaCredito::findOrFail($id);
+        $outcome = $tarjeta->fill($this->validate($request,[
+            'numero'=> 'required',
+            'fecha_expiracion'=> 'required',
+            'nombre_titular'=> 'required',
+            'pais_facturacion'=> 'required',
+            'ciudad_facturacion'=> 'required',
+            'direccion_facturacion'=> 'required',
+            'id_alumno'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Tarjeta de credito Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar la tarjeta de credito';
+        }
     }
 
     /**
@@ -80,7 +97,7 @@ class TarjetaCreditoController extends Controller
      */
     public function destroy($id)
     {
-        $tarjetaCredito = TarjetaCredito::find($id);
+        $tarjetaCredito = TarjetaCredito::findOrFail($id);
         $tarjetaCredito->delete();
         return "Se elimino";
     }

@@ -46,7 +46,7 @@ class CarreraController extends Controller
      */
     public function show($id)
     {
-        return Habitacion::find($id);
+        return Habitacion::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,23 @@ class CarreraController extends Controller
      * @param  \App\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carrera $carrera)
+    public function update(Request $request,$id)
     {
-        //
+        $carrera = Carrera::findOrFail($id);
+        $outcome = $carrera->fill($this->validate($request,[
+            'nombre'=> 'required',
+            'codigo_carrera'=> 'required',
+            'arancel'=> 'required',
+            'id_departamento'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Carrera Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar la carrera';
+        }
     }
 
     /**
@@ -80,7 +94,7 @@ class CarreraController extends Controller
      */
     public function destroy($id)
     {
-        $carrera = Carrera::find($id);
+        $carrera = Carrera::findOrFail($id);
         $carrera->delete();
         return "Se elimino";
     }

@@ -46,7 +46,7 @@ class EvaluacionController extends Controller
      */
     public function show($id)
     {
-        return Evaluacion::find($id);
+        return Evaluacion::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,23 @@ class EvaluacionController extends Controller
      * @param  \App\Evaluacion  $evaluacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Evaluacion $evaluacion)
+    public function update(Request $request, $id)
     {
-        //
+        $prueba = Evaluacion::findOrFail($id);
+        $outcome = $prueba->fill($this->validate($request,[
+            'nombre'=> 'required',
+            'tipo'=> 'required',
+            'ponderacion'=> 'required',
+            'id_asignatura'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Evaluacion Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar la evaluacion';
+        }
     }
 
     /**
@@ -80,7 +94,7 @@ class EvaluacionController extends Controller
      */
     public function destroy($id)
     {
-        $evaluacion = Evaluacion::find($id);
+        $evaluacion = Evaluacion::findOrFail($id);
         $evaluacion->delete();
         return "Se elimino";
     }

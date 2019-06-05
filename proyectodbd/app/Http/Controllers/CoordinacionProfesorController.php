@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\HistorialProfesor;
+use App\CoordinacionProfesor;
 use Illuminate\Http\Request;
 
-class HistorialProfesorController extends Controller
+class CoordinacionProfesorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class HistorialProfesorController extends Controller
      */
     public function index()
     {
-        return HistorialProfesor::all();
+        return CoordinacionProfesor::all();
     }
 
     /**
@@ -35,27 +35,27 @@ class HistorialProfesorController extends Controller
      */
     public function store(Request $request)
     {
-        return HistorialProfesor::create($request->all());
+        return CoordinacionProfesor::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\CoordinacionProfesor  $coordinacionProfesor
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(CoordinacionProfesor $coordinacionProfesor)
     {
-        return HistorialProfesor::findOrFail($id);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\HistorialProfesor  $historialProfesor
+     * @param  \App\CoordinacionProfesor  $coordinacionProfesor
      * @return \Illuminate\Http\Response
      */
-    public function edit(HistorialProfesor $historialProfesor)
+    public function edit(CoordinacionProfesor $coordinacionProfesor)
     {
         //
     }
@@ -64,38 +64,37 @@ class HistorialProfesorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\HistorialProfesor  $historialProfesor
+     * @param  \App\CoordinacionProfesor  $coordinacionProfesor
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $historial = HistorialProfesor::findOrFail($id);
-        $outcome = $historial->fill($this->validate($request,[
-            'semestre'=> 'required',
-            'id_profesor'=> 'required',
-            'id_asignatura'=> 'required',
-            'id_coordinacion'=> 'required'
+        $union = CoordinacionHorario::findOrFail($id);
+        $outcome = $union->fill($this->validate($request,[
+            'id_coordinacion'=> 'required',
+            'id_profesor'=> 'required'
+
         ]))->save();
         if($outcome)
         {
-            return 'Historial de profesor Actualizado';
+            return 'La coordinacion con su profesor fue Actualizado';
         }
         else
         {
-            return 'Error, no se pudo actualizar el historial del profesor';
+            return 'Error, no se pudo actualizar la coordinacion con su horario';
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  \App\CoordinacionProfesor  $coordinacionProfesor
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $historialProfesor = HistorialProfesor::findOrFail($id);
-        $historialProfesor->delete();
+        $coordinacionProfsors = CoordinacionProfesor::findOrFail($id);
+        $coordinacionProfsors->delete();
         return "Se elimino";
     }
 }

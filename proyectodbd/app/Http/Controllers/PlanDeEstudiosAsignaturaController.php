@@ -44,9 +44,9 @@ class PlanDeEstudiosAsignaturaController extends Controller
      * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
-    public function show(PlanDeEstudiosAsignatura $planDeEstudiosAsignatura)
+    public function show($id)
     {
-        //
+        return PlanDeEstudiosAsignatura::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,21 @@ class PlanDeEstudiosAsignaturaController extends Controller
      * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PlanDeEstudiosAsignatura $planDeEstudiosAsignatura)
+    public function update(Request $request, $id)
     {
-        //
+        $malla = PlanDeEstudiosAsignatura::findOrFail($id);
+        $outcome = $malla->fill($this->validate($request,[
+            'id_plan_estudio'=> 'required',
+            'id_asignatura'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Plan de estudio con la asignatura Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar';
+        }
     }
 
     /**
@@ -78,8 +90,10 @@ class PlanDeEstudiosAsignaturaController extends Controller
      * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PlanDeEstudiosAsignatura $planDeEstudiosAsignatura)
+    public function destroy($id)
     {
-        //
+        $mallaRellenada = PlanDeEstudiosAsignatura::findOrFail($id);
+        $mallaRellenada->delete();
+        return "Se elimino";
     }
 }

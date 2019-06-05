@@ -46,7 +46,7 @@ class RegistroDeAccionController extends Controller
      */
     public function show($id)
     {
-        return RegistroDeAccion::find($id);
+        return RegistroDeAccion::findOrFail($id);
     }
 
     /**

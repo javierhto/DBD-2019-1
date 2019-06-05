@@ -46,7 +46,7 @@ class HorarioController extends Controller
      */
     public function show($id)
     {
-        return Horario::find($id);
+        return Horario::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,21 @@ class HorarioController extends Controller
      * @param  \App\Horario  $horario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Horario $horario)
+    public function update(Request $request, $id)
     {
-        //
+        $bloque = Horario::findOrFail($id);
+        $outcome = $bloque->fill($this->validate($request,[
+            'dia'=> 'required',
+            'bloque'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Horario Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar horario';
+        }
     }
 
     /**
@@ -80,7 +92,7 @@ class HorarioController extends Controller
      */
     public function destroy($id)
     {
-        $horario = Horario::find($id);
+        $horario = Horario::findOrFail($id);
         $horario->delete();
         return "Se elimino";
     }

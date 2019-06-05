@@ -14,6 +14,9 @@ class Asignatura extends Model
     public function evaluacion() {
     	return $this->hasMany('App\Evaluacion');
     }
+    public function documento() {
+        return $this->hasMany('App\Documento');
+    }
 
     public function prerequisito() {
     	return $this->hasMany('App\Prerequisito');

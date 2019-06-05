@@ -46,7 +46,7 @@ class DepartamentoController extends Controller
      */
     public function show($id)
     {
-        return Departamento::find($id);
+        return Departamento::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,21 @@ class DepartamentoController extends Controller
      * @param  \App\Departamento  $departamento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Departamento $departamento)
+    public function update(Request $request, $id)
     {
-        //
+        $departamento = Departamento::findOrFail($id);
+        $outcome = $departamento->fill($this->validate($request,[
+            'nombre'=> 'required',
+            'id_facultad'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Departamento Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar la departamento';
+        }
     }
 
     /**
@@ -80,7 +92,7 @@ class DepartamentoController extends Controller
      */
     public function destroy($id)
     {
-        $departamento = Departamento::find($id);
+        $departamento = Departamento::findOrFail($id);
         $departamento->delete();
         return "Se elimino";
     }

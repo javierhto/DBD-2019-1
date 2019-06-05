@@ -68,9 +68,20 @@ class RegionController extends Controller
      * @param  \App\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Region $region)
+    public function update(Request $request, $id)
     {
-        //
+        $region = Region::findOrFail($id);
+        $outcome = $carrera->fill($this->validate($request,[
+            'nombre'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Region Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar la region';
+        }
     }
 
     /**

@@ -46,7 +46,7 @@ class ComunaController extends Controller
      */
     public function show($id)
     {
-        return Comuna::find($id);
+        return Comuna::findOrFail($id);
     }
 
     /**
@@ -69,13 +69,19 @@ class ComunaController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $comuna = Comuna::find($id);
-        $comuna->fill($this->validate($request, [
-            'nombre' => 'required',
-            'id_region' => 'required'
+        $comuna = Comuna::findOrFail($id);
+        $outcome = $comuna->fill($this->validate($request,[
+            'nombre'=> 'required',
+            'id_region'=> 'required'
         ]))->save();
-
-        return "Me he acutalizado correctamente! :D!";
+        if($outcome)
+        {
+            return 'Comuna Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar la comuna';
+        }
     }
 
     /**
@@ -86,7 +92,7 @@ class ComunaController extends Controller
      */
     public function destroy($id)
     {
-        $comuna = Comuna::find($id);
+        $comuna = Comuna::findOrFail($id);
         $comuna->delete();
         return "Se elimino";
     }

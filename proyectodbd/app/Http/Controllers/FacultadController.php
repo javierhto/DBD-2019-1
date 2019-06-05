@@ -46,7 +46,7 @@ class FacultadController extends Controller
      */
     public function show($id)
     {
-        return Facultad::find($id);
+        return Facultad::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,20 @@ class FacultadController extends Controller
      * @param  \App\Facultad  $facultad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Facultad $facultad)
+    public function update(Request $request, $id)
     {
-        //
+        $facultad = Facultad::findOrFail($id);
+        $outcome = $facultad->fill($this->validate($request,[
+            'nombre'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Facultad Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar la facultad';
+        }
     }
 
     /**
@@ -80,7 +91,7 @@ class FacultadController extends Controller
      */
     public function destroy($id)
     {
-        $facultad = Facultad::find($id);
+        $facultad = Facultad::findOrFail($id);
         $facultad->delete();
         return "Se elimino";
     }

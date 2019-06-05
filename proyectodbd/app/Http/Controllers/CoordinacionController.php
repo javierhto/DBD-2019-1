@@ -46,7 +46,7 @@ class CoordinacionController extends Controller
      */
     public function show($id)
     {
-        return Coordinacion::find($id);
+        return Coordinacion::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,25 @@ class CoordinacionController extends Controller
      * @param  \App\Coordinacion  $coordinacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Coordinacion $coordinacion)
+    public function update(Request $request, $id)
     {
-        //
+        $coordinacion = Coordinacion::findOrFail($id);
+        $outcome = $coordinacion->fill($this->validate($request,[
+            'semestre'=> 'required',
+            'laboratorio'=> 'required',
+            'cupo'=> 'required',
+            'id_alumno'=> 'required',
+            'id_asignatura'=> 'required',
+            'id_profesor'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Coordinacion Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar la coordinacion';
+        }
     }
 
     /**
@@ -80,7 +96,7 @@ class CoordinacionController extends Controller
      */
     public function destroy($id)
     {
-        $coordinacion = Coordinacion::find($id);
+        $coordinacion = Coordinacion::findOrFail($id);
         $coordinacion->delete();
         return "Se elimino";
     }

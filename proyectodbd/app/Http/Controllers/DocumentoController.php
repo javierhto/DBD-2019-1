@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\HistorialProfesor;
+use App\Documento;
 use Illuminate\Http\Request;
 
-class HistorialProfesorController extends Controller
+class DocumentoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class HistorialProfesorController extends Controller
      */
     public function index()
     {
-        return HistorialProfesor::all();
+        return Documento::all();
     }
 
     /**
@@ -35,27 +35,27 @@ class HistorialProfesorController extends Controller
      */
     public function store(Request $request)
     {
-        return HistorialProfesor::create($request->all());
+        return Documento::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Documento  $documento
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return HistorialProfesor::findOrFail($id);
+        return Documento::findOrFail($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\HistorialProfesor  $historialProfesor
+     * @param  \App\Documento  $documento
      * @return \Illuminate\Http\Response
      */
-    public function edit(HistorialProfesor $historialProfesor)
+    public function edit(Documento $documento)
     {
         //
     }
@@ -64,38 +64,38 @@ class HistorialProfesorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\HistorialProfesor  $historialProfesor
+     * @param  \App\Documento  $documento
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $historial = HistorialProfesor::findOrFail($id);
-        $outcome = $historial->fill($this->validate($request,[
-            'semestre'=> 'required',
-            'id_profesor'=> 'required',
-            'id_asignatura'=> 'required',
-            'id_coordinacion'=> 'required'
+        $documento = Documento::findOrFail($id);
+        $outcome = $documento->fill($this->validate($request,[
+            'nombre' => 'required',
+            'fecha' => 'required',
+            'documento' => 'required'
+
         ]))->save();
         if($outcome)
         {
-            return 'Historial de profesor Actualizado';
+            return 'Documento Actualizado';
         }
         else
         {
-            return 'Error, no se pudo actualizar el historial del profesor';
+            return 'Error, no se pudo actualizar el documento';
         }
     }
-
+            
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  \App\Documento  $documento
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $historialProfesor = HistorialProfesor::findOrFail($id);
-        $historialProfesor->delete();
+        $documento = Documento::findOrFail($id);
+        $documento->delete();
         return "Se elimino";
     }
 }

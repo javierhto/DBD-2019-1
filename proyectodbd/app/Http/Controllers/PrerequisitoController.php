@@ -46,7 +46,7 @@ class PrerequisitoController extends Controller
      */
     public function show($id)
     {
-        return Prerequisito::find($id);
+        return Prerequisito::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,22 @@ class PrerequisitoController extends Controller
      * @param  \App\Prerequisito  $prerequisito
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prerequisito $prerequisito)
+    public function update(Request $request, $id)
     {
-        //
+        $prerequisito = Prerequisito::findOrFail($id);
+        $outcome = $prerequisito->fill($this->validate($request,[
+            'nombre'=> 'required',
+            'nivel'=> 'required',
+            'id_asignatura'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Prerequisito Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar la prerequisito';
+        }
     }
 
     /**
@@ -80,7 +93,7 @@ class PrerequisitoController extends Controller
      */
     public function destroy($id)
     {
-        $prerequisito = Prerequisito::find($id);
+        $prerequisito = Prerequisito::findOrFail($id);
         $prerequisito->delete();
         return "Se elimino";
     }
