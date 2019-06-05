@@ -21,6 +21,7 @@ Route::resource('asignatura', 'AsignaturaController')->parameters(['asignatura' 
 Route::resource('carrera', 'CarreraController')->parameters(['carrera' => 'id']);
 Route::resource('comuna', 'ComunaController')->parameters(['comuna' => 'id']);
 Route::resource('coordinadorDocente', 'CoordinadorDocenteController')->parameters(['coordinadorDocente' => 'id']);
+Route::resource('coordinacion', 'CoordinacionController')->parameters(['coordinacion' => 'id']);
 Route::resource('departamento', 'DepartamentoController')->parameters(['departamento' => 'id']);
 Route::resource('evaluacion', 'EvaluacionController')->parameters(['evaluacion' => 'id']);
 Route::resource('facturacion', 'FacturacionController')->parameters(['facturacion' => 'id']);

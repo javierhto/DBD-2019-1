@@ -8,6 +8,8 @@ class Carrera extends Model
 {
     //
     protected $table = 'carrera';
+    protected $fillable =['nombre','codigo_carrera','arancel',
+                        'id_departamento'];
 
     public function planDeEstudios() {
     	return $this->hasMany('App\PlanDeEstudios');

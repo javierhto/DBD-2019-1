@@ -8,7 +8,9 @@ class Asignatura extends Model
 {
     //
     protected $table = 'asignatura';
-
+    protected $fillable =['nombre','nivel','T',
+                        'E','L'];
+                        
     public function evaluacion() {
     	return $this->hasMany('App\Evaluacion');
     }

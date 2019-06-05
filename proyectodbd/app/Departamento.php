@@ -8,7 +8,7 @@ class Departamento extends Model
 {
     //
     protected $table = 'departamento';
-
+    protected $fillable =['nombre','id_facultad'];
     public function facultad() {
     	return $this->belongsTo('App\Facultad');
     }

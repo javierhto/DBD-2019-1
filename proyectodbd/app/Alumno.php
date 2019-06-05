@@ -9,8 +9,8 @@ class Alumno extends Model
 {
     //
     protected $table = 'alumno';
-    protected $fillable =['numero_matricula','nombre','correo','direccion',
-                            'telefono','celular','contrasena','jornada',
+    protected $fillable =['numero_matricula','fecha_nacimiento','nombre','correo',
+                        'direccion','telefono','celular','contrasena','jornada',
                             'situacion','ano_ingreso','ultima_matricula','nivel_actual',
                             'avance','eficiencia','asignaturas_aprobadas','PPA',
                             'id_comuna','id_carrera'

@@ -8,6 +8,9 @@ class Mensaje extends Model
 {
     //
     protected $table = 'mensaje';
+ 	protected $fillable =['asunto','contenido','remitente',
+ 							'destinatario','remitente','archivo',
+ 							'id_alumno','id_profesor'];
 
     public function alumno() {
     	return $this->belongsTo('App\Alumno');

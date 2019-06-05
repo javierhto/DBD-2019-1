@@ -8,6 +8,9 @@ class Coordinacion extends Model
 {
     //
     protected $table = 'coordinacion';
+    protected $fillable =['semestre','laboratorio','cupo',
+                            'id_asignatura','id_profesor','id_alumno'
+                            ];
 
     public function asignatura() {
     	return $this->belongsTo('App\Asignatura');
