@@ -8,7 +8,8 @@ class HistorialAlumno extends Model
 {
     //
     protected $table = 'historial_alumno';
-
+    protected $fillable =['semestre','id_alumno'];
+    
     public function alumno() {
     	return $this->belongsTo('App\Alumno');
     }

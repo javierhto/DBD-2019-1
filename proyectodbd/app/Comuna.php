@@ -8,7 +8,8 @@ class Comuna extends Model
 {
     //
     protected $table = 'comuna';
-
+    protected $fillable =['nombre','id_region'];
+    
     public function region() {
     	return $this->belongsTo('App\Region');
     }

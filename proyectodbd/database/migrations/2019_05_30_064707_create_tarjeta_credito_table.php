@@ -20,7 +20,7 @@ class CreateTarjetaCreditoTable extends Migration
             $table->date('fecha_expiracion');
             $table->string('nombre_titular');
             $table->string('pais_facturacion');
-            $table->string('cuidad_facturacion');
+            $table->string('ciudad_facturacion');
             $table->string('direccion_facturacion');
             
         });

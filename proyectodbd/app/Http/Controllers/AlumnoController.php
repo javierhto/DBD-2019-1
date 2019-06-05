@@ -25,7 +25,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+        return view('alumno.create');
     }
 
     /**
@@ -70,7 +70,7 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*
+        
         $alumno = Alumno::find($id);
         $outcome = $alumno->fill($this->validate($request,[
             'ano_ingreso'=> 'required',
@@ -91,7 +91,7 @@ class AlumnoController extends Controller
         {
             return 'LLoraaaaar';
         }
-        */
+        
     }
 
     /**

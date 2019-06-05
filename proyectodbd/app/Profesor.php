@@ -8,6 +8,12 @@ class Profesor extends Model
 {
     //
     protected $table = 'profesor';
+    protected $fillable =['fecha_nacimiento','nombre','correo','direccion',
+                            'telefono','celular','contrasena','jornada',
+                            'situacion','fecha_ingreso','estado_cuenta','grado_academico',
+                            'id_comuna'];
+
+    //FALTA LA COORDINACION DEL PROFE
 
     public function comuna() {
     	return $this->belongsTo('App\Comuna');
