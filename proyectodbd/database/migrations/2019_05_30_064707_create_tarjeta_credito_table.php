@@ -16,7 +16,8 @@ class CreateTarjetaCreditoTable extends Migration
         Schema::create('tarjeta_credito', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('numero');
+            // Cambiado de integer -> bigInteger
+            $table->bigInteger('numero');
             $table->date('fecha_expiracion');
             $table->string('nombre_titular');
             $table->string('pais_facturacion');

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\TarjetaCredito;
 
 class TarjetasTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class TarjetasTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(TarjetaCredito::class, 50)->create();
     }
 }

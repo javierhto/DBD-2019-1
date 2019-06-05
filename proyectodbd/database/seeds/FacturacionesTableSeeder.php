@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Facturacion;
 
 class FacturacionesTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class FacturacionesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Facturacion::class, 50)->create();
     }
 }

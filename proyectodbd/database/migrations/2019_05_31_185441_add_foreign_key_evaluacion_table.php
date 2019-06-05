@@ -15,7 +15,7 @@ class AddForeignKeyEvaluacionTable extends Migration
     {
         Schema::table('evaluacion', function (Blueprint $table) {
             //
-            $table->bigInteger('id_asignatura');
+            $table->bigInteger('id_asignatura')->unsigned()->nullable();
             $table->foreign('id_asignatura')
                     ->references('id')->on('asignatura')
                     ->onDelete('cascade');

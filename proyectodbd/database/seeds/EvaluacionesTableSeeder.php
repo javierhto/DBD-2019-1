@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Evaluacion;
 
 class EvaluacionesTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class EvaluacionesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Evaluacion::class, 20)->create();
     }
 }

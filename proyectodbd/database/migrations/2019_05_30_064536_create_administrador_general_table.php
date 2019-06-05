@@ -24,6 +24,11 @@ class CreateAdministradorGeneralTable extends Migration
             $table->string('jornada');
             $table->string('situacion');
             $table->date('fecha_ingreso');
+            
+            $table->bigInteger('id_comuna')->unsigned()->nullable();
+            $table->foreign('id_comuna')
+                    ->references('id')->on('comuna')
+                    ->onDelete('cascade');
         });
     }
 

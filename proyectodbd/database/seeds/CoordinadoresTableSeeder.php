@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\CoordinadorDocente;
 class CoordinadoresTableSeeder extends Seeder
 {
     /**
@@ -11,6 +11,6 @@ class CoordinadoresTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(CoordinadorDocente::class, 20)->create();
     }
 }

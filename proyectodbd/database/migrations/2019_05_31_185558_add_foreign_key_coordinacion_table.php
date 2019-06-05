@@ -15,17 +15,17 @@ class AddForeignKeyCoordinacionTable extends Migration
     {
         Schema::table('coordinacion', function (Blueprint $table) {
             //
-            $table->bigInteger('id_asignatura');
+            $table->bigInteger('id_asignatura')->unsigned()->nullable();
             $table->foreign('id_asignatura')
                     ->references('id')->on('asignatura')
                     ->onDelete('cascade');
 
-            $table->bigInteger('id_profesor');
+            $table->bigInteger('id_profesor')->unsigned()->nullable();
             $table->foreign('id_profesor')
                     ->references('id')->on('profesor')
                     ->onDelete('cascade');
 
-            $table->bigInteger('id_alumno');
+            $table->bigInteger('id_alumno')->unsigned()->nullable();
             $table->foreign('id_alumno')
                     ->references('id')->on('alumno')
                     ->onDelete('cascade');

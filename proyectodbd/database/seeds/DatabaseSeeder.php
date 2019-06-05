@@ -13,9 +13,20 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UsersTableSeeder::class,
-            ComunasTableSeeder::class,
             RegionsTableSeeder::class,
+            ComunasTableSeeder::class,
+            AdministradoresTableSeeder::class,
+            CoordinadoresTableSeeder::class,
+            TarjetasTableSeeder::class,
+            CarrerasTableSeeder::class,
+            FacturacionesTableSeeder::class,
+            DepartamentosTableSeeder::class,
+            EvaluacionesTableSeeder::class,
             AsignaturasTableSeeder::class,
+            CoordinacionesTableSeeder::class,
+            FacultadesTableSeeder::class,
+            HorariosTableSeeder::class,
+            ProfesoresTableSeeder::class,
         ]);
     }
 }

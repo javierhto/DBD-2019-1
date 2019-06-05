@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Departamento;
 
 class DepartamentosTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class DepartamentosTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Departamento::class, 20)->create();
     }
 }

@@ -12,6 +12,6 @@ class AdministradoresTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(AdministradorGeneral::class, 20)->create();
     }
 }

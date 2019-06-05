@@ -15,7 +15,7 @@ class AddForeignKeyCarreraTable extends Migration
     {
         Schema::table('carrera', function (Blueprint $table) {
             //
-            $table->bigInteger('id_departamento');
+            $table->bigInteger('id_departamento')->unsigned()->nullable();
             $table->foreign('id_departamento')
                     ->references('id')->on('departamento')
                     ->onDelete('cascade');

@@ -15,7 +15,7 @@ class AddForeignKeyProfesorTable extends Migration
     {
         Schema::table('profesor', function (Blueprint $table) {
             //
-            $table->bigInteger('id_comuna');
+            $table->bigInteger('id_comuna')->unsigned()->nullable();
             $table->foreign('id_comuna')
                     ->references('id')->on('comuna')
                     ->onDelete('cascade');

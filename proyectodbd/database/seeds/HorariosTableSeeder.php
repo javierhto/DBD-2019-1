@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Horario;
 
 class HorariosTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class HorariosTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Horario::class, 20)->create();
     }
 }

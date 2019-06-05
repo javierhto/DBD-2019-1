@@ -17,7 +17,8 @@ class CreateEvaluacionTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('nombre');
-            $table->integer('tipo');
+            // Cambiado tipo integer -> string
+            $table->string('tipo');
             $table->float('ponderacion');
         });
     }
