@@ -18,7 +18,9 @@ class CreateAsignaturaTable extends Migration
             $table->timestamps();
             $table->string('nombre');
             $table->integer('nivel');
-            $table->integer('TEL');
+            $table->integer('T');
+            $table->integer('E');
+            $table->integer('L');
         });
     }
 

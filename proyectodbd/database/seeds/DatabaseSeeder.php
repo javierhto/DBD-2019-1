@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ComunasTableSeeder::class,
             RegionsTableSeeder::class,
+            AsignaturasTableSeeder::class,
         ]);
     }
 }

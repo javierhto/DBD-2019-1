@@ -24,15 +24,3 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
-
-$factory->define(App\Comuna::class, function (Faker $faker) {
-    return [
-        'nombre' => $faker->sentence(1),
-    ];
-});
-
-$factory->define(App\Region::class, function (Faker $faker) {
-    return [
-        'nombre' => $faker->sentence(1),
-    ];
-});
