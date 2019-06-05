@@ -18,7 +18,6 @@ class CreateRegistroAccionTable extends Migration
             $table->timestamps();
             $table->string('rol');
             $table->integer('accion');
-            $table->timestamp('time_stamp');
         });
     }
 

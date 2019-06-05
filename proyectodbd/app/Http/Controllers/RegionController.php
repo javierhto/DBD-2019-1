@@ -35,6 +35,7 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
+    
         return Region::create($request->all());
     }
 
@@ -85,3 +86,4 @@ class RegionController extends Controller
         return "Se elimino";
     }
 }
+

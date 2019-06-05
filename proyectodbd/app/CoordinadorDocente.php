@@ -8,6 +8,11 @@ class CoordinadorDocente extends Model
 {
     //
     protected $table = 'coordinador_docente';
+	protected $fillable =['nombre','fecha_nacimiento','correo','direccion',
+							'telefono','celular','contrasena','jornada','situacion',
+							'fecha_ingreso','estado_cuenta','id_comuna'
+							];
+
 
     public function comuna() {
     	return $this->belongsTo('App\Comuna');
