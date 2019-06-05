@@ -46,7 +46,7 @@ class CoordinadorDocenteController extends Controller
      */
     public function show($id)
     {
-        return CoordinadorDocente::find($id);
+        return CoordinadorDocente::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,31 @@ class CoordinadorDocenteController extends Controller
      * @param  \App\CoordinadorDocente  $coordinadorDocente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CoordinadorDocente $coordinadorDocente)
+    public function update(Request $request, $id)
     {
-        //
+        $coordinador = CoordinadorDocente::findOrFail($id);
+        $outcome = $coordinador->fill($this->validate($request,[
+            'fecha_nacimiento'=> 'required',
+            'nombre'=> 'required',
+            'correo'=> 'required',
+            'direccion'=> 'required',
+            'telefono'=> 'required',
+            'celular'=> 'required',
+            'contrasena'=> 'required',
+            'situacion'=> 'required',
+            'fecha_ingreso'=> 'required',
+            'estado_cuenta'=> 'required',
+            'id_comuna'=> 'required'
+
+        ]))->save();
+        if($outcome)
+        {
+            return 'Coordinador docente Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar Coordinador docente';
+        }
     }
 
     /**
@@ -80,7 +102,7 @@ class CoordinadorDocenteController extends Controller
      */
     public function destroy($id)
     {
-        $coordinadorDocente = CoordinadorDocente::find($id);
+        $coordinadorDocente = CoordinadorDocente::findOrFail($id);
         $coordinadorDocente->delete();
         return "Se elimino";
     }

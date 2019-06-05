@@ -67,9 +67,23 @@ class HistorialProfesorController extends Controller
      * @param  \App\HistorialProfesor  $historialProfesor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HistorialProfesor $historialProfesor)
+    public function update(Request $request, $id)
     {
-        //
+        $historial = HistorialProfesor::findOrFail($id);
+        $outcome = $historial->fill($this->validate($request,[
+            'semestre'=> 'required',
+            'id_profesor'=> 'required',
+            'id_asignatura'=> 'required',
+            'id_coordinacion'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Historial de profesor Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar el historial del profesor';
+        }
     }
 
     /**

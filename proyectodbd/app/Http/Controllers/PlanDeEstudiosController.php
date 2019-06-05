@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PlanDeEstudiosAsignatura;
 use App\PlanDeEstudios;
 use Illuminate\Http\Request;
 
@@ -46,7 +47,8 @@ class PlanDeEstudiosController extends Controller
      */
     public function show($id)
     {
-        return PlanDeEstudios::find($id);
+        return PlanDeEstudios::findOrFail($id);
+
     }
 
     /**
@@ -57,7 +59,7 @@ class PlanDeEstudiosController extends Controller
      */
     public function edit(PlanDeEstudios $planDeEstudios)
     {
-        //
+        
     }
 
     /**
@@ -67,9 +69,22 @@ class PlanDeEstudiosController extends Controller
      * @param  \App\PlanDeEstudios  $planDeEstudios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PlanDeEstudios $planDeEstudios)
+    public function update(Request $request, $id)
     {
-        //
+        $malla = PlanDeEstudios::findOrFail($id);
+        $outcome = $malla->fill($this->validate($request,[
+            'semestre'=> 'required',
+            'version'=> 'required',
+            'id_carrera'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Plan de estudios Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar el plan de estudios';
+        }
     }
 
     /**
@@ -80,7 +95,9 @@ class PlanDeEstudiosController extends Controller
      */
     public function destroy($id)
     {
-        $planDeEstudios = PlanDeEstudios::find($id);
+        $planDeEstudios = PlanDeEstudios::findOrFail($id);
+        $ramos = PlanDeEstudiosAsignatura::where('id_plan_estudios', $id)->get();
+        $ramos->delete();
         $planDeEstudios->delete();
         return "Se elimino";
     }

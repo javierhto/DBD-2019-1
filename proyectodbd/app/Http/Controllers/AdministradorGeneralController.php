@@ -46,7 +46,7 @@ class AdministradorGeneralController extends Controller
      */
     public function show($id)
     {
-        return AdministradorGeneral::find($id);
+        return AdministradorGeneral::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,27 @@ class AdministradorGeneralController extends Controller
      * @param  \App\AdministradorGeneral  $administradorGeneral
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AdministradorGeneral $administradorGeneral)
+    public function update(Request $request, $id)
     {
-        //
+        $administrador = AdministradorGeneral::findOrFail($id);
+        $outcome = $administrador->fill($this->validate($request,[
+            'nombre'=> 'required',
+            'correo'=> 'required',
+            'direccion'=> 'required',
+            'celular'=> 'required',
+            'contrasena'=> 'required',
+            'jornada'=> 'required',
+            'situacion'=> 'required',
+            'fecha_ingreso'=> 'required',
+        ]))->save();
+        if($outcome)
+        {
+            return 'Administrador General Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar Administrador General ';
+        }
     }
 
     /**
@@ -80,7 +98,7 @@ class AdministradorGeneralController extends Controller
      */
     public function destroy($id)
     {
-        $administrador = AdministradorGeneral::find($id);
+        $administrador = AdministradorGeneral::findOrFail($id);
         $administrador->delete();
         return "Se elimino";
     }

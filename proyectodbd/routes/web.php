@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('alumno', 'AlumnoController')->parameters(['alumno' => 'id']);
+Route::resource('planDeEstudiosAsignatura', 'PlanDeEstudiosAsignaturaController')->parameters(['planDeEstudiosAsignatura' => 'id']);
 Route::resource('administradorGeneral', 'AdministradorGeneralController')->parameters(['administradorGeneral'=> 'id']);
 Route::resource('asignatura', 'AsignaturaController')->parameters(['asignatura' => 'id']);
 Route::resource('carrera', 'CarreraController')->parameters(['carrera' => 'id']);

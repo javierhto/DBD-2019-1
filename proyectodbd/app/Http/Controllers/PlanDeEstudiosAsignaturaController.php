@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mensaje;
+use App\PlanDeEstudiosAsignatura;
 use Illuminate\Http\Request;
 
-class MensajeController extends Controller
+class PlanDeEstudiosAsignaturaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class MensajeController extends Controller
      */
     public function index()
     {
-        return Mensaje::all();
+         return PlanDeEstudiosAsignatura::all();
     }
 
     /**
@@ -35,27 +35,27 @@ class MensajeController extends Controller
      */
     public function store(Request $request)
     {
-        return Mensaje::create($request->all());
+        return PlanDeEstudiosAsignatura::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(PlanDeEstudiosAsignatura $planDeEstudiosAsignatura)
     {
-        return Mensaje::findOrFail($id);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Mensaje  $mensaje
+     * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mensaje $mensaje)
+    public function edit(PlanDeEstudioAsignatura $planDeEstudiosAsignatura)
     {
         //
     }
@@ -64,42 +64,22 @@ class MensajeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Mensaje  $mensaje
+     * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, PlanDeEstudiosAsignatura $planDeEstudiosAsignatura)
     {
-        $mensaje = Mensaje::findOrFail($id);
-        $outcome = $mensaje->fill($this->validate($request,[
-            'asunto'=> 'required',
-            'contenido'=> 'required',
-            'remitente'=> 'required',
-            'destinatario'=> 'required',
-            'archivo'=> 'required',
-            'id_alumno'=> 'required',
-            'id_profesor'=> 'required'
-
-        ]))->save();
-        if($outcome)
-        {
-            return 'Mensaje Actualizado';
-        }
-        else
-        {
-            return 'Error, no se pudo actualizar Mensaje';
-        }
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PlanDeEstudiosAsignatura $planDeEstudiosAsignatura)
     {
-        $mensaje = Mensaje::findOrFail($id);
-        $mensaje->delete();
-        return "Se elimino";
+        //
     }
 }

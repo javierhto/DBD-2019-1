@@ -46,7 +46,7 @@ class HistorialAlumnoController extends Controller
      */
     public function show($id)
     {
-        return HistorialAlumno::find($id);
+        return HistorialAlumno::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,24 @@ class HistorialAlumnoController extends Controller
      * @param  \App\HistorialAlumno  $historialAlumno
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HistorialAlumno $historialAlumno)
+    public function update(Request $request, $id)
     {
-        //
+        $historial = HistorialAlumno::findOrFail($id);
+        $outcome = $historial->fill($this->validate($request,[
+            'semestre'=> 'required',
+            'id_alumno'=> 'required',
+            'id_profesor'=> 'required',
+            'id_asignatura'=> 'required',
+            'id_coordinacion'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Historial del alumno Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar el historial del alumno';
+        }
     }
 
     /**
@@ -80,7 +95,7 @@ class HistorialAlumnoController extends Controller
      */
     public function destroy($id)
     {
-        $historialAlumno = HistorialAlumno::find($id);
+        $historialAlumno = HistorialAlumno::findOrFail($id);
         $historialAlumno->delete();
         return "Se elimino";
     }

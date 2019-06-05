@@ -46,7 +46,7 @@ class AsignaturaController extends Controller
      */
     public function show($id)
     {
-        return Asignatura::find($id);
+        return Asignatura::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,25 @@ class AsignaturaController extends Controller
      * @param  \App\Asignatura  $asignatura
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asignatura $asignatura)
+    public function update(Request $request, $id)
     {
-        //
+        $asignatura = Asignatura::findOrFail($id);
+        $outcome = $asignatura->fill($this->validate($request,[
+            'nombre'=> 'required',
+            'nivel'=> 'required',
+            'T'=> 'required',
+            'E'=> 'required',
+            'L'=> 'required'
+
+        ]))->save();
+        if($outcome)
+        {
+            return 'Asignatura Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar la asignatura';
+        }
     }
 
     /**
@@ -80,7 +96,7 @@ class AsignaturaController extends Controller
      */
     public function destroy($id)
     {
-        $asignatura = Asignatura::find($id);
+        $asignatura = Asignatura::findOrFail($id);
         $asignatura->delete();
         return "Se elimino";
     }

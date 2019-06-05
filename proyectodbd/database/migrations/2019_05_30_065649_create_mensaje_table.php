@@ -19,7 +19,6 @@ class CreateMensajeTable extends Migration
             $table->string('asunto');
             $table->string('contenido');
             $table->string('remitente');
-            $table->timestamp('time_stamp');
             $table->string('destinatario');
             $table->json('archivo');
         });

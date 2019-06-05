@@ -46,7 +46,7 @@ class ProfesorController extends Controller
      */
     public function show($id)
     {
-        return Profesor::find($id);
+        return Profesor::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,32 @@ class ProfesorController extends Controller
      * @param  \App\Profesor  $profesor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profesor $profesor)
+    public function update(Request $request, $id)
     {
-        //
+        $profe = Profesor::findOrFail($id);
+        $outcome = $profe->fill($this->validate($request,[
+            'fecha_nacimiento'=> 'required',
+            'nombre'=> 'required',
+            'correo'=> 'required',
+            'direccion'=> 'required',
+            'telefono'=> 'required',
+            'celular'=> 'required',
+            'contrasena'=> 'required',
+            'jornada'=> 'required',
+            'situacion'=> 'required',
+            'fecha_ingreso'=> 'required',
+            'estado_cuenta'=> 'required',
+            'grado'=> 'required',
+            'id_comuna'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Profesor Actualizado';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar Profesor';
+        }
     }
 
     /**
@@ -80,7 +103,7 @@ class ProfesorController extends Controller
      */
     public function destroy($id)
     {
-        $profesor = Profesor::find($id);
+        $profesor = Profesor::findOrFail($id);
         $profesor->delete();
         return "Se elimino";
     }

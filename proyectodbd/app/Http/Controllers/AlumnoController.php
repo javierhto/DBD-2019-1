@@ -25,7 +25,6 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        return view('alumno.create');
     }
 
     /**
@@ -47,7 +46,7 @@ class AlumnoController extends Controller
      */
     public function show($id)
     {
-        return Alumno::find($id);
+        return Alumno::findOrFail($id);
     }
 
     /**
@@ -70,26 +69,36 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $alumno = Alumno::find($id);
+        $alumno = Alumno::findOrFail($id);
         $outcome = $alumno->fill($this->validate($request,[
-            'ano_ingreso'=> 'required',
-            'asignaturas_aprovadas'=> 'required',
-            'avance'=> 'required',
-            'celular'=> 'required',
-            'contrasena'=> 'required',
+            'numero_matricula'=> 'required',
+            'fecha_nacimiento'=> 'required',
+            'nombre'=> 'required',
             'correo'=> 'required',
             'direccion'=> 'required',
+            'telefono'=> 'required',
+            'celular'=> 'required',
+            'contrasena'=> 'required',
+            'jornada'=> 'required',
+            'situacion'=> 'required',
+            'ano_ingreso'=> 'required',
+            'ultima_matricula'=> 'required',
+            'avance'=> 'required',
             'eficiencia'=> 'required',
+            'asignaturas_aprobadas'=> 'required',
+            'nivel_actual'=> 'required',
+            'PPA'=> 'required',
+            'id_comuna'=> 'required',
+            'id_carrera'=> 'required'
 
         ]))->save();
         if($outcome)
         {
-            return 'Bieeeen';
+            return 'Alumno Actualizado';
         }
         else
         {
-            return 'LLoraaaaar';
+            return 'Error, no se pudo actualizar alumno';
         }
         
     }
@@ -102,7 +111,7 @@ class AlumnoController extends Controller
      */
     public function destroy($id)
     {
-        $alumno = Alumno::find($id);
+        $alumno = Alumno::findOrFail($id);
         $almuno->delete();
         return "Se elimino";
     }

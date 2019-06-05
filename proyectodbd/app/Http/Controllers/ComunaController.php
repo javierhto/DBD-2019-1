@@ -67,9 +67,15 @@ class ComunaController extends Controller
      * @param  \App\Comuna  $comuna
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comuna $comuna)
+    public function update(Request $request,$id)
     {
-        //
+        $comuna = Comuna::find($id);
+        $comuna->fill($this->validate($request, [
+            'nombre' => 'required',
+            'id_region' => 'required'
+        ]))->save();
+
+        return "Me he acutalizado correctamente! :D!";
     }
 
     /**

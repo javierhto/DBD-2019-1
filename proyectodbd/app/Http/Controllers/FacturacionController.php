@@ -46,7 +46,7 @@ class FacturacionController extends Controller
      */
     public function show($id)
     {
-        return Facturacion::find($id);
+        return Facturacion::findOrFail($id);
     }
 
     /**
@@ -67,9 +67,23 @@ class FacturacionController extends Controller
      * @param  \App\Facturacion  $facturacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Facturacion $facturacion)
+    public function update(Request $request, $id)
     {
-        //
+        $factura = Facturacion::findOrFail($id);
+        $outcome = $factura->fill($this->validate($request,[
+            'estado'=> 'required',
+            'monto'=> 'required',
+            'fecha'=> 'required',
+            'fecha_expiracion'=> 'required'
+        ]))->save();
+        if($outcome)
+        {
+            return 'Factura Actualizada';
+        }
+        else
+        {
+            return 'Error, no se pudo actualizar la factura';
+        }
     }
 
     /**
@@ -80,7 +94,7 @@ class FacturacionController extends Controller
      */
     public function destroy($id)
     {
-        $facturacion = Facturacion::find($id);
+        $facturacion = Facturacion::findOrFail($id);
         $facturacion->delete();
         return "Se elimino";
     }
