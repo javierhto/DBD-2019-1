@@ -4,10 +4,16 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Coordinacion::class, function (Faker $faker) {
+$factory->define(App\Modules\Coordinacion::class, function (Faker $faker) {
+    $asignaturas = DB::table('asignatura')->select('id')->get();
+    $profesores = DB::table('profesor')->select('id')->get();
     return [
-        'semestre' => rand(1,2),
-        'laboratorio' => rand(0,1),
-        'cupo' => rand(30, 50),
+        'semestre' => $faker->numberBetween($min = 1, $max = 12),
+        'laboratorio' => numberBetween($min = 0, $max = 1),
+        'cupo' => numberBetween($min = 15, $max = 40),
+
+        //Llaves foráneas
+        'id_profesor' => $regiones->random()->id,
+        'id_asignatura' => $regiones->random()->id,
     ];
 });

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\PlanDeEstudios;
+use App\Modules\PlanDeEstudio;
 
 class PlanesEstudioTableSeeder extends Seeder
 {

@@ -13,6 +13,6 @@ class TarjetaCredito extends Model
 							];
 
     public function alumno() {
-    	return $this->belongsTo('App\Alumno');
+    	return $this->belongsTo('App\Modules\Alumno');
     }
 }

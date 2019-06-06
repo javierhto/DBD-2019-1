@@ -2,7 +2,7 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Comuna;
+use App\Modules\Comuna;
 use Faker\Generator as Faker;
 
 $factory->define(Comuna::class, function (Faker $faker) {

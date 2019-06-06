@@ -16,18 +16,18 @@ class Profesor extends Model
     //FALTA LA COORDINACION DEL PROFE
 
     public function comuna() {
-    	return $this->belongsTo('App\Comuna');
+    	return $this->belongsTo('App\Modules\Comuna');
     }
 
     public function mensaje() {
-    	return $this->hasMany('App\Mensaje');
+    	return $this->hasMany('App\Modules\Mensaje');
     }
 
     public function historialProfesor() {
-    	return $this->hasMany('App\HistorialProfesor');
+    	return $this->hasMany('App\Modules\HistorialProfesor');
     }
 
     public function coordinacion() {
-    	return $this->belongsToMany('App\Coordinacion', 'coordinacion_profesor');
+    	return $this->belongsToMany('App\Modules\Coordinacion', 'coordinacion_profesor');
     }
 }

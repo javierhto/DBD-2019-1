@@ -15,10 +15,10 @@ class CoordinadorDocente extends Model
 
 
     public function comuna() {
-    	return $this->belongsTo('App\Comuna');
+    	return $this->belongsTo('App\Modules\Comuna');
     }
 
     public function carrera() {
-    	return $this->hasMany('App\Carrera');
+    	return $this->hasMany('App\Modules\Carrera');
     }
 }

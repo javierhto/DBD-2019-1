@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\TarjetaCredito;
+use App\Modules\TarjetaCredito;
 
 class TarjetasTableSeeder extends Seeder
 {

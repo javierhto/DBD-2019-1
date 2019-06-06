@@ -11,6 +11,6 @@ class Prerequisito extends Model
 	protected $fillable =['nombre','nivel','id_asignatura'];
 
     public function asignatura() {
-    	return $this->belongsTo('App\Asignatura');
+    	return $this->belongsTo('App\Modules\Asignatura');
     }
 }

@@ -16,7 +16,7 @@ class HistorialProfesor extends Model
 
 
     public function profesor() {
-    	return $this->belongsTo('App\Profesor');
+    	return $this->belongsTo('App\Modules\Profesor');
     }
 
 }

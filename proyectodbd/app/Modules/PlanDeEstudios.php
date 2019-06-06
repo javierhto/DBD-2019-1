@@ -11,10 +11,10 @@ class PlanDeEstudios extends Model
     protected $fillable =['semestre','version','id_carrera'];
 
     public function carrera() {
-    	return $this->belongsTo('App\Carrera');
+    	return $this->belongsTo('App\Modules\Carrera');
     }
 
     public function asignatura() {
-    	return $this->hasMany('App\PlanDeEstudiosAsignatura');
+    	return $this->belongsToMany('App\Modules\Asignatura', 'plan_estudios_asignatura');
     }
 }

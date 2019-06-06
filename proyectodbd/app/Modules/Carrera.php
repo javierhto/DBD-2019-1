@@ -12,14 +12,14 @@ class Carrera extends Model
                         'id_departamento'];
 
     public function planDeEstudios() {
-    	return $this->hasMany('App\PlanDeEstudios');
+    	return $this->hasMany('App\Modules\PlanDeEstudios');
     }
 
     public function coordinadorDocente() {
-    	return $this->belongsTo('App\CoordinadorDocente');
+    	return $this->belongsTo('App\Modules\CoordinadorDocente');
     }
 
-    public function alumnoYCarrera() {
-    	return $this->hasMany('App\AlumnoYCarrera');
+    public function alumno() {
+    	return $this->belongsToMany('App\Modules\Alumno', 'alumno_carrera');
     }
 }
