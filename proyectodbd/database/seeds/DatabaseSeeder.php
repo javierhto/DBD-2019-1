@@ -20,13 +20,13 @@ class DatabaseSeeder extends Seeder
             TarjetasTableSeeder::class,
             CarrerasTableSeeder::class,
             FacturacionesTableSeeder::class,
+            FacultadesTableSeeder::class,
             DepartamentosTableSeeder::class,
             EvaluacionesTableSeeder::class,
             AsignaturasTableSeeder::class,
-            CoordinacionesTableSeeder::class,
-            FacultadesTableSeeder::class,
-            HorariosTableSeeder::class,
             ProfesoresTableSeeder::class,
+            CoordinacionesTableSeeder::class,
+            HorariosTableSeeder::class,
         ]);
     }
 }
