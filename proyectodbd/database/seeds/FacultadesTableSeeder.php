@@ -12,6 +12,10 @@ class FacultadesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Facultad::class, 3)->create();
+        Facultad::create(['nombre' => 'Ingenieria',]);
+        Facultad::create(['nombre' => 'Humanidades',]);
+        Facultad::create(['nombre' => 'Ciencias',]);
+        Facultad::create(['nombre' => 'Ciencias Medicas',]);
+        Facultad::create(['nombre' => 'Derecho',]);
     }
 }

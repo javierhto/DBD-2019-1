@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CarrerasTableSeeder::class,
             EvaluacionesTableSeeder::class,
             AsignaturasTableSeeder::class,
+            ProfesoresTableSeeder::class,
             CoordinacionesTableSeeder::class,
             HorariosTableSeeder::class,
             ProfesoresTableSeeder::class,
