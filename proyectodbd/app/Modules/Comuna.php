@@ -11,22 +11,22 @@ class Comuna extends Model
     protected $fillable =['nombre','id_region'];
     
     public function region() {
-    	return $this->belongsTo('App\Region');
+    	return $this->belongsTo('App\Modules\Region');
     }
 
     public function administradorGeneral() {
-    	return $this->hasMany('App\AdministradorGeneral');
+    	return $this->hasMany('App\Modules\AdministradorGeneral');
     }
 
     public function coordinadorDocente() {
-    	return $this->hasMany('App\CoordinadorDocente');
+    	return $this->hasMany('App\Modules\CoordinadorDocente');
     }
 
     public function alumno() {
-    	return $this->hasMany('App\Alumno');
+    	return $this->hasMany('App\Modules\Alumno');
     }
 
     public function profesor() {
-    	return $this->hasMany('App\Profesor');
+    	return $this->hasMany('App\Modules\Profesor');
     }
 }

@@ -10,9 +10,9 @@ class PlanDeEstudiosAsignatura extends Model
     protected $fillable =['id_plan_estudios','id_asignatura'];    
 
     public function asignatura() {
-    	return $this->belongsTo('App\Asignatura');
+    	return $this->belongsTo('App\Modules\Asignatura');
     }
     public function planEstudios() {
-    	return $this->belongsTo('App\PlanDeEstudios');
+    	return $this->belongsTo('App\Modules\PlanDeEstudios');
     }
 }

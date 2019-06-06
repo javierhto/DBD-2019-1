@@ -15,12 +15,12 @@ class AddForeignKeyAlumnoTable extends Migration
     {
         Schema::table('alumno', function (Blueprint $table) {
             //
-            $table->bigInteger('id_carrera');
+            $table->bigInteger('id_carrera')->unsigned()->nullable();
             $table->foreign('id_carrera')
                     ->references('id')->on('carrera')
                     ->onDelete('cascade');
             
-            $table->bigInteger('id_comuna');
+            $table->bigInteger('id_comuna')->unsigned()->nullable();
             $table->foreign('id_comuna')
                     ->references('id')->on('comuna')
                     ->onDelete('cascade');

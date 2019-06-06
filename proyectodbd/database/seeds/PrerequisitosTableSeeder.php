@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Modules\Prerequsito;
 
 class PrerequisitosTableSeeder extends Seeder
 {

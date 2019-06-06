@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Modules\AlumnosCarreras;
 
 class AlumnosCarrerasTableSeeder extends Seeder
 {

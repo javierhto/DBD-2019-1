@@ -5,7 +5,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\PlanDeEstudios::class, function (Faker $faker) {
+$factory->define(App\Modules\PlanDeEstudios::class, function (Faker $faker) {
     return [
         //
     ];

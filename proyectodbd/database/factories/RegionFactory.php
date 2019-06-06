@@ -2,7 +2,7 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Region;
+use App\Modules\Region;
 use Faker\Generator as Faker;
 
 $factory->define(Region::class, function (Faker $faker) {

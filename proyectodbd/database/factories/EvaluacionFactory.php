@@ -4,7 +4,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Evaluacion::class, function (Faker $faker) {
+$factory->define(App\Modules\Evaluacion::class, function (Faker $faker) {
     return [
         'nombre' => $faker->sentence(1),
         'tipo' => $faker->randomElement(['pep','control','presentación','pa']),

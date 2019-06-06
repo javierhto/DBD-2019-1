@@ -16,6 +16,6 @@ class AdministradorGeneral extends Model
 //NO ME PERMITE COLOCAR LAS COMUNAS, REVISAR.
 
     public function comuna() {
-    	return $this->belongsTo('App\Comuna');
+    	return $this->belongsTo('App\Modules\Comuna');
     }
 }

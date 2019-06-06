@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Horario;
+use App\Modules\Horario;
 
 class HorariosTableSeeder extends Seeder
 {

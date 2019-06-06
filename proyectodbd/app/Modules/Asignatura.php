@@ -12,18 +12,18 @@ class Asignatura extends Model
                         'E','L'];
                         
     public function evaluacion() {
-    	return $this->hasMany('App\Evaluacion');
+    	return $this->hasMany('App\Modules\Evaluacion');
     }
 
     public function prerequisito() {
-    	return $this->hasMany('App\Prerequisito');
+    	return $this->hasMany('App\Modules\Prerequisito');
     }
 
     public function coordinacion() {
-    	return $this->hasMany('App\Coordinacion');
+    	return $this->hasMany('App\Modules\Coordinacion');
     }
 
     public function planDeEstudios() {
-    	return $this->belongsToMany('App\PlanDeEstudios', 'plan_estudios_asignatura');
+    	return $this->belongsToMany('App\Modules\PlanDeEstudios', 'plan_estudios_asignatura');
     }
 }

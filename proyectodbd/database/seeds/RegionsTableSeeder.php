@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Modules\Region;
 
 class RegionsTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class RegionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Region::class, 50)->create();
+        factory(Region::class, 50)->create();
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Carrera;
+use App\Modules\Carrera;
 
 class CarrerasTableSeeder extends Seeder
 {

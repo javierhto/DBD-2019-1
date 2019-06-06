@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\CoordinadorDocente;
+use App\Modules\CoordinadorDocente;
 class CoordinadoresTableSeeder extends Seeder
 {
     /**

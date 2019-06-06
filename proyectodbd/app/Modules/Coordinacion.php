@@ -13,14 +13,14 @@ class Coordinacion extends Model
                             ];
 
     public function asignatura() {
-    	return $this->belongsTo('App\Asignatura');
+    	return $this->belongsTo('App\Modules\Asignatura');
     }
 
     public function profesor() {
-    	return $this->belongsToMany('App\Profesor', 'coordinacion_profesor');
+    	return $this->belongsToMany('App\Modules\Profesor', 'coordinacion_profesor');
     }
 
     public function horario() {
-    	return $this->belongsToMany('App\Horario', 'coordinacion_horario');
+    	return $this->belongsToMany('App\Modules\Horario', 'coordinacion_horario');
     }
 }

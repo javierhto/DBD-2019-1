@@ -5,7 +5,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\RegistroDeAccion::class, function (Faker $faker) {
+$factory->define(App\Modules\RegistroDeAccion::class, function (Faker $faker) {
     return [
         //
     ];

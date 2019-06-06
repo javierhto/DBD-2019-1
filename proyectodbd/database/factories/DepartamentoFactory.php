@@ -4,8 +4,10 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Departamento::class, function (Faker $faker) {
+$factory->define(App\Modules\Departamento::class, function (Faker $faker) {
+    $facultades = DB::table('facultad')->select('id')->get();
     return [
         'nombre' => $faker->sentence(3),
+        'id_facultad' => $facultades->random()->id,
     ];
 });

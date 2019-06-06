@@ -12,6 +12,6 @@ class HistorialAlumno extends Model
    					 'id_coordinacion'];
     
     public function alumno() {
-    	return $this->belongsTo('App\Alumno');
+    	return $this->belongsTo('App\Modules\Alumno');
     }
 }
