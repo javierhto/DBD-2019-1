@@ -1,0 +1,694 @@
+drop SCHEMA  public cascade;
+create SCHEMA public;
+
+create table migrations
+(
+    id        serial       not null
+        constraint migrations_pkey
+            primary key,
+    migration varchar(255) not null,
+    batch     integer      not null
+);
+
+alter table migrations
+    owner to homestead;
+
+create table users
+(
+    id bigserial not null
+        constraint users_pkey
+            primary key,
+    name varchar(255) not null,
+    email varchar(255) not null
+        constraint users_email_unique
+            unique,
+    email_verified_at timestamp(0),
+    password          varchar(255) not null,
+    remember_token    varchar(100),
+    created_at        timestamp(0),
+    updated_at        timestamp(0)
+);
+
+alter table users
+    owner to homestead;
+
+create table password_resets
+(
+    email varchar(255) not null,
+    token varchar(255) not null,
+    created_at timestamp(0)
+);
+
+alter table password_resets
+    owner to homestead;
+
+create index password_resets_email_index
+    on password_resets (email);
+
+create table region
+(
+    id serial not null
+        constraint region_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    nombre     varchar(255) not null
+);
+
+alter table region
+    owner to homestead;
+
+insert into region (id, created_at, updated_at, nombre) values (1, '2019-06-01 175553', '2019-06-06 175553', 'Maule');
+insert into region (id, created_at, updated_at, nombre) values (2, '2019-06-01 180050', '2019-06-06 180050', 'Rios');
+
+create table comuna
+(
+    id serial not null
+        constraint comuna_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    nombre     varchar(255) not null,
+    id_region  serial
+        constraint comuna_id_region_foreign
+            references region
+            on delete cascade
+);
+
+alter table comuna
+    owner to homestead;
+
+insert into comuna(id, created_at, updated_at, nombre, id_region) values (1, '2019-06-01 231220', '2019-06-01 231220', 'yeuyeu', 2);
+insert into comuna(id, created_at, updated_at, nombre, id_region) values (2, '2019-06-02 182125', '2019-06-02 182125', 'aredo', 2);
+
+create table CoordinadorDocente
+(
+    id serial not null
+        constraint coordinador_docente_pkey
+            primary key,
+    created_at       timestamp(0),
+    updated_at       timestamp(0),
+    nombre           varchar(255) not null,
+    fecha_nacimiento date         not null,
+    correo           varchar(255) not null,
+    direccion        varchar(255) not null,
+    telefono         bigint      not null,
+    celular          bigint      not null,
+    contrasena       varchar(255) not null,
+    jornada          varchar(255) not null,
+    situacion        varchar(255) not null,
+    fecha_ingreso    date         not null,
+    estado_cuenta    varchar(255) not null,
+    id_comuna        serial       not null
+        constraint coordinador_docente_id_comuna_foreign
+            references comuna
+            on delete cascade
+);
+
+alter table CoordinadorDocente
+    owner to homestead;
+
+insert into CoordinadorDocente (id, created_at, updated_at, nombre, fecha_nacimiento, correo, direccion, telefono, celular, contrasena, jornada, situacion, fecha_ingreso, estado_cuenta, id_comuna)
+values (1, '2019-06-03 121212', '2019-06-03 121212', 'Juan Jose Rios', '1960-02-27', 'juanjose.rios@udes.cl', 'gran bosque 98', 228375461, 5626473295, 'rijjos', 'vespertina', 'normal', '1988-10-01', 'inactiva', 1);
+insert into CoordinadorDocente (id, created_at, updated_at, nombre, fecha_nacimiento, correo, direccion, telefono, celular, contrasena, jornada, situacion, fecha_ingreso, estado_cuenta, id_comuna)
+values (2, '2019-06-04 130021', '2019-06-04 130021', 'Franchesca Vigo', '1980-06-01', 'franchesca.vigo@gmail.cl', 'espido 741', 2274386583, 56946302853, 'fran19v6', 'diurna', 'normal', '2017-06-15', 'activa', 1);
+
+create table administrador_general
+(
+    id serial not null
+        constraint administrador_general_pkey
+            primary key,
+    created_at    timestamp(0),
+    updated_at    timestamp(0),
+    nombre        varchar(255) not null,
+    correo        varchar(255) not null,
+    direccion     varchar(255) not null,
+    celular       bigint      not null,
+    contrasena    varchar(255) not null,
+    jornada       varchar(255) not null,
+    situacion     varchar(255) not null,
+    fecha_ingreso date         not null
+);
+
+alter table administrador_general
+    owner to homestead;
+
+INSERT INTO administrador_general (id, created_at, updated_at, nombre, correo, direccion, celular, contrasena, jornada, situacion, fecha_ingreso)
+values (1, '2019-06-05 182543', '2019-06-05 182543', 'Pedro Ruiz', 'pedro.ruiz@admin.cl', 'villagrant 871', 56254365512, 'adminRuiz', 'Diurna', 'Normal', '2019-06-05');
+INSERT INTO administrador_general (id, created_at, updated_at, nombre, correo, direccion, celular, contrasena, jornada, situacion, fecha_ingreso)
+values (2, '2019-06-06 173553', '2019-06-06 175553', 'Daniela ñuñez', 'daniela.nunez@admin.cl', 'Los Bosques 63', 56984373299, 'nunezAdmin', 'Vespertina', 'Normal', '2018-04-05');
+
+create table registro_accion
+(
+    id serial not null
+        constraint registro_accion_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    rol        varchar(255) not null,
+    accion     integer      not null,
+    time_stamp timestamp(0) not null
+);
+
+alter table registro_accion
+    owner to homestead;
+
+create table profesor
+(
+    id bigserial not null
+        constraint profesor_pkey
+            primary key,
+    created_at       timestamp(0),
+    updated_at       timestamp(0),
+    fecha_nacimiento date         not null,
+    nombre           varchar(255) not null,
+    correo           varchar(255) not null,
+    direccion        varchar(255) not null,
+    telefono         bigint      not null,
+    celular          bigint      not null,
+    contrasena       varchar(255) not null,
+    jornada          varchar(255) not null,
+    situacion        varchar(255) not null,
+    fecha_ingreso    date         not null,
+    estado_cuenta    varchar(255) not null,
+    grado_academico  varchar(255) not null,
+    id_comuna        serial       not null
+        constraint profesor_id_comuna_foreign
+            references comuna
+            on delete cascade
+);
+
+alter table profesor
+    owner to homestead;
+
+INSERT INTO profesor (id, created_at, updated_at, fecha_nacimiento, nombre, correo, direccion, telefono, celular, contrasena, jornada, situacion, fecha_ingreso, estado_cuenta, grado_academico, id_comuna)
+values (1, '2019-06-06 182543', '2019-06-06 182543', '1977-01-14', 'Fernanda feuch','FeuchFer@gmail.com' , 'belloto 4342', 22658889432, 56977356898, 'ferfeu77', 'vespertino', 'Normal', '2010-04-06', 'activa', 'doctorado', 1);
+INSERT INTO profesor (id, created_at, updated_at, fecha_nacimiento, nombre, correo, direccion, telefono, celular, contrasena, jornada, situacion, fecha_ingreso, estado_cuenta, grado_academico, id_comuna)
+values (2, '2019-06-06 192543', '2019-06-06 192543', '1983-04-17', 'Anibal Restro','anibal.restro@udes.cl' , 'geronimo 313', 229357412, 5698732647, '174gerestro', 'diurno', 'suspendido', '2000-09-01', 'activa', 'magister', 1);
+
+create table facultad
+(
+    id serial not null
+        constraint facultad_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    nombre     varchar(255) not null
+);
+
+alter table facultad
+    owner to homestead;
+
+INSERT INTO facultad(id, created_at, updated_at, nombre) values (1,'2019-06-06 192543', '2019-06-06 192543', 'Facultad de Innovacion');
+INSERT INTO facultad(id, created_at, updated_at, nombre) values (2,'2019-06-06 171205', '2019-06-06 171205', 'Facultad de Medicina');
+
+create table departamento
+(
+    id serial not null
+        constraint departamento_pkey
+            primary key,
+    created_at  timestamp(0),
+    updated_at  timestamp(0),
+    nombre      varchar(255) not null,
+    id_facultad serial       not null
+        constraint departamento_id_facultad_foreign
+            references facultad
+            on delete cascade
+);
+
+alter table departamento
+    owner to homestead;
+
+INSERT into departamento(id, created_at, updated_at, nombre, id_facultad) values (1, '2019-06-05 083033', '2019-06-05 083033', 'Quimica', 1);
+INSERT into departamento(id, created_at, updated_at, nombre, id_facultad) values (2, '2019-06-05 142101','2019-06-05 142101', 'Informatica', 1);
+
+create table carrera
+(
+    id serial not null
+        constraint carrera_pkey
+            primary key,
+    created_at      timestamp(0),
+    updated_at      timestamp(0),
+    nombre          varchar(255) not null,
+    codigo_carrera  varchar(255) not null,
+    arancel         integer      not null,
+    id_departamento bigint       not null
+        constraint carrera_id_departamento_foreign
+            references departamento
+            on delete cascade
+);
+
+alter table carrera
+    owner to homestead;
+
+insert into carrera (id, created_at, updated_at, nombre, codigo_carrera, arancel, id_departamento)
+values (1,'2019-06-05 194432', '2019-06-05 194432', 'Tecnologia medica', 'TEC83MEC19', 4000000, 2);
+insert into carrera (id, created_at, updated_at, nombre, codigo_carrera, arancel, id_departamento)
+values (2,'2019-06-04 210323', '2019-06-04 210323', 'Desarrollo de Hardware Cuantico', 'Des20Har44cua00', 20000000, 2);
+
+create table alumno
+(
+    id bigserial not null
+        constraint alumno_pkey
+            primary key,
+    created_at            timestamp(0),
+    updated_at            timestamp(0),
+    numero_matricula      integer          not null,
+    fecha_nacimiento      date             not null,
+    nombre                varchar(255)     not null,
+    correo                varchar(255)     not null,
+    direccion             varchar(255)     not null,
+    telefono              bigint           not null,
+    celular               bigint           not null,
+    contrasena            varchar(255)     not null,
+    jornada               varchar(255)     not null,
+    situacion             varchar(255)     not null,
+    ano_ingreso           integer          not null,
+    ultima_matricula      date             not null,
+    nivel_actual          integer          not null,
+    avance                double precision not null,
+    eficiencia            double precision not null,
+    asignaturas_aprobadas integer          not null,
+    PPA                 double precision not null,
+    id_carrera            SERIAL           not null
+        constraint alumno_id_carrera_foreign
+            references carrera
+            on delete cascade,
+    id_comuna             bigint           not null
+        constraint alumno_id_comuna_foreign
+            references comuna
+            on delete cascade
+);
+
+alter table alumno
+    owner to homestead;
+
+insert into alumno (id, created_at, updated_at, numero_matricula, fecha_nacimiento, nombre, correo, direccion, telefono, celular, contrasena, jornada, situacion, ano_ingreso, ultima_matricula, nivel_actual, avance, eficiencia, asignaturas_aprobadas, PPA, id_carrera, id_comuna )
+ values (1, '2019-06-05 202330', '2019-06-05 202330', 19823, '1998-11-29', 'Juan Arriada', 'juan.arriada@udes.cl', 'buenavia 821', 228474584, 5696321214, 'especi1180', 'diurna', 'regular', 2016, '2018-03-18', 3, 27.14, 53.12, 5, 4.82, 2, 1);
+insert into alumno (id, created_at, updated_at, numero_matricula, fecha_nacimiento, nombre, correo, direccion, telefono, celular, contrasena, jornada, situacion, ano_ingreso, ultima_matricula, nivel_actual, avance, eficiencia, asignaturas_aprobadas, PPA, id_carrera, id_comuna )
+ values (2, '2019-06-06 212032', '2019-06-05 212032', 21432, '1995-02-01', 'Damian Garcia', 'damian.garcia@udes.cl', 'av. venezuela 92', 227454536, 5628563459 , '745damgar', 'diurna', 'regular', 2015, '2019-03-11', 3, 33.27, 64.42, 10, 5.21, 2, 2);
+
+create table tarjeta_credito
+(
+    id bigserial not null
+        constraint tarjeta_credito_pkey
+            primary key,
+    created_at            timestamp(0),
+    updated_at            timestamp(0),
+    numero                bigint       not null,
+    fecha_expiracion      date         not null,
+    nombre_titular        varchar(255) not null,
+    pais_facturacion      varchar(255) not null,
+    cuidad_facturacion    varchar(255) not null,
+    direccion_facturacion varchar(255) not null,
+    id_alumno             bigserial not null
+        constraint tarjeta_credito_id_alumno_foreign
+            references alumno
+            on delete cascade
+);
+
+alter table tarjeta_credito
+    owner to homestead;
+
+insert into tarjeta_credito(id, created_at, updated_at, numero, fecha_expiracion, nombre_titular, pais_facturacion, cuidad_facturacion, direccion_facturacion, id_alumno)
+values (1, '2019-06-02 074032', '2019-06-02 074032', 4242743234556213, '2023-06-17', 'Roberto Arrida', 'chile', 'santiago', 'las parcelas 881', 1);
+insert into tarjeta_credito(id, created_at, updated_at, numero, fecha_expiracion, nombre_titular, pais_facturacion, cuidad_facturacion, direccion_facturacion, id_alumno)
+values (2, '2019-06-03 173201', '2019-06-02 173201', 4242842911890032, '2024-12-30', 'Damian Garcia', 'chile', 'santiago', 'felsicio 3421', 2);
+
+create table facturacion
+(
+    id bigserial not null
+        constraint facturacion_pkey
+            primary key,
+    created_at       timestamp(0),
+    updated_at       timestamp(0),
+    estado           varchar(255)   not null,
+    monto            integer   not null,
+    fecha            date      not null,
+    fecha_expiracion date      not null,
+    id_alumno        bigint    not null
+        constraint facturacion_id_alumno_foreign
+            references alumno
+            on delete cascade
+);
+
+alter table facturacion
+    owner to homestead;
+
+insert into facturacion(id, created_at, updated_at, estado, monto, fecha, fecha_expiracion, id_alumno)
+values (1,'2019-06-01 220155', '2019-06-01 220155', 'pagada', 145000, '2019-04-01', '2019-05-01', 1);
+insert into facturacion(id, created_at, updated_at, estado, monto, fecha, fecha_expiracion, id_alumno)
+values (2,'2019-06-01 220155', '2019-06-01 220155', 'En espera', 145000, '2019-04-01', '2019-05-01', 2);
+
+
+create table mensaje
+(
+    id bigserial not null
+        constraint mensaje_pkey
+            primary key,
+    created_at   timestamp(0),
+    updated_at   timestamp(0),
+    asunto       varchar(255) not null,
+    contenido    varchar(255) not null,
+    remitente    varchar(255) not null,
+    time_stamp   timestamp(0) not null,
+    destinatario varchar(255) not null,
+    archivo      json         ,
+    id_alumno    bigserial    not null
+        constraint mensaje_id_alumno_foreign
+            references alumno
+            on delete cascade,
+    id_profesor  bigint       not null
+        constraint mensaje_id_profesor_foreign
+            references profesor
+            on delete cascade
+);
+
+alter table mensaje
+    owner to homestead;
+
+insert into mensaje(id, created_at, updated_at, asunto, contenido, remitente, time_stamp, destinatario, archivo, id_alumno, id_profesor)
+values (1, '2019-06-02 193555', '2019-06-01 193555', 'Notas', 'Ya estan las notas disponibles en la plataforma', 'AnibalR', '2019-06-02 193557', 'JuanArr', null, 1, 2);
+insert into mensaje(id, created_at, updated_at, asunto, contenido, remitente, time_stamp, destinatario, archivo, id_alumno, id_profesor)
+values (2, '2019-06-04 125501', '2019-06-04 125551', 'Recorrecion', 'Se han corregido las notas', 'AnibalR', '2019-06-02 125554', 'DGarcia', null, 2, 2);
+
+create table plan_estudios
+(
+    id serial not null
+        constraint plan_estudios_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    semestre   serial          not null,
+    version    double precision not null,
+    id_carrera serial not null
+        constraint plan_estudios_id_carrera_foreign
+            references carrera
+            on delete cascade
+);
+
+alter table plan_estudios
+    owner to homestead;
+
+insert into plan_estudios(id, created_at, updated_at, semestre, version, id_carrera) values (1, '2019-02-12 145323', '2019-02-12 145323', 1, 9.12, 1);
+insert into plan_estudios(id, created_at, updated_at, semestre, version, id_carrera) values (2, '2019-02-15 180100', '2019-02-15 180100', 1, 2.4, 2);
+
+create table asignatura
+(
+    id         bigserial    not null
+        constraint asignatura_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    nombre     varchar(255) not null,
+    nivel      integer      not null,
+    T     integer not null,
+    E     integer not null,
+    L     integer not null
+);
+
+alter table asignatura
+    owner to homestead;
+
+insert into asignatura (id, created_at, updated_at, nombre, nivel, T, E, L) values (1,'2019-02-16 125503', '2019-02-15 125503', 'Fundamentos de cubits', 11, 10, 10 ,10);
+insert into asignatura (id, created_at, updated_at, nombre, nivel, T, E, L) values (2,'2019-02-16 142322', '2019-02-15 142322', 'Introduccion a cuantica', 4, 5, 2, 3);
+
+create table evaluacion
+(
+    id bigserial not null
+        constraint evaluacion_pkey
+            primary key,
+    created_at    timestamp(0),
+    updated_at    timestamp(0),
+    nombre        varchar(255)     not null,
+    tipo          integer          not null,
+    ponderacion   double precision not null,
+    id_asignatura serial           not null
+        constraint evaluacion_id_asignatura_foreign
+            references asignatura
+            on delete cascade
+);
+
+alter table evaluacion
+    owner to homestead;
+
+insert into evaluacion (id, created_at, updated_at, nombre, tipo, ponderacion, id_asignatura) values (1, '2019-04-11 133422', '2019-04-11 133422', 'PEP' , 1, 40.00, 1);
+insert into evaluacion (id, created_at, updated_at, nombre, tipo, ponderacion, id_asignatura) values (2, '2019-05-15 204502', '2019-05-15 204502', 'PA' , 4, 50.00, 1);
+
+
+create table coordinacion
+(
+    id bigserial not null
+        constraint coordinacion_pkey
+            primary key,
+    created_at    timestamp(0),
+    updated_at    timestamp(0),
+    semestre      integer   not null,
+    laboratorio   boolean   not null,
+    cupo          integer   not null,
+    id_asignatura serial not null
+        constraint coordinacion_id_asignatura_foreign
+            references asignatura
+            on delete cascade,
+    id_profesor   bigint    not null
+        constraint coordinacion_id_profesor_foreign
+            references profesor
+            on delete cascade,
+    id_alumno     bigint    not null
+        constraint coordinacion_id_alumno_foreign
+            references alumno
+            on delete cascade
+);
+
+
+alter table coordinacion
+    owner to homestead;
+
+insert into coordinacion (id, created_at, updated_at, semestre, laboratorio, cupo, id_asignatura, id_profesor, id_alumno)
+values (1,  '2019-04-12 204502', '2019-04-12 204502', 1, FALSE, 20, 1, 2, 1);
+insert into coordinacion (id, created_at, updated_at, semestre, laboratorio, cupo, id_asignatura, id_profesor, id_alumno)
+values (2,  '2019-04-13 175021', '2019-04-13 175021', 1, TRUE, 25, 2, 2, 2);
+
+create table historial_alumno
+(
+    id serial not null
+        constraint historial_alumno_pkey
+            primary key,
+    created_at      timestamp(0),
+    updated_at      timestamp(0),
+    semestre        integer   not null,
+    id_alumno       bigint    not null
+        constraint historial_alumno_id_alumno_foreign
+            references alumno
+            on delete cascade,
+    id_asignatura serial not null
+        constraint historial_alumno_id_asignatura_foreign
+            references asignatura
+            on delete cascade,
+    id_profesor serial not null
+        constraint historial_alumno_id_profesor_foreign
+            references profesor
+            on delete cascade,
+    id_coordinacion serial not null
+        constraint historial_alumno_id_coordinacion_foreign
+            references coordinacion
+            on delete cascade
+);
+
+alter table historial_alumno
+    owner to homestead;
+
+insert into historial_alumno (id, created_at, updated_at, semestre, id_alumno, id_asignatura, id_profesor, id_coordinacion)
+values (1, '2019-04-15 115220', '2019-04-15 115220', 2, 1, 1, 2, 1);
+insert into historial_alumno (id, created_at, updated_at, semestre, id_alumno, id_asignatura, id_profesor, id_coordinacion)
+values (2, '2019-04-15 11583', '2019-04-15 115833', 1,1, 2, 2, 2);
+
+create table historial_profesor
+(
+    id bigserial not null
+        constraint historial_profesor_pkey
+            primary key,
+    created_at      timestamp(0),
+    updated_at      timestamp(0),
+    semestre        integer   not null,
+    id_profesor     serial    not null
+        constraint historial_profesor_id_profesor_foreign
+            references profesor
+            on delete cascade,
+    id_asignatura serial not null
+        constraint historial_profesor_id_asignatura_foreign
+            references asignatura
+            on delete cascade,
+    id_coordinacion serial not null
+        constraint historial_profesor_id_coordinacion_foreign
+            references coordinacion
+            on delete cascade
+);
+
+alter table historial_profesor
+    owner to homestead;
+
+insert into historial_profesor (id, created_at, updated_at, semestre, id_profesor, id_asignatura, id_coordinacion) values (1, '2019-04-14 121833', '2019-04-14 125833', 1, 2, 2, 2);
+insert into historial_profesor (id, created_at, updated_at, semestre, id_profesor, id_asignatura, id_coordinacion) values (2, '2019-04-14 121922', '2019-04-14 125922', 1, 1, 2, 1);
+
+
+create table horario
+(
+    id serial not null
+        constraint horario_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    dia        varchar(255) not null,
+    bloque     integer      not null
+);
+
+alter table horario
+    owner to homestead;
+
+insert into horario (id, created_at, updated_at, dia, bloque) values (1,'2019-03-12 134423', '2019-03-12 134423', 'Lunes', 2);
+insert into horario (id, created_at, updated_at, dia, bloque) values (2,'2019-03-12 134533', '2019-03-12 134533', 'Martes', 2);
+
+create table documento
+(
+    id bigserial not null
+        constraint documento_pkey
+            primary key,
+    created_at    timestamp(0),
+    updated_at    timestamp(0),
+    nombre        varchar(255) not null,
+    fecha         date         not null,
+    documento_    json         not null,
+    id_asignatura serial not null
+        constraint documento_id_asignatura_foreign
+            references asignatura
+            on delete cascade
+);
+
+alter table documento
+    owner to homestead;
+
+insert into documento (id, created_at, updated_at, nombre, fecha, documento_, id_asignatura) values (1, '2019-03-12 134533', '2019-03-12 134533', 'lectura 1', '2016-06-03', array_to_json('{{1,5},{99,100}}'int[]), 1);
+insert into documento (id, created_at, updated_at, nombre, fecha, documento_, id_asignatura) values (2, '2019-03-13 210443', '2019-03-13 210443', 'lectura 2', '2015-02-01', array_to_json('{{1,5},{99,100}}'int[]), 1);
+
+create table alumno_carrera
+(
+    id serial not null
+        constraint alumno_carrera_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    id_alumno bigserial not null
+        constraint alumno_carrera_id_alumno_foreign
+            references alumno
+            on delete cascade,
+    id_carrera serial not null
+        constraint alumno_carrera_id_carrera_foreign
+            references carrera
+            on delete cascade
+);
+
+alter table alumno_carrera
+    owner to homestead;
+
+insert into alumno_carrera (id, created_at, updated_at, id_alumno, id_carrera) values (1, '2019-03-13 223404', '2019-03-13 213404', 1, 2);
+insert into alumno_carrera (id, created_at, updated_at, id_alumno, id_carrera) values (2, '2019-03-23 220443', '2019-03-23 220443', 2, 2);
+
+create table prerequisito
+(
+    id serial not null
+        constraint prerequisito_pkey
+            primary key,
+    created_at    timestamp(0),
+    updated_at    timestamp(0),
+    nombre        varchar(255) not null,
+    nivel         integer      not null,
+    id_asignatura serial not null
+        constraint prerequisito_id_asignatura_foreign
+            references asignatura
+            on delete cascade
+);
+
+alter table prerequisito
+    owner to homestead;
+
+insert into prerequisito (id, created_at, updated_at, nombre, nivel, id_asignatura)
+values (1, '2019-04-22 123343', '2019-04-22 123343', 'taller de cuantica', 12, 1);
+insert into prerequisito (id, created_at, updated_at, nombre, nivel, id_asignatura)
+values (2, '2019-04-25 142343', '2019-04-25 142343', 'tecno. aplicada', 5, 1);
+
+create table coordinacion_horario
+(
+    id serial not null
+        constraint coordinacion_horario_pkey
+            primary key,
+    created_at      timestamp(0),
+    updated_at      timestamp(0),
+    sala            integer   not null,
+    id_coordinacion serial    not null
+        constraint coordinacion_horario_id_coordinacion_foreign
+            references coordinacion
+            on delete cascade,
+    id_horario serial not null
+        constraint coordinacion_horario_id_horario_foreign
+            references horario
+            on delete cascade
+);
+
+alter table coordinacion_horario
+    owner to homestead;
+
+insert into coordinacion_horario (id, created_at, updated_at, sala, id_coordinacion, id_horario)
+values (1, '2019-06-06 062335', '2019-06-06 064435', 519, 1, 1);
+insert into coordinacion_horario (id, created_at, updated_at, sala, id_coordinacion, id_horario)
+values (2, '2019-06-06 082343', '2019-06-06 184435', 202, 2, 1);
+
+create table coordinacion_profesor
+(
+    id serial not null
+        constraint coordinacion_profesor_pkey
+            primary key,
+    created_at      timestamp(0),
+    updated_at      timestamp(0),
+    id_coordinacion serial not null
+        constraint coordinacion_profesor_id_coordinacion_foreign
+            references coordinacion
+            on delete cascade,
+    id_profesor serial not null
+        constraint coordinacion_profesor_id_profesor_foreign
+            references profesor
+            on delete cascade
+);
+
+alter table coordinacion_profesor
+    owner to homestead;
+
+insert into coordinacion_profesor (id, created_at, updated_at, id_coordinacion, id_profesor)
+values (1, '2019-06-06 150547', '2019-06-06 150547', 2, 2);
+insert into coordinacion_profesor (id, created_at, updated_at, id_coordinacion, id_profesor)
+values (2, '2019-06-06 163443', '2019-06-06 163443', 1, 2);
+
+create table plan_estudios_asignatura
+(
+    id serial not null
+        constraint plan_estudios_asignatura_pkey
+            primary key,
+    created_at       timestamp(0),
+    updated_at       timestamp(0),
+    id_plan_estudios serial    not null
+        constraint plan_estudios_asignatura_id_plan_estudios_foreign
+            references plan_estudios
+            on delete cascade,
+    id_asignatura serial not null
+        constraint plan_estudios_asignatura_id_asignatura_foreign
+            references asignatura
+            on delete cascade
+);
+
+alter table plan_estudios_asignatura
+    owner to homestead;
+
+insert into plan_estudios_asignatura (id, created_at, updated_at, id_plan_estudios, id_asignatura)
+values (1, '2019-06-06 115723', '2019-06-06 115723', 1, 2);
+insert into plan_estudios_asignatura (id, created_at, updated_at, id_plan_estudios, id_asignatura)
+values (2, '2019-06-06 133418', '2019-06-06 133418', 2, 2);
