@@ -20,6 +20,7 @@ Route::resource('alumno', 'AlumnoController')->parameters(['alumno' => 'id']);
 //Route::resource('carrera/alumno', 'Alumno_CarreraController');
 
 Route::resource('alumnoCarrera', 'AlumnoCarreraController')->parameters(['alumnoCarrera' => 'id']);
+Route::resource('alumnoCoordinacion', 'AlumnoCoordinacionController')->parameters(['alumnoCoordinacion' => 'id']);
 Route::resource('planDeEstudiosAsignatura', 'PlanDeEstudiosAsignaturaController')->parameters(['planDeEstudiosAsignatura' => 'id']);
 Route::resource('administradorGeneral', 'AdministradorGeneralController')->parameters(['administradorGeneral'=> 'id']);
 Route::resource('asignatura', 'AsignaturaController')->parameters(['asignatura' => 'id']);

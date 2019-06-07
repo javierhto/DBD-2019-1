@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Modules\CoordinacionProfesor;
+use App\Modules\AlumnoCoordinacion;
 use Illuminate\Http\Request;
 
-class CoordinacionProfesorController extends Controller
+class AlumnoCoordinacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CoordinacionProfesorController extends Controller
      */
     public function index()
     {
-        return CoordinacionProfesor::all();
+        return Alumno::all();
     }
 
     /**
@@ -35,30 +35,32 @@ class CoordinacionProfesorController extends Controller
      */
     public function store(Request $request)
     {
-        return CoordinacionProfesor::create($request->all());
+        $tomaRamo=AlumnoCoordinacion::create($request->all());
+        return "El alumno esta inscrito en este ramo";
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Modules\CoordinacionProfesor  $coordinacionProfesor
+     * @param  \App\AlumnoCoordinacion  $alumnoCoordinacion
      * @return \Illuminate\Http\Response
      */
+    //Dado el id de un alumno, mostrara su carga
     public function show($id)
     {
-        $profesor=CoordinacionProfesor::where('id_profesor', $id)
-        ->select('id_profesor','id_coordinacion','id')
+        $horario=AlumnoCoordinacion::where('id_alumno', $id)
+        ->select('id_alumno','id_coordinacion','id')
         ->get();
-        return $profesor;
+        return $horario;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Modules\CoordinacionProfesor  $coordinacionProfesor
+     * @param  \App\AlumnoCoordinacion  $alumnoCoordinacion
      * @return \Illuminate\Http\Response
      */
-    public function edit(CoordinacionProfesor $coordinacionProfesor)
+    public function edit(AlumnoCoordinacion $alumnoCoordinacion)
     {
         //
     }
@@ -67,37 +69,37 @@ class CoordinacionProfesorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Modules\CoordinacionProfesor  $coordinacionProfesor
+     * @param  \App\AlumnoCoordinacion  $alumnoCoordinacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $union = CoordinacionHorario::findOrFail($id);
-        $outcome = $union->fill($this->validate($request,[
-            'id_coordinacion'=> 'required',
-            'id_profesor'=> 'required'
 
+    public function update(Request $request,$id)
+    {
+        $ramo = AlumnoCoordinacion::findOrFail($id);
+        $outcome = $ramo->fill($this->validate($request,[
+            'id_alumno'=> 'required',
+            'id_coordinacion'=> 'required'
         ]))->save();
         if($outcome)
         {
-            return 'La coordinacion con su profesor fue Actualizado';
+            return 'Asignatura Actualizado';
         }
         else
         {
-            return 'Error, no se pudo actualizar la coordinacion con su horario';
+            return 'Error, no se pudo actualizar la asignatura';
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Modules\CoordinacionProfesor  $coordinacionProfesor
+     * @param  \App\AlumnoCoordinacion  $alumnoCoordinacion
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $coordinacionProfsors = CoordinacionProfesor::findOrFail($id);
-        $coordinacionProfsors->delete();
+        $alumno = AlumnoCoordinacion::findOrFail($id);
+        $alumno->delete();
         return "Se elimino";
     }
 }
