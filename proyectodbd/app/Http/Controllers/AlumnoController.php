@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Alumno;
+use App\Modules\Alumno;
+use App\Modules\AlumnoCarrera;
 use Illuminate\Http\Request;
 
 
@@ -34,8 +35,11 @@ class AlumnoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        return Alumno::create($request->all());
+    {   
+        $nuevoAlumno=Alumno::create($request->all());
+        AlumnoCarrera::create(['id_alumno'=>$nuevoAlumno->id,'id_carrera'=>$nuevoAlumno->id_carrera]);
+        return "ALumno Creado";
+        
     }
 
     /**
@@ -52,7 +56,7 @@ class AlumnoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Alumno  $alumno
+     * @param  \App\Modules\Alumno  $alumno
      * @return \Illuminate\Http\Response
      */
     public function edit(Alumno $alumno)
@@ -64,7 +68,7 @@ class AlumnoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Alumno  $alumno
+     * @param  \App\Modules\Alumno  $alumno
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -112,7 +116,9 @@ class AlumnoController extends Controller
     public function destroy($id)
     {
         $alumno = Alumno::findOrFail($id);
-        $almuno->delete();
+        $alumno->delete();
+
+        
         return "Se elimino";
     }
 }

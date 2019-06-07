@@ -5,12 +5,14 @@
 use Faker\Generator as Faker;
 
 
-$factory->define(App\Facturacion::class, function (Faker $faker) {
+$factory->define(App\Modules\Facturacion::class, function (Faker $faker) {
 	$expiration = $faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now');
+	$alumnos = DB::table('alumno')->select('id')->get();
     return [
         'estado' => $faker->randomElement(['pagado', 'por pagar', 'pago atrasado']),
-		'monto' => $faker->numberBetween($min = 100000, $max = 200000), 
+		'monto' => $faker->numberBetween($min = 50000, $max = 200000), 
 		'fecha' => $expiration,
 		'fecha_expiracion' => $faker->dateTimeInInterval($startDate = $expiration, $interval = '+ 1 month'),
+		'id_alumno' => $alumnos->random()->id,
     ];
 });

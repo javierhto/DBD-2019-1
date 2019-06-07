@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Asignatura;
+use App\Modules\Asignatura;
 
 class AsignaturasTableSeeder extends Seeder
 {
@@ -12,6 +12,6 @@ class AsignaturasTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Asignatura::class, 20)->create();
+        factory(Asignatura::class, 200)->create();
     }
 }

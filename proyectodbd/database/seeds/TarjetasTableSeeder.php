@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\TarjetaCredito;
+use App\Modules\TarjetaCredito;
 
 class TarjetasTableSeeder extends Seeder
 {
@@ -12,6 +12,10 @@ class TarjetasTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(TarjetaCredito::class, 50)->create();
+    	$alumnos = App\Modules\Alumno::all();
+    	foreach ($alumnos as $alumno) {
+    		$cantidad = rand(0,3);
+    		factory(TarjetaCredito::class, $cantidad)->create(['id_alumno' => $alumno->id]);
+    	}
     }
 }

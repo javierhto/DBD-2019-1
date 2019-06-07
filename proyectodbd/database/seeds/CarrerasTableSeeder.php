@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Carrera;
+use App\Modules\Carrera;
 
 class CarrerasTableSeeder extends Seeder
 {
@@ -12,6 +12,10 @@ class CarrerasTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Carrera::class, 20)->create();
+    	$departamentos = App\Modules\Departamento::all();
+    	foreach ($departamentos as $departamento) {
+    		$cantidad = rand(3,5);
+    		factory(Carrera::class, $cantidad)->create(['id_departamento' => $departamento->id]);
+    	}
     }
 }

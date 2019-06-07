@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Profesor;
+use App\Modules\Profesor;
 use Illuminate\Http\Request;
 
 class ProfesorController extends Controller
@@ -41,7 +41,7 @@ class ProfesorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Profesor  $profesor
+     * @param  \App\Modules\Profesor  $profesor
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -52,7 +52,7 @@ class ProfesorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Profesor  $profesor
+     * @param  \App\Modules\Profesor  $profesor
      * @return \Illuminate\Http\Response
      */
     public function edit(Profesor $profesor)
@@ -64,7 +64,7 @@ class ProfesorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Profesor  $profesor
+     * @param  \App\Modules\Profesor  $profesor
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

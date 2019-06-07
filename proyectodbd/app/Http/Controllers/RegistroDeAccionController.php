@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\RegistroDeAccion;
+use App\Modules\RegistroDeAccion;
 use Illuminate\Http\Request;
 
 class RegistroDeAccionController extends Controller
@@ -52,7 +52,7 @@ class RegistroDeAccionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RegistroDeAccion  $registroDeAccion
+     * @param  \App\Modules\RegistroDeAccion  $registroDeAccion
      * @return \Illuminate\Http\Response
      */
     public function edit(RegistroDeAccion $registroDeAccion)
@@ -64,7 +64,7 @@ class RegistroDeAccionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RegistroDeAccion  $registroDeAccion
+     * @param  \App\Modules\RegistroDeAccion  $registroDeAccion
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, RegistroDeAccion $registroDeAccion)

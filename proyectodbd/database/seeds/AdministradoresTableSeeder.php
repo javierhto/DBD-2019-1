@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\AdministradorGeneral;
+use App\Modules\AdministradorGeneral;
 
 class AdministradoresTableSeeder extends Seeder
 {

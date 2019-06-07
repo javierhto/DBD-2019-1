@@ -4,7 +4,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Profesor::class, function (Faker $faker) {
+$factory->define(App\Modules\Profesor::class, function (Faker $faker) {
     $comunas = DB::table('comuna')->select('id')->get();
     return [
 		'nombre' => $faker->name,

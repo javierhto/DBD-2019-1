@@ -15,7 +15,7 @@ class AddForeignKeyPlanEstudiosTable extends Migration
     {
         Schema::table('plan_estudios', function (Blueprint $table) {
             //
-            $table->bigInteger('id_carrera');
+            $table->bigInteger('id_carrera')->unsigned()->nullable();
             $table->foreign('id_carrera')
                     ->references('id')->on('carrera')
                     ->onDelete('cascade');

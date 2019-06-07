@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Modules;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +16,10 @@ class HistorialProfesor extends Model
 
 
     public function profesor() {
-    	return $this->belongsTo('App\Profesor');
+    	return $this->belongsTo('App\Modules\Profesor');
+    }
+    public function coordinacion() {
+    	return $this->belongsTo('App\Modules\Coordinacion');
     }
 
 }

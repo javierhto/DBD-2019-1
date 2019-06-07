@@ -20,7 +20,7 @@ class CreateMensajeTable extends Migration
             $table->string('contenido');
             $table->string('remitente');
             $table->string('destinatario');
-            $table->json('archivo');
+            $table->json('archivo')->nullable();
         });
     }
 

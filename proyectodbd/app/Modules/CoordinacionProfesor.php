@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Modules;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,9 +12,9 @@ class CoordinacionProfesor extends Model
 
 
     public function coordinacion() {
-    	return $this->belongsTo('App\Coordinacion');
+    	return $this->belongsToMany('App\Modules\Coordinacion');
     }
     public function profesor() {
-    	return $this->belongsTo('App\Profesor');
+    	return $this->belongsToMany('App\Modules\Profesor');
     }
 }

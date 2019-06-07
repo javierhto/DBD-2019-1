@@ -15,18 +15,33 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             RegionsTableSeeder::class,
             ComunasTableSeeder::class,
-            AdministradoresTableSeeder::class,
-            CoordinadoresTableSeeder::class,
-            TarjetasTableSeeder::class,
-            CarrerasTableSeeder::class,
-            FacturacionesTableSeeder::class,
-            DepartamentosTableSeeder::class,
-            EvaluacionesTableSeeder::class,
-            AsignaturasTableSeeder::class,
-            CoordinacionesTableSeeder::class,
             FacultadesTableSeeder::class,
-            HorariosTableSeeder::class,
+            DepartamentosTableSeeder::class,
+            CoordinadoresTableSeeder::class,
+            CarrerasTableSeeder::class,
+
+            //Entidades
             ProfesoresTableSeeder::class,
+            AlumnoTableSeeder::class,
+            AdministradoresTableSeeder::class,
+            
+
+            TarjetasTableSeeder::class,
+            FacturacionesTableSeeder::class,
+            AsignaturasTableSeeder::class,
+            EvaluacionesTableSeeder::class,
+            
+            CoordinacionesTableSeeder::class,
+            HorariosTableSeeder::class,
+            MensajesTableSeeder::class,
+            PlanesEstudioTableSeeder::class,
+            RegistrosAccionTableSeeder::class,
+            HistorialesAlumnoTableSeeder::class,
+            HistorialesProfesorTableSeeder::class,
+            AlumnoCarreraTableSeeder::class,
+            PlanesEstudioAsignaturasTableSeeder::class,
+            CoordinacionesProfesoresTableSeeder::class,
+            CoordinacionesHorariosTableSeeder::class,
         ]);
     }
 }

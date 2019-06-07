@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\PlanDeEstudiosAsignatura;
-use App\PlanDeEstudios;
+use App\Modules\PlanDeEstudiosAsignatura;
+use App\Modules\PlanDeEstudios;
 use Illuminate\Http\Request;
 
 class PlanDeEstudiosController extends Controller
@@ -54,7 +54,7 @@ class PlanDeEstudiosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PlanDeEstudios  $planDeEstudios
+     * @param  \App\Modules\PlanDeEstudios  $planDeEstudios
      * @return \Illuminate\Http\Response
      */
     public function edit(PlanDeEstudios $planDeEstudios)
@@ -66,7 +66,7 @@ class PlanDeEstudiosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PlanDeEstudios  $planDeEstudios
+     * @param  \App\Modules\PlanDeEstudios  $planDeEstudios
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -96,8 +96,6 @@ class PlanDeEstudiosController extends Controller
     public function destroy($id)
     {
         $planDeEstudios = PlanDeEstudios::findOrFail($id);
-        $ramos = PlanDeEstudiosAsignatura::where('id_plan_estudios', $id)->get();
-        $ramos->delete();
         $planDeEstudios->delete();
         return "Se elimino";
     }

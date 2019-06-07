@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Horario;
+use App\Modules\Horario;
 
 class HorariosTableSeeder extends Seeder
 {
@@ -12,6 +12,13 @@ class HorariosTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Horario::class, 20)->create();
+    	$dias = ['lunes','martes','miercoles','jueves','viernes','sabado'];
+    	$bloques = [1,2,3,4,5,6,7,8,];
+
+    	foreach ($dias as $dia) {
+    		foreach($bloques as $bloque) {
+    			factory(Horario::class)->create(['dia' => $dia, 'bloque' => $bloque]);
+    		}
+    	}
     }
 }

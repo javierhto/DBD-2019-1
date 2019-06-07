@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Comuna;
+use App\Modules\Comuna;
 use Illuminate\Http\Request;
 
 class ComunaController extends Controller
@@ -52,7 +52,7 @@ class ComunaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comuna  $comuna
+     * @param  \App\Modules\Comuna  $comuna
      * @return \Illuminate\Http\Response
      */
     public function edit(Comuna $comuna)
@@ -64,7 +64,7 @@ class ComunaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comuna  $comuna
+     * @param  \App\Modules\Comuna  $comuna
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
@@ -76,7 +76,7 @@ class ComunaController extends Controller
         ]))->save();
         if($outcome)
         {
-            return 'Comuna Actualizado';
+            return 'Comuna Actualizada';
         }
         else
         {

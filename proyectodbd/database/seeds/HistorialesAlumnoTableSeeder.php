@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Modules\HistorialAlumno;
 
 class HistorialesAlumnoTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class HistorialesAlumnoTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(HistorialAlumno::class, 50)->create();
     }
 }

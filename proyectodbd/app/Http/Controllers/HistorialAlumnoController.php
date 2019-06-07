@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\HistorialAlumno;
+use App\Modules\HistorialAlumno;
 use Illuminate\Http\Request;
 
 class HistorialAlumnoController extends Controller
@@ -52,7 +52,7 @@ class HistorialAlumnoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\HistorialAlumno  $historialAlumno
+     * @param  \App\Modules\HistorialAlumno  $historialAlumno
      * @return \Illuminate\Http\Response
      */
     public function edit(HistorialAlumno $historialAlumno)
@@ -64,7 +64,7 @@ class HistorialAlumnoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\HistorialAlumno  $historialAlumno
+     * @param  \App\Modules\HistorialAlumno  $historialAlumno
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

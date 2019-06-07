@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Facturacion;
+use App\Modules\Facturacion;
 use Illuminate\Http\Request;
 
 class FacturacionController extends Controller
@@ -52,7 +52,7 @@ class FacturacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Facturacion  $facturacion
+     * @param  \App\Modules\Facturacion  $facturacion
      * @return \Illuminate\Http\Response
      */
     public function edit(Facturacion $facturacion)
@@ -64,7 +64,7 @@ class FacturacionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Facturacion  $facturacion
+     * @param  \App\Modules\Facturacion  $facturacion
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

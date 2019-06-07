@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\CoordinacionHorario;
+use App\Modules\CoordinacionHorario;
 use Illuminate\Http\Request;
+use DB;
+use App\coordinacion;
 
 class CoordinacionHorarioController extends Controller
 {
@@ -33,26 +35,36 @@ class CoordinacionHorarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(Request $request)
     {
+        
         return CoordinacionHorario::create($request->all());
+
     }
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\CoordinacionHorario  $coordinacionHorario
+     * @param  \App\Modules\CoordinacionHorario  $coordinacionHorario
      * @return \Illuminate\Http\Response
      */
+    //dado el id de un ramo, estregara todos sus horarios
     public function show($id)
     {
-        return CoordinacionHorario::find($id);
+        $ramo = DB::table('coordinacion')
+                ->join('coordinacion_horario', 'coordinacion.id', '=', 'coordinacion_horario.id_coordinacion')
+                ->where('coordinacion.id_asignatura','=',$id)
+                ->select('cupo','id_profesor','sala','id_coordinacion','id_horario')
+                ->get();
+        return $ramo;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CoordinacionHorario  $coordinacionHorario
+     * @param  \App\Modules\CoordinacionHorario  $coordinacionHorario
      * @return \Illuminate\Http\Response
      */
     public function edit(CoordinacionHorario $coordinacionHorario)
@@ -64,7 +76,7 @@ class CoordinacionHorarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CoordinacionHorario  $coordinacionHorario
+     * @param  \App\Modules\sCoordinacionHorario  $coordinacionHorario
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -90,7 +102,7 @@ class CoordinacionHorarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CoordinacionHorario  $coordinacionHorario
+     * @param  \App\Modules\CoordinacionHorario  $coordinacionHorario
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

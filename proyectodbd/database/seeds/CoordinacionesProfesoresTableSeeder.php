@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Modules\CoordinacionProfesor;
 
 class CoordinacionesProfesoresTableSeeder extends Seeder
 {
@@ -11,6 +12,10 @@ class CoordinacionesProfesoresTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $coordinaciones = App\Modules\Coordinacion::all();
+        foreach ($coordinaciones as $coordinacion) {
+    	   factory(CoordinacionProfesor::class)->create(['id_coordinacion' => $coordinacion->id]);
+        }
+
     }
 }

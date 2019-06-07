@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Coordinacion;
+use App\Modules\Coordinacion;
 use Illuminate\Http\Request;
 
 class CoordinacionController extends Controller
@@ -52,7 +52,7 @@ class CoordinacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Coordinacion  $coordinacion
+     * @param  \App\Modules\Coordinacion  $coordinacion
      * @return \Illuminate\Http\Response
      */
     public function edit(Coordinacion $coordinacion)
@@ -64,7 +64,7 @@ class CoordinacionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Coordinacion  $coordinacion
+     * @param  \App\Modules\Coordinacion  $coordinacion
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

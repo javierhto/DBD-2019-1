@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Modules;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +13,6 @@ class TarjetaCredito extends Model
 							];
 
     public function alumno() {
-    	return $this->belongsTo('App\Alumno');
+    	return $this->belongsTo('App\Modules\Alumno');
     }
 }

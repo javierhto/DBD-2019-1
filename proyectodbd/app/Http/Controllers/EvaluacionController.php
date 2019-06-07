@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Evaluacion;
+use App\Modules\Evaluacion;
 use Illuminate\Http\Request;
 
 class EvaluacionController extends Controller
@@ -52,7 +52,7 @@ class EvaluacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Evaluacion  $evaluacion
+     * @param  \App\Modules\Evaluacion  $evaluacion
      * @return \Illuminate\Http\Response
      */
     public function edit(Evaluacion $evaluacion)
@@ -64,7 +64,7 @@ class EvaluacionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Evaluacion  $evaluacion
+     * @param  \App\Modules\Evaluacion  $evaluacion
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

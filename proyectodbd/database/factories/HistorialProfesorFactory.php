@@ -4,8 +4,12 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\HistorialProfesor::class, function (Faker $faker) {
+$factory->define(App\Modules\HistorialProfesor::class, function (Faker $faker) {
+    $profesores = DB::table('profesor')->select('id')->get();
+    $coordinaciones = DB::table('coordinacion')->select('id')->get();
     return [
-        //
+        'semestre' => $faker->numberBetween($min = 1, $max = 12),
+        'id_profesor' => $profesores->random()->id,
+        'id_coordinacion' => $coordinaciones->random()->id,
     ];
 });

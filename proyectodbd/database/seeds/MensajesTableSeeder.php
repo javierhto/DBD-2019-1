@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Modules\Mensaje;
 
 class MensajesTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class MensajesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Mensaje::class, 50)->create();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Modules;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class Horario extends Model
     protected $fillable =['dia','bloque'];
     
     public function coordinacion() {
-    	return $this->belongsToMany('App\Coordinacion', 'coordinacion_horario');
+    	return $this->belongsToMany('App\Modules\Coordinacion', 'coordinacion_horario');
     }
 }

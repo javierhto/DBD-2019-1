@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Departamento;
+use App\Modules\Departamento;
 use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller
@@ -52,7 +52,7 @@ class DepartamentoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Departamento  $departamento
+     * @param  \App\Modules\Departamento  $departamento
      * @return \Illuminate\Http\Response
      */
     public function edit(Departamento $departamento)
@@ -64,7 +64,7 @@ class DepartamentoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Departamento  $departamento
+     * @param  \App\Modules\Departamento  $departamento
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

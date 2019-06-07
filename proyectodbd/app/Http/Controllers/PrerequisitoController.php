@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Prerequisito;
+use App\Modules\Prerequisito;
 use Illuminate\Http\Request;
 
 class PrerequisitoController extends Controller
@@ -52,7 +52,7 @@ class PrerequisitoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Prerequisito  $prerequisito
+     * @param  \App\Modules\Prerequisito  $prerequisito
      * @return \Illuminate\Http\Response
      */
     public function edit(Prerequisito $prerequisito)
@@ -64,7 +64,7 @@ class PrerequisitoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Prerequisito  $prerequisito
+     * @param  \App\Modules\Prerequisito  $prerequisito
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Modules\RegistroDeAccion;
 
 class RegistrosAccionTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class RegistrosAccionTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(RegistroDeAccion::class, 20)->create();
     }
 }

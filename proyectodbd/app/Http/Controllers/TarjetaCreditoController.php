@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\TarjetaCredito;
+use App\Modules\TarjetaCredito;
 use Illuminate\Http\Request;
 
 class TarjetaCreditoController extends Controller
@@ -52,7 +52,7 @@ class TarjetaCreditoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TarjetaCredito  $tarjetaCredito
+     * @param  \App\Modules\TarjetaCredito  $tarjetaCredito
      * @return \Illuminate\Http\Response
      */
     public function edit(TarjetaCredito $tarjetaCredito)
@@ -64,7 +64,7 @@ class TarjetaCreditoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TarjetaCredito  $tarjetaCredito
+     * @param  \App\Modules\TarjetaCredito  $tarjetaCredito
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

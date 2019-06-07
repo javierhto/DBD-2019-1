@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CoordinacionProfesor;
+use App\Modules\CoordinacionProfesor;
 use Illuminate\Http\Request;
 
 class CoordinacionProfesorController extends Controller
@@ -41,18 +41,21 @@ class CoordinacionProfesorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CoordinacionProfesor  $coordinacionProfesor
+     * @param  \App\Modules\CoordinacionProfesor  $coordinacionProfesor
      * @return \Illuminate\Http\Response
      */
-    public function show(CoordinacionProfesor $coordinacionProfesor)
+    public function show($id)
     {
-        //
+        $profesor=CoordinacionProfesor::where('id_profesor', $id)
+        ->select('id_profesor','id_coordinacion','id')
+        ->get();
+        return $ramo;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CoordinacionProfesor  $coordinacionProfesor
+     * @param  \App\Modules\CoordinacionProfesor  $coordinacionProfesor
      * @return \Illuminate\Http\Response
      */
     public function edit(CoordinacionProfesor $coordinacionProfesor)
@@ -64,7 +67,7 @@ class CoordinacionProfesorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CoordinacionProfesor  $coordinacionProfesor
+     * @param  \App\Modules\CoordinacionProfesor  $coordinacionProfesor
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -88,7 +91,7 @@ class CoordinacionProfesorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CoordinacionProfesor  $coordinacionProfesor
+     * @param  \App\Modules\CoordinacionProfesor  $coordinacionProfesor
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

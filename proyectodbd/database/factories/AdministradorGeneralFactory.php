@@ -4,7 +4,7 @@
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
-$factory->define(App\AdministradorGeneral::class, function (Faker $faker) {
+$factory->define(App\Modules\AdministradorGeneral::class, function (Faker $faker) {
 	$comunas = DB::table('comuna')->select('id')->get();
     return [
             'nombre' => $faker->name,

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Carrera;
+use App\Modules\Carrera;
 use Illuminate\Http\Request;
 
 class CarreraController extends Controller
@@ -52,7 +52,7 @@ class CarreraController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Carrera  $carrera
+     * @param  \App\Modules\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
     public function edit(Carrera $carrera)
@@ -64,7 +64,7 @@ class CarreraController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Carrera  $carrera
+     * @param  \App\Modules\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
