@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\Carrera;
+use App\Modules\Alumno;
 use Illuminate\Http\Request;
 
 class CarreraController extends Controller
@@ -97,5 +98,11 @@ class CarreraController extends Controller
         $carrera = Carrera::findOrFail($id);
         $carrera->delete();
         return "Se elimino";
+    }
+
+    public function alumno($id_carrera)
+    {
+        $alumnos = Alumno::where('id_carrera', $id_carrera)->get();
+        return view('admin.cities.index', compact('cities', 'country_id'));
     }
 }

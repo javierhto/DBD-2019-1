@@ -35,7 +35,7 @@ class ComunaController extends Controller
      */
     public function store(Request $request)
     {
-        return Comuna::create($request->all());
+        return App\Modules\Comuna::create($request->all());
     }
 
     /**

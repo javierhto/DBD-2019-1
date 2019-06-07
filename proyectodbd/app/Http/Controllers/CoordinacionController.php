@@ -74,7 +74,7 @@ class CoordinacionController extends Controller
             'semestre'=> 'required',
             'laboratorio'=> 'required',
             'cupo'=> 'required',
-            'id_alumno'=> 'required',
+            //'id_alumno'=> 'required',
             'id_asignatura'=> 'required',
             'id_profesor'=> 'required'
         ]))->save();

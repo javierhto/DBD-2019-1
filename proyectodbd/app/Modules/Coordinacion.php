@@ -31,4 +31,8 @@ class Coordinacion extends Model
     public function historialAlumno() {
     	return $this->belongsTo('App\Modules\HistorialAlumno');
     }
+
+    public function alumno() {
+    	return $this->belongsToMany('App\Modules\Alumno', 'alumno_coordinacion');
+    }
 }

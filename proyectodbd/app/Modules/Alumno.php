@@ -43,4 +43,8 @@ class Alumno extends Model
     public function registroAccion() {
     	return $this->belongsTo('App\Modules\RegistroDeAccion');
     }
+
+    public function coordinacion() {
+    	return $this->belongsToMany('App\Modules\Coordinacion', 'alumno_coordinacion');
+    }
 }

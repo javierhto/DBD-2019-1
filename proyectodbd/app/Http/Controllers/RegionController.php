@@ -71,7 +71,7 @@ class RegionController extends Controller
     public function update(Request $request, $id)
     {
         $region = Region::findOrFail($id);
-        $outcome = $carrera->fill($this->validate($request,[
+        $outcome = $region->fill($this->validate($request,[
             'nombre'=> 'required'
         ]))->save();
         if($outcome)

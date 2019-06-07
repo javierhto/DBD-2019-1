@@ -17,3 +17,4 @@ class AlumnoCarrera extends Model
         return $this->belongsToMany('App\Modules\Carrera');
     }
 }
+
