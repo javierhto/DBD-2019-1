@@ -1,0 +1,24 @@
+select * from documento;
+select * from registro_accion;
+
+drop function if exists sp_tr_insert() cascade;
+
+create function sp_tr_insert() returns trigger
+as
+    $$
+        begin
+            insert into registro_accion(id, created_at, updated_at, accion, id_alumno, id_profesor, id_coordinador_docente, id_administrador)
+            values (default, current_timestamp, current_timestamp, 1, 0, 0, 0, 1);
+            return new;
+        end
+    $$
+language plpgsql;
+
+create trigger tr_insert after insert on documento
+    for each row
+    execute procedure sp_tr_insert();
+
+
+
+insert into documento(id, created_at, updated_at, nombre, fecha, documento_url, id_asignatura)
+values (default, current_timestamp, current_timestamp, 'Documento32', '1999-03-19', 'http://udes.com/archivos/7.8', 1);
