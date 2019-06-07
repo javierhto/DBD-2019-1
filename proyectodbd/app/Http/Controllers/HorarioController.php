@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Horario;
+use App\Modules\Horario;
 use Illuminate\Http\Request;
 
 class HorarioController extends Controller
@@ -52,7 +52,7 @@ class HorarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Horario  $horario
+     * @param  \App\Modules\Horario  $horario
      * @return \Illuminate\Http\Response
      */
     public function edit(Horario $horario)
@@ -64,7 +64,7 @@ class HorarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Horario  $horario
+     * @param  \App\Modules\Horario  $horario
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\AlumnoCarrera;
+use App\Modules\AlumnoCarrera;
 use Illuminate\Http\Request;
 
 class AlumnoCarreraController extends Controller
@@ -41,7 +41,7 @@ class AlumnoCarreraController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\AlumnoCarrera  $alumnoCarrera
+     * @param  \App\Modules\AlumnoCarrera  $alumnoCarrera
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -52,7 +52,7 @@ class AlumnoCarreraController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AlumnoCarrera  $alumnoCarrera
+     * @param  \App\Modules\AlumnoCarrera  $alumnoCarrera
      * @return \Illuminate\Http\Response
      */
     public function edit(AlumnoCarrera $alumnoCarrera)
@@ -64,7 +64,7 @@ class AlumnoCarreraController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AlumnoCarrera  $alumnoCarrera
+     * @param  \App\Modules\AlumnoCarrera  $alumnoCarrera
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -87,7 +87,7 @@ class AlumnoCarreraController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AlumnoCarrera  $alumnoCarrera
+     * @param  \App\Modules\AlumnoCarrera  $alumnoCarrera
      * @return \Illuminate\Http\Response
      */
     public function destroy(AlumnoCarrera $alumnoCarrera)

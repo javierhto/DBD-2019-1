@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\AdministradorGeneral;
+use App\Modules\AdministradorGeneral;
 use Illuminate\Http\Request;
 
 class AdministradorGeneralController extends Controller
@@ -52,7 +52,7 @@ class AdministradorGeneralController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AdministradorGeneral  $administradorGeneral
+     * @param  \App\Modules\AdministradorGeneral  $administradorGeneral
      * @return \Illuminate\Http\Response
      */
     public function edit(AdministradorGeneral $administradorGeneral)
@@ -64,7 +64,7 @@ class AdministradorGeneralController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AdministradorGeneral  $administradorGeneral
+     * @param  \App\Modules\AdministradorGeneral  $administradorGeneral
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

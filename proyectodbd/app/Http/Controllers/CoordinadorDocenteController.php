@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CoordinadorDocente;
+use App\Modules\CoordinadorDocente;
 use Illuminate\Http\Request;
 
 class CoordinadorDocenteController extends Controller
@@ -52,7 +52,7 @@ class CoordinadorDocenteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CoordinadorDocente  $coordinadorDocente
+     * @param  \App\Modules\CoordinadorDocente  $coordinadorDocente
      * @return \Illuminate\Http\Response
      */
     public function edit(CoordinadorDocente $coordinadorDocente)
@@ -64,7 +64,7 @@ class CoordinadorDocenteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CoordinadorDocente  $coordinadorDocente
+     * @param  \App\Modules\CoordinadorDocente  $coordinadorDocente
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

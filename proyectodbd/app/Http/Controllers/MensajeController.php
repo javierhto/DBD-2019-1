@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mensaje;
+use App\Modules\Mensaje;
 use Illuminate\Http\Request;
 
 class MensajeController extends Controller
@@ -52,7 +52,7 @@ class MensajeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Mensaje  $mensaje
+     * @param  \App\Modules\Mensaje  $mensaje
      * @return \Illuminate\Http\Response
      */
     public function edit(Mensaje $mensaje)
@@ -64,7 +64,7 @@ class MensajeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Mensaje  $mensaje
+     * @param  \App\Modules\Mensaje  $mensaje
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\PlanDeEstudiosAsignatura;
-use App\PlanDeEstudios;
+use App\Modules\PlanDeEstudiosAsignatura;
+use App\Modules\PlanDeEstudios;
 use Illuminate\Http\Request;
 use DB;
 
@@ -43,7 +43,7 @@ class PlanDeEstudiosAsignaturaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
+     * @param  \App\Modules\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -60,7 +60,7 @@ class PlanDeEstudiosAsignaturaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
+     * @param  \App\Modules\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
     public function edit(PlanDeEstudiosAsignatura $planDeEstudiosAsignatura)
@@ -72,7 +72,7 @@ class PlanDeEstudiosAsignaturaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
+     * @param  \App\Modules\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -95,7 +95,7 @@ class PlanDeEstudiosAsignaturaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
+     * @param  \App\Modules\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

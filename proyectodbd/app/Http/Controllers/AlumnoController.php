@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Alumno;
-use App\AlumnoCarrera;
+use App\Modules\Alumno;
+use App\Modules\AlumnoCarrera;
 use Illuminate\Http\Request;
 
 
@@ -56,7 +56,7 @@ class AlumnoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Alumno  $alumno
+     * @param  \App\Modules\Alumno  $alumno
      * @return \Illuminate\Http\Response
      */
     public function edit(Alumno $alumno)
@@ -68,7 +68,7 @@ class AlumnoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Alumno  $alumno
+     * @param  \App\Modules\Alumno  $alumno
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

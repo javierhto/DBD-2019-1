@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Asignatura;
+use App\Modules\Asignatura;
 use Illuminate\Http\Request;
 
 class AsignaturaController extends Controller
@@ -52,7 +52,7 @@ class AsignaturaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Asignatura  $asignatura
+     * @param  \App\Modules\Asignatura  $asignatura
      * @return \Illuminate\Http\Response
      */
     public function edit(Asignatura $asignatura)
@@ -64,7 +64,7 @@ class AsignaturaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Asignatura  $asignatura
+     * @param  \App\Modules\Asignatura  $asignatura
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

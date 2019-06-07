@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CoordinacionHorario;
+use App\Modules\CoordinacionHorario;
 use Illuminate\Http\Request;
 use DB;
 use App\coordinacion;
@@ -47,7 +47,7 @@ class CoordinacionHorarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CoordinacionHorario  $coordinacionHorario
+     * @param  \App\Modules\CoordinacionHorario  $coordinacionHorario
      * @return \Illuminate\Http\Response
      */
     //dado el id de un ramo, estregara todos sus horarios
@@ -64,7 +64,7 @@ class CoordinacionHorarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CoordinacionHorario  $coordinacionHorario
+     * @param  \App\Modules\CoordinacionHorario  $coordinacionHorario
      * @return \Illuminate\Http\Response
      */
     public function edit(CoordinacionHorario $coordinacionHorario)
@@ -76,7 +76,7 @@ class CoordinacionHorarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CoordinacionHorario  $coordinacionHorario
+     * @param  \App\Modules\sCoordinacionHorario  $coordinacionHorario
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -102,7 +102,7 @@ class CoordinacionHorarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CoordinacionHorario  $coordinacionHorario
+     * @param  \App\Modules\CoordinacionHorario  $coordinacionHorario
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

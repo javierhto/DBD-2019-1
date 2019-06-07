@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\HistorialProfesor;
+use App\Modules\HistorialProfesor;
 use Illuminate\Http\Request;
 
 class HistorialProfesorController extends Controller
@@ -52,7 +52,7 @@ class HistorialProfesorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\HistorialProfesor  $historialProfesor
+     * @param  \App\Modules\HistorialProfesor  $historialProfesor
      * @return \Illuminate\Http\Response
      */
     public function edit(HistorialProfesor $historialProfesor)
@@ -64,7 +64,7 @@ class HistorialProfesorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\HistorialProfesor  $historialProfesor
+     * @param  \App\Modules\HistorialProfesor  $historialProfesor
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Facultad;
+use App\Modules\Facultad;
 use Illuminate\Http\Request;
 
 class FacultadController extends Controller
@@ -52,7 +52,7 @@ class FacultadController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Facultad  $facultad
+     * @param  \App\Modules\Facultad  $facultad
      * @return \Illuminate\Http\Response
      */
     public function edit(Facultad $facultad)
@@ -64,7 +64,7 @@ class FacultadController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Facultad  $facultad
+     * @param  \App\Modules\Facultad  $facultad
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
