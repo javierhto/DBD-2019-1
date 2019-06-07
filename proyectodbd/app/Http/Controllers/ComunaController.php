@@ -76,7 +76,7 @@ class ComunaController extends Controller
         ]))->save();
         if($outcome)
         {
-            return 'Comuna Actualizado';
+            return 'Comuna Actualizada';
         }
         else
         {
