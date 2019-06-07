@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Modules\PlanDeEstudio;
+use App\Modules\PlanDeEstudios;
 
 class PlanesEstudioTableSeeder extends Seeder
 {
@@ -12,6 +12,6 @@ class PlanesEstudioTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(PlanDeEstudios::class, 20)->create();
     }
 }
