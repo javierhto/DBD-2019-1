@@ -692,3 +692,20 @@ insert into plan_estudios_asignatura (id, created_at, updated_at, id_plan_estudi
 values (1, '2019-06-06 115723', '2019-06-06 115723', 1, 2);
 insert into plan_estudios_asignatura (id, created_at, updated_at, id_plan_estudios, id_asignatura)
 values (2, '2019-06-06 133418', '2019-06-06 133418', 2, 2);
+
+
+create  table exercice(
+    entero_1 integer,
+    entero_2 integer
+);
+
+insert into exercice (entero_1, entero_2) values (101, 919);
+insert into exercice (entero_1, entero_2) values (1, 99);
+
+create table log_triggers(
+    value1 integer,
+    value2 integer,
+    nombre varchar(255),
+    hora time,
+    fecha date
+);
