@@ -17,13 +17,14 @@ class DatabaseSeeder extends Seeder
             ComunasTableSeeder::class,
             FacultadesTableSeeder::class,
             DepartamentosTableSeeder::class,
+            CoordinadoresTableSeeder::class,
             CarrerasTableSeeder::class,
 
             //Entidades
             ProfesoresTableSeeder::class,
             AlumnoTableSeeder::class,
             AdministradoresTableSeeder::class,
-            CoordinadoresTableSeeder::class,
+            
 
             TarjetasTableSeeder::class,
             FacturacionesTableSeeder::class,

@@ -12,7 +12,7 @@ class CarrerasTableSeeder extends Seeder
      */
     public function run()
     {
-    	$departamentos = App\Departamento::all();
+    	$departamentos = App\Modules\Departamento::all();
     	foreach ($departamentos as $departamento) {
     		$cantidad = rand(3,5);
     		factory(Carrera::class, $cantidad)->create(['id_departamento' => $departamento->id]);

@@ -19,6 +19,11 @@ class AddForeignKeyCarreraTable extends Migration
             $table->foreign('id_departamento')
                     ->references('id')->on('departamento')
                     ->onDelete('cascade');
+                    
+            $table->bigInteger('id_coordinador_docente');
+            $table->foreign('id_coordinador_docente')
+                            ->references('id')->on('coordinador_docente')
+                            ->onDelete('cascade');
         });
     }
 
