@@ -4,8 +4,8 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Facultad::class, function (Faker $faker) {
+$factory->define(App\Modules\Facultad::class, function (Faker $faker) {
     return [
-        'nombre' => $faker->sentence(3),
+        'nombre' => $faker->randomElement(['Ingenieria', 'Humanidades', 'Ciencias', 'Ciencias Medicas', 'Derecho']),//editar
     ];
 });

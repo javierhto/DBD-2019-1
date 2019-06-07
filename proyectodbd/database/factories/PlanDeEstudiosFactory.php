@@ -5,9 +5,12 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\PlanDeEstudios::class, function (Faker $faker) {
-
+$factory->define(App\Modules\PlanDeEstudios::class, function (Faker $faker) {
+    
+    $carreras = DB::table('carrera')->select('id')->get();
     return [
-        'semestre' => rand(1,2),
+        'semestre' => $faker->numberBetween($min = 1, $max = 2),
+        'version' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 1),
+        'id_carrera' => $carreras->random()->id,
     ];
 });

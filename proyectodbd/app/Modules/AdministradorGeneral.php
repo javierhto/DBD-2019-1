@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Modules;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,9 +13,7 @@ class AdministradorGeneral extends Model
 							'fecha_ingreso','id_comuna'
 							];
 
-//NO ME PERMITE COLOCAR LAS COMUNAS, REVISAR.
-
     public function comuna() {
-    	return $this->belongsTo('App\Comuna');
+    	return $this->belongsTo('App\Modules\Comuna');
     }
 }

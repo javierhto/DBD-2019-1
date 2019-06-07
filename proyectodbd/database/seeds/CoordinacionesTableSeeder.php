@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Coordinacion;
+use App\Modules\Coordinacion;
 
 class CoordinacionesTableSeeder extends Seeder
 {

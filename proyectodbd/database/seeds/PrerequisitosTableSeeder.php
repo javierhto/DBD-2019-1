@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Prerequisito;
+use App\Modules\Prerequsito;
 
 class PrerequisitosTableSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class PrerequisitosTableSeeder extends Seeder
      */
     public function run()
     {
-        $asignaturas = App\Asignatura::all();
+        $asignaturas = App\Modules\Asignatura::all();
         foreach ($asignaturas as $asignatura) {
         	$cantidad = rand(0,3);
         	factory(Prerequisito::class, $cantidad)->create(['id_asignatura' => $asignatura->id]);

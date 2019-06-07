@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Modules;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,21 +12,18 @@ class Asignatura extends Model
                         'E','L'];
                         
     public function evaluacion() {
-    	return $this->hasMany('App\Evaluacion');
-    }
-    public function documento() {
-        return $this->hasMany('App\Documento');
+    	return $this->hasMany('App\Modules\Evaluacion');
     }
 
     public function prerequisito() {
-    	return $this->hasMany('App\Prerequisito');
+    	return $this->hasMany('App\Modules\Prerequisito');
     }
 
     public function coordinacion() {
-    	return $this->hasMany('App\Coordinacion');
+    	return $this->hasMany('App\Modules\Coordinacion');
     }
 
     public function planDeEstudios() {
-    	return $this->hasMany('App\PlanDeEstudiosAsignatura');
+    	return $this->belongsToMany('App\Modules\PlanDeEstudios', 'plan_estudios_asignatura');
     }
 }

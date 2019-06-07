@@ -2,15 +2,15 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Carrera;
+use App\Modules\Carrera;
 use Faker\Generator as Faker;
 
 $factory->define(Carrera::class, function (Faker $faker) {
-	$coordinadores = DB::table('coordinador_docente')->select('id')->get();
+    $departamentos = DB::table('departamento')->select('id')->get();
     return [
         'nombre' => $faker->sentence(1),
-        'codigo_carrera' => $faker->sentence(1),
-        'arancel' => rand(2000000, 6000000),
-        'id_coordinador_docente' => $coordinadores->random()->id,
+        'codigo_carrera' => $faker->unique()->randomNumber($nbDigits = 8),
+        'arancel' => $faker->numberBetween($min = 1000000, $max = 5000000),
+        'id_departamento' => $departamentos->random()->id,
     ];
 });

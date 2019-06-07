@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Modules;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +12,9 @@ class HistorialAlumno extends Model
    					 'id_coordinacion'];
     
     public function alumno() {
-    	return $this->belongsTo('App\Alumno');
+    	return $this->belongsTo('App\Modules\Alumno');
+    }
+    public function asignatura() {
+    	return $this->belongsTo('App\Modules\Asignatura');
     }
 }

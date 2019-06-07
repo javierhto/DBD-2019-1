@@ -4,7 +4,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\CoordinadorDocente::class, function (Faker $faker) {
+$factory->define(App\Modules\CoordinadorDocente::class, function (Faker $faker) {
 	$comunas = DB::table('comuna')->select('id')->get();
     return [
 		'nombre' => $faker->name,
@@ -15,9 +15,9 @@ $factory->define(App\CoordinadorDocente::class, function (Faker $faker) {
         'celular' => $faker->unique()->randomNumber($nbDigits = 8),
         'contrasena' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         'jornada' => $faker->randomElement(['completa','media','horas']),
-        'situacion' => $faker->randomElement(['regular']), //Meter mas cosas
+        'situacion' => $faker->randomElement(['regular','inactivo']), //Meter mas cosas
         'fecha_ingreso' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'estado_cuenta' => $faker->sentence(1),
+        'estado_cuenta' => $faker->randomElement(['activa', 'expirada']),
         'id_comuna' => $comunas->random()->id,
     ];
 });

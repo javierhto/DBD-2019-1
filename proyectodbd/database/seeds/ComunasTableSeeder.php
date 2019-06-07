@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Modules\Comuna;
 
 class ComunasTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class ComunasTableSeeder extends Seeder
      */
     public function run()
     {
-    	factory(App\Comuna::class, 50)->create();
+    	factory(Comuna::class, 50)->create();
     }
 }

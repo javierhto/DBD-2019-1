@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Profesor;
+use App\Modules\Profesor;
 
 class ProfesoresTableSeeder extends Seeder
 {

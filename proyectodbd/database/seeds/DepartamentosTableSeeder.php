@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Departamento;
+use App\Modules\Departamento;
 
 class DepartamentosTableSeeder extends Seeder
 {
