@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
             //Entidades
             ProfesoresTableSeeder::class,
-            AlumnoTableSeeder::class,
+            AlumnosTableSeeder::class,
             AdministradoresTableSeeder::class,
             
 
@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             FacturacionesTableSeeder::class,
             AsignaturasTableSeeder::class,
             EvaluacionesTableSeeder::class,
+            PrerequisitosTableSeeder::class,
+            DocumentosTableSeeder::class,
             
             CoordinacionesTableSeeder::class,
             HorariosTableSeeder::class,

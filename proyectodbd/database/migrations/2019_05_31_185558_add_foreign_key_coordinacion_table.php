@@ -24,11 +24,12 @@ class AddForeignKeyCoordinacionTable extends Migration
             $table->foreign('id_profesor')
                     ->references('id')->on('profesor')
                     ->onDelete('cascade');
-
+            // No va
+            /*
             $table->bigInteger('id_alumno')->unsigned()->nullable();
             $table->foreign('id_alumno')
                     ->references('id')->on('alumno')
-                    ->onDelete('cascade');
+                    ->onDelete('cascade');*/
         });
     }
 

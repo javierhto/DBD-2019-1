@@ -12,6 +12,10 @@ class CoordinacionesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Coordinacion::class, 20)->create();
+    	$asignaturas = App\Modules\Asignatura::all();
+    	foreach ($asignaturas as $asignatura) {
+    		$cantidad = rand(1,3);
+    		factory(Coordinacion::class, $cantidad)->create(['id_asignatura' => $asignatura->id]);
+    	}
     }
 }

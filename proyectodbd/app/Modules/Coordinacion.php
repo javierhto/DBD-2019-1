@@ -16,23 +16,19 @@ class Coordinacion extends Model
     	return $this->belongsTo('App\Modules\Asignatura');
     }
 
-    public function profesor() {
-    	return $this->belongsToMany('App\Modules\Profesor', 'coordinacion_profesor');
+    public function coordinacionProfesor() {
+    	return $this->hasMany('App\Modules\CoordinacionProfesor');
     }
 
-    public function horario() {
-    	return $this->belongsToMany('App\Modules\Horario', 'coordinacion_horario');
+    public function coordinacionHorario() {
+    	return $this->hasMany('App\Modules\CoordinacionHorario');
     }
 
     public function historialProfesor() {
-    	return $this->belongsToMany('App\Modules\HistorialProfesor');
+    	return $this->belongsTo('App\Modules\HistorialProfesor');
     }
 
     public function historialAlumno() {
-    	return $this->belongsToMany('App\Modules\HistorialAlumno');
-    }
-
-    public function coordinacionProfesor() {
-    	return $this->belongsToMany('App\Modules\CoordinacionProfesor');
+    	return $this->belongsTo('App\Modules\HistorialAlumno');
     }
 }

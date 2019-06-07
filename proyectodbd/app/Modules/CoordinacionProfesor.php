@@ -12,9 +12,9 @@ class CoordinacionProfesor extends Model
 
 
     public function coordinacion() {
-    	return $this->belongsToMany('App\Modules\Coordinacion');
+    	return $this->belongsTo('App\Modules\Coordinacion');
     }
     public function profesor() {
-    	return $this->belongsToMany('App\Modules\Profesor');
+    	return $this->belongsTo('App\Modules\Profesor');
     }
 }

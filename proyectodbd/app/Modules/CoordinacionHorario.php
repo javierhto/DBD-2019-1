@@ -12,9 +12,9 @@ class CoordinacionHorario extends Model
 
 
     public function coordinacion() {
-    	return $this->belongsToMany('App\Modules\Coordinacion');
+    	return $this->belongsTo('App\Modules\Coordinacion');
     }
     public function horario() {
-    	return $this->belongsToMany('App\Modules\Horario');
+    	return $this->belongsTo('App\Modules\Horario');
     }
 }

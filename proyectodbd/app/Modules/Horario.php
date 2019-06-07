@@ -11,6 +11,6 @@ class Horario extends Model
     protected $fillable =['dia','bloque'];
     
     public function coordinacion() {
-    	return $this->belongsToMany('App\Modules\Coordinacion', 'coordinacion_horario');
+    	return $this->hasMany('App\Modules\CoordinacionHorario');
     }
 }

@@ -18,7 +18,8 @@ class CreateDocumentoTable extends Migration
             $table->timestamps();
             $table->string('nombre');
             $table->date('fecha');
-            $table->json('documento');
+            //cambiado json -> string
+            $table->string('documento');
         });
     }
 

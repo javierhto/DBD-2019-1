@@ -27,15 +27,12 @@ class Profesor extends Model
     	return $this->hasMany('App\Modules\HistorialProfesor');
     }
 
-    public function coordinacion() {
-    	return $this->belongsToMany('App\Modules\Coordinacion', 'coordinacion_profesor');
+    public function coordinacionProfesor() {
+    	return $this->hasMany('App\Modules\CoordinacionProfesor');
     }
 
     public function registroAccion() {
     	return $this->belongsTo('App\Modules\RegistroDeAccion');
     }
 
-    public function coordinacionProfesor() {
-    	return $this->belongsToMany('App\Modules\CoordinacionProfesor');
-    }
 }

@@ -17,7 +17,7 @@ $factory->define(App\Modules\Alumno::class, function (Faker $faker) {
         'direccion' => $faker->address,
         'telefono' => $faker->unique()->randomNumber($nbDigits = 8),
         'celular' => $faker->unique()->randomNumber($nbDigits = 8),
-        'contrasena' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        'contrasena' => $faker->unique()->password,
         'jornada' => $faker->randomElement(['diurno','vespertino']),
         'situacion' => $faker->randomElement(['regular','egresado', 'retirado']),
         'ano_ingreso' => $faker->numberBetween($min = 2011, $max = 2019),
