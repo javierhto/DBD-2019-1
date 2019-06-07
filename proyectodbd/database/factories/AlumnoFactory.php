@@ -30,7 +30,7 @@ $factory->define(App\Modules\Alumno::class, function (Faker $faker) {
         'avance' => $faker->randomFloat($nbMaxDecimals = 3, $min = 0, $max = 1),
         'eficiencia' => $faker->randomFloat($nbMaxDecimals = 3, $min = 0, $max = 1),
         'asignaturas_aprobadas' => $faker->numberBetween($min = 0, $max = 30),
-        'PPA' => rand(10, 70) / 10,
+        'PPA' =>  rand(10, 70) / 10,
         'id_comuna' => $comunas->random()->id,
     ];
 });

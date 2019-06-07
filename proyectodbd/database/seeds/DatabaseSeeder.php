@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
             AsignaturasTableSeeder::class,
             EvaluacionesTableSeeder::class,
             
-            
             CoordinacionesTableSeeder::class,
             HorariosTableSeeder::class,
             MensajesTableSeeder::class,
