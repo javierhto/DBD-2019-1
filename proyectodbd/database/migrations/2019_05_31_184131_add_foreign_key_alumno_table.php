@@ -21,7 +21,7 @@ class AddForeignKeyAlumnoTable extends Migration
                     ->references('id')->on('carrera')
                     ->onDelete('cascade');*/
             
-            $table->bigInteger('id_comuna');
+            $table->bigInteger('id_comuna')->unsigned()->nullable();
             $table->foreign('id_comuna')
                     ->references('id')->on('comuna')
                     ->onDelete('cascade');
