@@ -19,16 +19,6 @@ class AddForeignKeyHistorialAlumnoTable extends Migration
             $table->foreign('id_alumno')
                     ->references('id')->on('alumno')
                     ->onDelete('cascade');
-
-            $table->bigInteger('id_asignatura')->unsigned()->nullable();
-            $table->foreign('id_asignatura')
-                    ->references('id')->on('asignatura')
-                    ->onDelete('cascade');
-
-            $table->bigInteger('id_profesor')->unsigned()->nullable();
-            $table->foreign('id_profesor')
-                    ->references('id')->on('profesor')
-                    ->onDelete('cascade');
             
             $table->bigInteger('id_coordinacion')->unsigned()->nullable();
             $table->foreign('id_coordinacion')

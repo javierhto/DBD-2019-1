@@ -23,4 +23,16 @@ class Coordinacion extends Model
     public function horario() {
     	return $this->belongsToMany('App\Modules\Horario', 'coordinacion_horario');
     }
+
+    public function historialProfesor() {
+    	return $this->belongsToMany('App\Modules\HistorialProfesor');
+    }
+
+    public function historialAlumno() {
+    	return $this->belongsToMany('App\Modules\HistorialAlumno');
+    }
+
+    public function coordinacionProfesor() {
+    	return $this->belongsToMany('App\Modules\CoordinacionProfesor');
+    }
 }

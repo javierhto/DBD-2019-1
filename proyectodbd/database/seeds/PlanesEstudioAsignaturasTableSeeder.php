@@ -12,7 +12,7 @@ class PlanesEstudioAsignaturasTableSeeder extends Seeder
      */
     public function run()
     {
-    	$asignaturas = App\Asignatura::all();
+    	$asignaturas = App\Modules\Asignatura::all();
         foreach ($asignaturas as $asignatura) {
     	   factory(PlanDeEstudiosAsignatura::class)->create(['id_asignatura' => $asignatura->id]);
         }

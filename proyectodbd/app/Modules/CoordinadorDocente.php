@@ -21,4 +21,8 @@ class CoordinadorDocente extends Model
     public function carrera() {
     	return $this->hasMany('App\Modules\Carrera');
     }
+
+    public function registroAccion() {
+    	return $this->belongsTo('App\Modules\RegistroDeAccion');
+    }
 }

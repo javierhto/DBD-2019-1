@@ -20,11 +20,6 @@ class AddForeignKeyHistorialProfesorTable extends Migration
                     ->references('id')->on('profesor')
                     ->onDelete('cascade');
 
-            $table->bigInteger('id_asignatura')->unsigned()->nullable();
-            $table->foreign('id_asignatura')
-                    ->references('id')->on('asignatura')
-                    ->onDelete('cascade');
-
             $table->bigInteger('id_coordinacion')->unsigned()->nullable();
             $table->foreign('id_coordinacion')
                     ->references('id')->on('coordinacion')

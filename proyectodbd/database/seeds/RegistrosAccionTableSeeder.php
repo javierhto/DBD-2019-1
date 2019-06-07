@@ -12,6 +12,6 @@ class RegistrosAccionTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(RegistroDeAccion::class, 20)->create();
     }
 }

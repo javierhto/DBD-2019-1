@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\AlumnoCarrera;
+use App\Modules\AlumnoCarrera;
 
 class AlumnoCarreraTableSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class AlumnoCarreraTableSeeder extends Seeder
      */
     public function run()
     {
-        $alumnos = App\Alumno::all();
+        $alumnos = App\Modules\Alumno::all();
         foreach ($alumnos as $alumno) {
     	   factory(AlumnoCarrera::class)->create(['id_alumno' => $alumno->id]);
         }

@@ -39,4 +39,8 @@ class Alumno extends Model
     public function carrera() {
     	return $this->belongsToMany('App\Modules\Carrera', 'alumno_carrera');
     }
+
+    public function registroAccion() {
+    	return $this->belongsTo('App\Modules\RegistroDeAccion');
+    }
 }

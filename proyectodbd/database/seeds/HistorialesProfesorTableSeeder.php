@@ -12,6 +12,6 @@ class HistorialesProfesorTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(HistorialAlumno::class, 10)->create();
+        factory(HistorialProfesor::class, 10)->create();
     }
 }

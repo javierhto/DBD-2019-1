@@ -16,4 +16,7 @@ class AdministradorGeneral extends Model
     public function comuna() {
     	return $this->belongsTo('App\Modules\Comuna');
     }
+    public function registroAccion() {
+    	return $this->belongsTo('App\Modules\RegistroDeAccion');
+    }
 }

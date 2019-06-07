@@ -35,8 +35,13 @@ class DatabaseSeeder extends Seeder
             HorariosTableSeeder::class,
             MensajesTableSeeder::class,
             PlanesEstudioTableSeeder::class,
-            //HistorialesAlumnoTableSeeder::class, Faltan configuraciones
-            //HistorialesProfesorTableSeeder::class,
+            RegistrosAccionTableSeeder::class,
+            HistorialesAlumnoTableSeeder::class,
+            HistorialesProfesorTableSeeder::class,
+            AlumnoCarreraTableSeeder::class,
+            PlanesEstudioAsignaturasTableSeeder::class,
+            CoordinacionesProfesoresTableSeeder::class,
+            CoordinacionesHorariosTableSeeder::class,
         ]);
     }
 }
