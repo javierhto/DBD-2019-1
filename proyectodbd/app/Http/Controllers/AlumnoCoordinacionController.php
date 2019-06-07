@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\AlumnoCoordinacion;
+//use App\Modules\Alumno;
 use Illuminate\Http\Request;
 
 class AlumnoCoordinacionController extends Controller
@@ -14,7 +15,7 @@ class AlumnoCoordinacionController extends Controller
      */
     public function index()
     {
-        return Alumno::all();
+        return AlumnoCoordinacion::all();
     }
 
     /**
@@ -82,7 +83,7 @@ class AlumnoCoordinacionController extends Controller
         ]))->save();
         if($outcome)
         {
-            return 'Asignatura Actualizado';
+            return 'Asignatura actualizada';
         }
         else
         {

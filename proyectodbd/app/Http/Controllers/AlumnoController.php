@@ -38,7 +38,7 @@ class AlumnoController extends Controller
     {   
         $nuevoAlumno=Alumno::create($request->all());
         AlumnoCarrera::create(['id_alumno'=>$nuevoAlumno->id,'id_carrera'=>$nuevoAlumno->id_carrera]);
-        return "ALumno Creado";
+        return "Alumno creado";
         
     }
 
@@ -119,6 +119,6 @@ class AlumnoController extends Controller
         $alumno->delete();
 
         
-        return "Se elimino";
+        return "Se elimino [Alumno]";
     }
 }

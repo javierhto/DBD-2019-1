@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
             PlanesEstudioAsignaturasTableSeeder::class,
             CoordinacionesProfesoresTableSeeder::class,
             CoordinacionesHorariosTableSeeder::class,
+            AlumnosCoordinacionesTableSeeder::class,
         ]);
     }
 }
