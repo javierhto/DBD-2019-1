@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\PlanDeEstudiosAsignatura;
-use App\PlanDeEstudios;
+use App\AlumnoCarrera;
 use Illuminate\Http\Request;
 
-class PlanDeEstudiosController extends Controller
+class AlumnoCarreraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class PlanDeEstudiosController extends Controller
      */
     public function index()
     {
-        return PlanDeEstudios::all();
+        return AlumnoCarrera::all();
     }
 
     /**
@@ -36,67 +35,63 @@ class PlanDeEstudiosController extends Controller
      */
     public function store(Request $request)
     {
-        return PlanDeEstudios::create($request->all());
+        return AlumnoCarrera::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\AlumnoCarrera  $alumnoCarrera
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return PlanDeEstudios::findOrFail($id);
-
+        return AlumnoCarrera::findOrFail($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PlanDeEstudios  $planDeEstudios
+     * @param  \App\AlumnoCarrera  $alumnoCarrera
      * @return \Illuminate\Http\Response
      */
-    public function edit(PlanDeEstudios $planDeEstudios)
+    public function edit(AlumnoCarrera $alumnoCarrera)
     {
-        
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PlanDeEstudios  $planDeEstudios
+     * @param  \App\AlumnoCarrera  $alumnoCarrera
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $malla = PlanDeEstudios::findOrFail($id);
-        $outcome = $malla->fill($this->validate($request,[
-            'semestre'=> 'required',
-            'version'=> 'required',
+        $union = AlumnoCarrera::findOrFail($id);
+        $outcome = $union->fill($this->validate($request,[
+            'id_alumno'=> 'required',
             'id_carrera'=> 'required'
         ]))->save();
         if($outcome)
         {
-            return 'Plan de estudios Actualizado';
+            return 'Relacion Actualizada';
         }
         else
         {
-            return 'Error, no se pudo actualizar el plan de estudios';
+            return 'Error, no se pudo actualizar la relacion';
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\AlumnoCarrera  $alumnoCarrera
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(AlumnoCarrera $alumnoCarrera)
     {
-        $planDeEstudios = PlanDeEstudios::findOrFail($id);
-        $planDeEstudios->delete();
-        return "Se elimino";
+        return 'Esta relacion no se destruira jamas';
     }
 }

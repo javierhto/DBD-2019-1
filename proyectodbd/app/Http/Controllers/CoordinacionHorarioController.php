@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\CoordinacionHorario;
 use Illuminate\Http\Request;
+use DB;
+use App\coordinacion;
 
 class CoordinacionHorarioController extends Controller
 {
@@ -33,10 +35,14 @@ class CoordinacionHorarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(Request $request)
     {
+        
         return CoordinacionHorario::create($request->all());
+
     }
+
 
     /**
      * Display the specified resource.
@@ -44,9 +50,15 @@ class CoordinacionHorarioController extends Controller
      * @param  \App\CoordinacionHorario  $coordinacionHorario
      * @return \Illuminate\Http\Response
      */
+    //dado el id de un ramo, estregara todos sus horarios
     public function show($id)
     {
-        return CoordinacionHorario::find($id);
+        $ramo = DB::table('coordinacion')
+                ->join('coordinacion_horario', 'coordinacion.id', '=', 'coordinacion_horario.id_coordinacion')
+                ->where('coordinacion.id_asignatura','=',$id)
+                ->select('cupo','id_profesor','sala','id_coordinacion','id_horario')
+                ->get();
+        return $ramo;
     }
 
     /**

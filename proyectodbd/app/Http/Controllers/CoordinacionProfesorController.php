@@ -44,9 +44,12 @@ class CoordinacionProfesorController extends Controller
      * @param  \App\CoordinacionProfesor  $coordinacionProfesor
      * @return \Illuminate\Http\Response
      */
-    public function show(CoordinacionProfesor $coordinacionProfesor)
+    public function show($id)
     {
-        //
+        $profesor=CoordinacionProfesor::where('id_profesor', $id)
+        ->select('id_profesor','id_coordinacion','id')
+        ->get();
+        return $ramo;
     }
 
     /**

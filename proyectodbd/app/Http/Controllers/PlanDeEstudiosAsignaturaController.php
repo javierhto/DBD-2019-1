@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\PlanDeEstudiosAsignatura;
+use App\PlanDeEstudios;
 use Illuminate\Http\Request;
+use DB;
 
 class PlanDeEstudiosAsignaturaController extends Controller
 {
@@ -46,7 +48,13 @@ class PlanDeEstudiosAsignaturaController extends Controller
      */
     public function show($id)
     {
-        return PlanDeEstudiosAsignatura::findOrFail($id);
+    
+        $mallas = DB::table('plan_estudios')
+                ->join('plan_estudios_asignatura as malla', 'plan_estudios.id', '=', 'malla.id_plan_estudios')
+                ->where('malla.id_asignatura','=',$id)
+                ->get();
+        return $mallas;
+    
     }
 
     /**
@@ -55,7 +63,7 @@ class PlanDeEstudiosAsignaturaController extends Controller
      * @param  \App\PlanDeEstudioAsignatura  $planDeEstudioAsignatura
      * @return \Illuminate\Http\Response
      */
-    public function edit(PlanDeEstudioAsignatura $planDeEstudiosAsignatura)
+    public function edit(PlanDeEstudiosAsignatura $planDeEstudiosAsignatura)
     {
         //
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Alumno;
+use App\AlumnoCarrera;
 use Illuminate\Http\Request;
 
 
@@ -34,8 +35,11 @@ class AlumnoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        return Alumno::create($request->all());
+    {   
+        $nuevoAlumno=Alumno::create($request->all());
+        AlumnoCarrera::create(['id_alumno'=>$nuevoAlumno->id,'id_carrera'=>$nuevoAlumno->id_carrera]);
+        return "ALumno Creado";
+        
     }
 
     /**
@@ -112,7 +116,9 @@ class AlumnoController extends Controller
     public function destroy($id)
     {
         $alumno = Alumno::findOrFail($id);
-        $almuno->delete();
+        $alumno->delete();
+
+        
         return "Se elimino";
     }
 }
