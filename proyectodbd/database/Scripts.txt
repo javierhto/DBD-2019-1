@@ -1,0 +1,583 @@
+create table migrations
+(
+    id        serial       not null
+        constraint migrations_pkey
+            primary key,
+    migration varchar(255) not null,
+    batch     integer      not null
+);
+
+alter table migrations
+    owner to homestead;
+
+create table users
+(
+    id                bigserial    not null
+        constraint users_pkey
+            primary key,
+    name              varchar(255) not null,
+    email             varchar(255) not null
+        constraint users_email_unique
+            unique,
+    email_verified_at timestamp(0),
+    password          varchar(255) not null,
+    remember_token    varchar(100),
+    created_at        timestamp(0),
+    updated_at        timestamp(0)
+);
+
+alter table users
+    owner to homestead;
+
+create table password_resets
+(
+    email      varchar(255) not null,
+    token      varchar(255) not null,
+    created_at timestamp(0)
+);
+
+alter table password_resets
+    owner to homestead;
+
+create index password_resets_email_index
+    on password_resets (email);
+
+create table region
+(
+    id         bigserial    not null
+        constraint region_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    nombre     varchar(255) not null
+);
+
+alter table region
+    owner to homestead;
+
+create table comuna
+(
+    id         bigserial    not null
+        constraint comuna_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    nombre     varchar(255) not null,
+    id_region  bigint
+        constraint comuna_id_region_foreign
+            references region
+            on delete cascade
+);
+
+alter table comuna
+    owner to homestead;
+
+create table coordinador_docente
+(
+    id               bigserial    not null
+        constraint coordinador_docente_pkey
+            primary key,
+    created_at       timestamp(0),
+    updated_at       timestamp(0),
+    nombre           varchar(255) not null,
+    fecha_nacimiento date         not null,
+    correo           varchar(255) not null,
+    direccion        varchar(255) not null,
+    telefono         integer      not null,
+    celular          integer      not null,
+    contrasena       varchar(255) not null,
+    jornada          varchar(255) not null,
+    situacion        varchar(255) not null,
+    fecha_ingreso    date         not null,
+    estado_cuenta    varchar(255) not null,
+    id_comuna        bigint       not null
+        constraint coordinador_docente_id_comuna_foreign
+            references comuna
+            on delete cascade
+);
+
+alter table coordinador_docente
+    owner to homestead;
+
+create table administrador_general
+(
+    id            bigserial    not null
+        constraint administrador_general_pkey
+            primary key,
+    created_at    timestamp(0),
+    updated_at    timestamp(0),
+    nombre        varchar(255) not null,
+    correo        varchar(255) not null,
+    direccion     varchar(255) not null,
+    celular       integer      not null,
+    contrasena    varchar(255) not null,
+    jornada       varchar(255) not null,
+    situacion     varchar(255) not null,
+    fecha_ingreso date         not null
+);
+
+alter table administrador_general
+    owner to homestead;
+
+create table registro_accion
+(
+    id         bigserial    not null
+        constraint registro_accion_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    rol        varchar(255) not null,
+    accion     integer      not null,
+    time_stamp timestamp(0) not null
+);
+
+alter table registro_accion
+    owner to homestead;
+
+create table profesor
+(
+    id               bigserial    not null
+        constraint profesor_pkey
+            primary key,
+    created_at       timestamp(0),
+    updated_at       timestamp(0),
+    fecha_nacimiento date         not null,
+    nombre           varchar(255) not null,
+    correo           varchar(255) not null,
+    direccion        varchar(255) not null,
+    telefono         integer      not null,
+    celular          integer      not null,
+    contrasena       varchar(255) not null,
+    jornada          varchar(255) not null,
+    situacion        varchar(255) not null,
+    fecha_ingreso    date         not null,
+    estado_cuenta    varchar(255) not null,
+    grado_academico  varchar(255) not null,
+    id_comuna        bigint       not null
+        constraint profesor_id_comuna_foreign
+            references comuna
+            on delete cascade
+);
+
+alter table profesor
+    owner to homestead;
+
+create table facultad
+(
+    id         bigserial    not null
+        constraint facultad_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    nombre     varchar(255) not null
+);
+
+alter table facultad
+    owner to homestead;
+
+create table departamento
+(
+    id          bigserial    not null
+        constraint departamento_pkey
+            primary key,
+    created_at  timestamp(0),
+    updated_at  timestamp(0),
+    nombre      varchar(255) not null,
+    id_facultad bigint       not null
+        constraint departamento_id_facultad_foreign
+            references facultad
+            on delete cascade
+);
+
+alter table departamento
+    owner to homestead;
+
+create table carrera
+(
+    id              bigserial    not null
+        constraint carrera_pkey
+            primary key,
+    created_at      timestamp(0),
+    updated_at      timestamp(0),
+    nombre          varchar(255) not null,
+    codigo_carrera  varchar(255) not null,
+    arancel         integer      not null,
+    id_departamento bigint       not null
+        constraint carrera_id_departamento_foreign
+            references departamento
+            on delete cascade
+);
+
+alter table carrera
+    owner to homestead;
+
+create table alumno
+(
+    id                    bigserial        not null
+        constraint alumno_pkey
+            primary key,
+    created_at            timestamp(0),
+    updated_at            timestamp(0),
+    numero_matricula      integer          not null,
+    fecha_nacimiento      date             not null,
+    nombre                varchar(255)     not null,
+    correo                varchar(255)     not null,
+    direccion             varchar(255)     not null,
+    telefono              integer          not null,
+    celular               integer          not null,
+    contrasena            varchar(255)     not null,
+    jornada               varchar(255)     not null,
+    situacion             varchar(255)     not null,
+    ano_ingreso           integer          not null,
+    ultima_matricula      date             not null,
+    nivel_actual          integer          not null,
+    avance                double precision not null,
+    eficiencia            double precision not null,
+    asignaturas_aprobadas integer          not null,
+    "PPA"                 double precision not null,
+    id_carrera            bigint           not null
+        constraint alumno_id_carrera_foreign
+            references carrera
+            on delete cascade,
+    id_comuna             bigint           not null
+        constraint alumno_id_comuna_foreign
+            references comuna
+            on delete cascade
+);
+
+alter table alumno
+    owner to homestead;
+
+create table tarjeta_credito
+(
+    id                    bigserial    not null
+        constraint tarjeta_credito_pkey
+            primary key,
+    created_at            timestamp(0),
+    updated_at            timestamp(0),
+    numero                integer      not null,
+    fecha_expiracion      date         not null,
+    nombre_titular        varchar(255) not null,
+    pais_facturacion      varchar(255) not null,
+    cuidad_facturacion    varchar(255) not null,
+    direccion_facturacion varchar(255) not null,
+    id_alumno             bigint       not null
+        constraint tarjeta_credito_id_alumno_foreign
+            references alumno
+            on delete cascade
+);
+
+alter table tarjeta_credito
+    owner to homestead;
+
+create table facturacion
+(
+    id               bigserial not null
+        constraint facturacion_pkey
+            primary key,
+    created_at       timestamp(0),
+    updated_at       timestamp(0),
+    estado           integer   not null,
+    monto            integer   not null,
+    fecha            date      not null,
+    fecha_expiracion date      not null,
+    id_alumno        bigint    not null
+        constraint facturacion_id_alumno_foreign
+            references alumno
+            on delete cascade
+);
+
+alter table facturacion
+    owner to homestead;
+
+create table mensaje
+(
+    id           bigserial    not null
+        constraint mensaje_pkey
+            primary key,
+    created_at   timestamp(0),
+    updated_at   timestamp(0),
+    asunto       varchar(255) not null,
+    contenido    varchar(255) not null,
+    remitente    varchar(255) not null,
+    time_stamp   timestamp(0) not null,
+    destinatario varchar(255) not null,
+    archivo      json         not null,
+    id_alumno    bigint       not null
+        constraint mensaje_id_alumno_foreign
+            references alumno
+            on delete cascade,
+    id_profesor  bigint       not null
+        constraint mensaje_id_profesor_foreign
+            references profesor
+            on delete cascade
+);
+
+alter table mensaje
+    owner to homestead;
+
+create table plan_estudios
+(
+    id         bigserial        not null
+        constraint plan_estudios_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    semestre   integer          not null,
+    version    double precision not null,
+    id_carrera bigint           not null
+        constraint plan_estudios_id_carrera_foreign
+            references carrera
+            on delete cascade
+);
+
+alter table plan_estudios
+    owner to homestead;
+
+create table asignatura
+(
+    id         bigserial    not null
+        constraint asignatura_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    nombre     varchar(255) not null,
+    nivel      integer      not null,
+    "TEL"      integer      not null
+);
+
+alter table asignatura
+    owner to homestead;
+
+create table evaluacion
+(
+    id            bigserial        not null
+        constraint evaluacion_pkey
+            primary key,
+    created_at    timestamp(0),
+    updated_at    timestamp(0),
+    nombre        varchar(255)     not null,
+    tipo          integer          not null,
+    ponderacion   double precision not null,
+    id_asignatura bigint           not null
+        constraint evaluacion_id_asignatura_foreign
+            references asignatura
+            on delete cascade
+);
+
+alter table evaluacion
+    owner to homestead;
+
+create table coordinacion
+(
+    id            bigserial not null
+        constraint coordinacion_pkey
+            primary key,
+    created_at    timestamp(0),
+    updated_at    timestamp(0),
+    semestre      integer   not null,
+    laboratorio   boolean   not null,
+    cupo          integer   not null,
+    id_asignatura bigint    not null
+        constraint coordinacion_id_asignatura_foreign
+            references asignatura
+            on delete cascade,
+    id_profesor   bigint    not null
+        constraint coordinacion_id_profesor_foreign
+            references profesor
+            on delete cascade,
+    id_alumno     bigint    not null
+        constraint coordinacion_id_alumno_foreign
+            references alumno
+            on delete cascade
+);
+
+alter table coordinacion
+    owner to homestead;
+
+create table historial_alumno
+(
+    id              bigserial not null
+        constraint historial_alumno_pkey
+            primary key,
+    created_at      timestamp(0),
+    updated_at      timestamp(0),
+    semestre        integer   not null,
+    id_alumno       bigint    not null
+        constraint historial_alumno_id_alumno_foreign
+            references alumno
+            on delete cascade,
+    id_asignatura   bigint    not null
+        constraint historial_alumno_id_asignatura_foreign
+            references asignatura
+            on delete cascade,
+    id_profesor     bigint    not null
+        constraint historial_alumno_id_profesor_foreign
+            references profesor
+            on delete cascade,
+    id_coordinacion bigint    not null
+        constraint historial_alumno_id_coordinacion_foreign
+            references coordinacion
+            on delete cascade
+);
+
+alter table historial_alumno
+    owner to homestead;
+
+create table historial_profesor
+(
+    id              bigserial not null
+        constraint historial_profesor_pkey
+            primary key,
+    created_at      timestamp(0),
+    updated_at      timestamp(0),
+    semestre        integer   not null,
+    id_profesor     bigint    not null
+        constraint historial_profesor_id_profesor_foreign
+            references profesor
+            on delete cascade,
+    id_asignatura   bigint    not null
+        constraint historial_profesor_id_asignatura_foreign
+            references asignatura
+            on delete cascade,
+    id_coordinacion bigint    not null
+        constraint historial_profesor_id_coordinacion_foreign
+            references coordinacion
+            on delete cascade
+);
+
+alter table historial_profesor
+    owner to homestead;
+
+create table horario
+(
+    id         bigserial    not null
+        constraint horario_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    dia        varchar(255) not null,
+    bloque     integer      not null
+);
+
+alter table horario
+    owner to homestead;
+
+create table documento
+(
+    id            bigserial    not null
+        constraint documento_pkey
+            primary key,
+    created_at    timestamp(0),
+    updated_at    timestamp(0),
+    nombre        varchar(255) not null,
+    fecha         date         not null,
+    documento     json         not null,
+    id_asignatura bigint       not null
+        constraint documento_id_asignatura_foreign
+            references asignatura
+            on delete cascade
+);
+
+alter table documento
+    owner to homestead;
+
+create table alumno_carrera
+(
+    id         bigserial not null
+        constraint alumno_carrera_pkey
+            primary key,
+    created_at timestamp(0),
+    updated_at timestamp(0),
+    id_alumno  bigint    not null
+        constraint alumno_carrera_id_alumno_foreign
+            references alumno
+            on delete cascade,
+    id_carrera bigint    not null
+        constraint alumno_carrera_id_carrera_foreign
+            references carrera
+            on delete cascade
+);
+
+alter table alumno_carrera
+    owner to homestead;
+
+create table prerequisito
+(
+    id            bigserial    not null
+        constraint prerequisito_pkey
+            primary key,
+    created_at    timestamp(0),
+    updated_at    timestamp(0),
+    nombre        varchar(255) not null,
+    nivel         integer      not null,
+    id_asignatura bigint       not null
+        constraint prerequisito_id_asignatura_foreign
+            references asignatura
+            on delete cascade
+);
+
+alter table prerequisito
+    owner to homestead;
+
+create table coordinacion_horario
+(
+    id              bigserial not null
+        constraint coordinacion_horario_pkey
+            primary key,
+    created_at      timestamp(0),
+    updated_at      timestamp(0),
+    sala            integer   not null,
+    id_coordinacion bigint    not null
+        constraint coordinacion_horario_id_coordinacion_foreign
+            references coordinacion
+            on delete cascade,
+    id_horario      bigint    not null
+        constraint coordinacion_horario_id_horario_foreign
+            references horario
+            on delete cascade
+);
+
+alter table coordinacion_horario
+    owner to homestead;
+
+create table coordinacion_profesor
+(
+    id              bigserial not null
+        constraint coordinacion_profesor_pkey
+            primary key,
+    created_at      timestamp(0),
+    updated_at      timestamp(0),
+    id_coordinacion bigint    not null
+        constraint coordinacion_profesor_id_coordinacion_foreign
+            references coordinacion
+            on delete cascade,
+    id_profesor     bigint    not null
+        constraint coordinacion_profesor_id_profesor_foreign
+            references profesor
+            on delete cascade
+);
+
+alter table coordinacion_profesor
+    owner to homestead;
+
+create table plan_estudios_asignatura
+(
+    id               bigserial not null
+        constraint plan_estudios_asignatura_pkey
+            primary key,
+    created_at       timestamp(0),
+    updated_at       timestamp(0),
+    id_plan_estudios bigint    not null
+        constraint plan_estudios_asignatura_id_plan_estudios_foreign
+            references plan_estudios
+            on delete cascade,
+    id_asignatura    bigint    not null
+        constraint plan_estudios_asignatura_id_asignatura_foreign
+            references asignatura
+            on delete cascade
+);
+
+alter table plan_estudios_asignatura
+    owner to homestead;
+
