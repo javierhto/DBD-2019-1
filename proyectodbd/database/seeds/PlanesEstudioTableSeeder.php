@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Modules\PlanDeEstudio;
+use App\Modules\PlanDeEstudios;
 
 class PlanesEstudioTableSeeder extends Seeder
 {
@@ -19,7 +19,5 @@ class PlanesEstudioTableSeeder extends Seeder
     			factory(PlanDeEstudios::class)->create(['version' => $cantidad, 'id_carrera' => $carrera->id]);
     			$cantidad = $cantidad - 1;
     		}
-    	}
-       
     }
 }
