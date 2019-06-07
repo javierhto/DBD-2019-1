@@ -6,6 +6,7 @@ use Faker\Generator as Faker;
 use App\Asignatura;
 
 $factory->define(Asignatura::class, function (Faker $faker) {
+	
     return [
         'nombre' => $faker->sentence(1),
         'nivel' => rand(1, 12),

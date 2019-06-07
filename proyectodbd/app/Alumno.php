@@ -36,7 +36,7 @@ class Alumno extends Model
     	return $this->hasMany('App\Mensaje');
     }
 
-    public function carrera() {
-    	return $this->belongsToMany('App\Carrera', 'alumno_carrera');
+    public function alumnoYCarrera() {
+    	return $this->hasMany('App\AlumnoYCarrera');
     }
 }

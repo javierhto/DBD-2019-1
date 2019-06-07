@@ -15,6 +15,6 @@ class PlanDeEstudios extends Model
     }
 
     public function asignatura() {
-    	return $this->belongsToMany('App\Asignatura', 'plan_estudios_asignatura');
+    	return $this->hasMany('App\PlanDeEstudiosAsignatura');
     }
 }

@@ -12,6 +12,6 @@ class FacultadesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Facultad::class, 20)->create();
+        factory(Facultad::class, 3)->create();
     }
 }

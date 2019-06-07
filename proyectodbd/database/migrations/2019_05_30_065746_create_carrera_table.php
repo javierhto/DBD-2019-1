@@ -19,6 +19,11 @@ class CreateCarreraTable extends Migration
             $table->string('nombre');
             $table->string('codigo_carrera');
             $table->integer('arancel');
+            //Agregada foranea
+            $table->bigInteger('id_coordinador_docente');
+            $table->foreign('id_coordinador_docente')
+                    ->references('id')->on('coordinador_docente')
+                    ->onDelete('cascade');
         });
     }
 

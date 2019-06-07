@@ -12,6 +12,6 @@ class AsignaturasTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Asignatura::class, 20)->create();
+        factory(Asignatura::class, 200)->create();
     }
 }

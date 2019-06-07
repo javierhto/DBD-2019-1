@@ -19,7 +19,7 @@ class Carrera extends Model
     	return $this->belongsTo('App\CoordinadorDocente');
     }
 
-    public function alumno() {
-    	return $this->belongsToMany('App\Alumno', 'alumno_carrera');
+    public function alumnoYCarrera() {
+    	return $this->hasMany('App\AlumnoYCarrera');
     }
 }

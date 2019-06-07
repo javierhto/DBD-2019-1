@@ -12,6 +12,10 @@ class DepartamentosTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Departamento::class, 20)->create();
+        $facultades = App\Facultad::all();
+    	foreach ($facultades as $facultad) {
+    		$cantidad = rand(2,4);
+    		factory(Departamento::class, $cantidad)->create(['id_facultad' => $facultad->id]);
+    	}
     }
 }

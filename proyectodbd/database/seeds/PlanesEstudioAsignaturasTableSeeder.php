@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\PlanDeEstudiosAsignatura;
 
 class PlanesEstudioAsignaturasTableSeeder extends Seeder
 {
@@ -11,6 +12,10 @@ class PlanesEstudioAsignaturasTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+    	$asignaturas = App\Asignatura::all();
+        foreach ($asignaturas as $asignatura) {
+    	   factory(PlanDeEstudiosAsignatura::class)->create(['id_asignatura' => $asignatura->id]);
+        }
+
     }
 }

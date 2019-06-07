@@ -12,6 +12,10 @@ class TarjetasTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(TarjetaCredito::class, 50)->create();
+    	$alumnos = App\Alumno::all();
+    	foreach ($alumnos as $alumno) {
+    		$cantidad = rand(0,3);
+    		factory(TarjetaCredito::class, $cantidad)->create(['id_alumno' => $alumno->id]);
+    	}
     }
 }
