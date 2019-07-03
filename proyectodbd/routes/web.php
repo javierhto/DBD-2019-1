@@ -48,3 +48,7 @@ Route::resource('tarjetaCredito', 'TarjetaCreditoController')->parameters(['tarj
 
 //Route::resource('/carrera/alumno/{id_alumno}', 'CarreraController@alumno');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
