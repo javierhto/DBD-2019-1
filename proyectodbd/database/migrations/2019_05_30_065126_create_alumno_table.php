@@ -19,11 +19,11 @@ class CreateAlumnoTable extends Migration
             $table->integer('numero_matricula');
             $table->date('fecha_nacimiento');
             $table->string('nombre');
-            $table->string('correo');
+            $table->string('email');
             $table->string('direccion');
             $table->integer('telefono');
             $table->integer('celular');
-            $table->string('contrasena');
+            $table->string('password');
             $table->string('jornada');
             $table->string('situacion');
             $table->integer('ano_ingreso');
