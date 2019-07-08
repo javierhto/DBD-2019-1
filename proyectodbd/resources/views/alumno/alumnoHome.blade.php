@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Inicio de Alumno </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in! 
+                    Bienvenido Alumno, su numero de telefono es:  {{ Auth::user()->celular }}
                 </div>
             </div>
         </div>

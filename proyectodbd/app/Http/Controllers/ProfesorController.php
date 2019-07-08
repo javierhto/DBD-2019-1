@@ -3,10 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Modules\Profesor;
+use App\Http\Requests;
 use Illuminate\Http\Request;
-
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 class ProfesorController extends Controller
 {
+
+
+    use AuthenticatesUsers;
+
+    function __construct()
+    {
+        $this->middleware('auth:profesor',['only' => ['secret']]);
+    }
+    protected $redirectTo = '/profesor/profesorHome';
+    
+    public function showLoginForm()
+    {
+        return view('profesor.profesorLogin');
+    }
+    
+    public function guard()
+    {
+        return Auth::guard('profesor');
+    }
+
+    public function secret()
+    {
+        return view('profesor.profesorHome');
+    }
+
     /**
      * Display a listing of the resource.
      *

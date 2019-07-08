@@ -4,7 +4,7 @@ namespace App\Modules;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AlumnoCarrera extends Model
+class AlumnoCarrera extends Authenticatable
 {
     //
     protected $table = 'alumno_carrera';

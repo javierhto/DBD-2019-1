@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+/*
 Route::resource('alumno', 'AlumnoController')->parameters(['alumno' => 'id']);
 //Alumno->Carrera
 //Route::resource('carrera/alumno', 'Alumno_CarreraController');
@@ -22,7 +22,7 @@ Route::resource('alumno', 'AlumnoController')->parameters(['alumno' => 'id']);
 Route::resource('alumnoCarrera', 'AlumnoCarreraController')->parameters(['alumnoCarrera' => 'id']);
 Route::resource('alumnoCoordinacion', 'AlumnoCoordinacionController')->parameters(['alumnoCoordinacion' => 'id']);
 Route::resource('planDeEstudiosAsignatura', 'PlanDeEstudiosAsignaturaController')->parameters(['planDeEstudiosAsignatura' => 'id']);
-Route::resource('administradorGeneral', 'AdministradorGeneralController')->parameters(['administradorGeneral'=> 'id']);
+//Route::resource('administradorGeneral', 'AdministradorGeneralController')->parameters(['administradorGeneral'=> 'id']);
 Route::resource('asignatura', 'AsignaturaController')->parameters(['asignatura' => 'id']);
 Route::resource('documento', 'DocumentoController')->parameters(['documento' => 'id']);
 //Route::resource('carrera', 'CarreraController')->parameters(['carrera' => 'id']);
@@ -48,7 +48,35 @@ Route::resource('tarjetaCredito', 'TarjetaCreditoController')->parameters(['tarj
 
 //Route::resource('/carrera/alumno/{id_alumno}', 'CarreraController@alumno');
 
+*/
+
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
+//Administrador
+Route::get('admin/adminLogin','AdministradorGeneralController@showLoginForm');
+Route::post('admin/adminLogin','AdministradorGeneralController@login');
+Route::get('admin/adminHome','AdministradorGeneralController@secret');
+
+//Profesor
+Route::get('profesor/profesorLogin','ProfesorController@showLoginForm');
+Route::post('profesor/profesorLogin','ProfesorController@login');
+Route::get('profesor/profesorHome','ProfesorController@secret');
+
+//Alumno
+Route::get('alumno/alumnoLogin','AlumnoController@showLoginForm');
+Route::post('alumno/alumnoLogin','AlumnoController@login');
+Route::get('alumno/alumnoHome','AlumnoController@secret');
+
+//CoordinadorDocente
+Route::get('coordinador/coordinadorLogin','CoordinadorDocenteController@showLoginForm');
+Route::post('coordinador/coordinadorLogin','CoordinadorDocenteController@login');
+Route::get('coordinador/coordinadorHome','CoordinadorDocenteController@secret');
+
+
+
+

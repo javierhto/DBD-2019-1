@@ -17,10 +17,10 @@ class CreateAdministradorGeneralTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('nombre');
-            $table->string('correo');
+            $table->string('email');
             $table->string('direccion');
             $table->integer('celular');
-            $table->string('contrasena');
+            $table->string('password');
             $table->string('jornada');
             $table->string('situacion');
             $table->date('fecha_ingreso');

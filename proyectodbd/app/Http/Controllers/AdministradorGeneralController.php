@@ -3,10 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Modules\AdministradorGeneral;
+use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class AdministradorGeneralController extends Controller
 {
+    use AuthenticatesUsers;
+
+    function __construct()
+    {
+        $this->middleware('auth:admin',['only' => ['secret']]);
+    }
+    protected $redirectTo = '/admin/adminHome';
+    
+    public function showLoginForm()
+    {
+        return view('admin.adminLogin');
+    }
+    
+    public function guard()
+    {
+        return Auth::guard('admin');
+    }
+
+    public function secret()
+    {
+        return view('admin.adminHome');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +40,7 @@ class AdministradorGeneralController extends Controller
      */
     public function index()
     {
+        return view('admin.home');
         return AdministradorGeneral::all();
     }
 
@@ -24,7 +51,7 @@ class AdministradorGeneralController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -102,4 +129,8 @@ class AdministradorGeneralController extends Controller
         $administrador->delete();
         return "Se elimino";
     }
+
+
+
+
 }

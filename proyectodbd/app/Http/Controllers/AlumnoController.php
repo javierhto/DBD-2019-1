@@ -4,11 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Modules\Alumno;
 use App\Modules\AlumnoCarrera;
+use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 
 class AlumnoController extends Controller
 {
+
+    use AuthenticatesUsers;
+
+    function __construct()
+    {
+        $this->middleware('auth:alumno',['only' => ['secret']]);
+    }
+    protected $redirectTo = '/alumno/alumnoHome';
+    
+    public function showLoginForm()
+    {
+        return view('alumno.alumnoLogin');
+    }
+    
+    public function guard()
+    {
+        return Auth::guard('alumno');
+    }
+
+    public function secret()
+    {
+        return view('alumno.alumnoHome');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +44,8 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        return Alumno::all();
+        //return Alumno::all();
+        return view('homeAlumno');
     }
 
     /**

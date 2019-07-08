@@ -8,10 +8,10 @@ $factory->define(App\Modules\AdministradorGeneral::class, function (Faker $faker
 	$comunas = DB::table('comuna')->select('id')->get();
     return [
             'nombre' => $faker->name,
-            'correo' => $faker->unique()->safeEmail,
+            'email' => $faker->unique()->safeEmail,
             'direccion' => $faker->address,
             'celular' => $faker->unique()->randomNumber($nbDigits = 8),
-            'contrasena' => $faker->unique()->password,
+            'password' => $faker->unique()->password,
             'jornada' => $faker->randomElement(['completa','media','horas']),
             'situacion' => $faker->randomElement(['regular']), //Meter mas cosas
             'fecha_ingreso' => $faker->date($format = 'Y-m-d', $max = 'now'),

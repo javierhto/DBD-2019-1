@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Modules;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use Illuminate\Database\Eloquent\Model;
-
-class AdministradorGeneral extends Model
+class AdministradorGeneral extends Authenticatable
 {
-    //
+    use Notifiable;
+    
+    protected $guard ='admin';
+
     protected $table = 'administrador_general';
-    protected $fillable =['nombre','correo','direccion',
-							'celular','contrasena','jornada','situacion',
+    protected $fillable =['nombre','email','direccion',
+							'celular','password','jornada','situacion',
 							'fecha_ingreso','id_comuna'
 							];
 

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Modules\AlumnoCarrera;
-use Illuminate\Http\Request;
+use App\Http\Requests;
 
 class AlumnoCarreraController extends Controller
 {
+    
+
+
+
     /**
      * Display a listing of the resource.
      *

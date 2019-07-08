@@ -2,14 +2,15 @@
 
 namespace App\Modules;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Profesor extends Model
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class Profesor extends Authenticatable
 {
-    //
+    use Notifiable;
+    protected $guard ='profesor';
     protected $table = 'profesor';
-    protected $fillable =['fecha_nacimiento','nombre','correo','direccion',
-                            'telefono','celular','contrasena','jornada',
+    protected $fillable =['fecha_nacimiento','nombre','email','direccion',
+                            'telefono','celular','password','jornada',
                             'situacion','fecha_ingreso','estado_cuenta','grado_academico',
                             'id_comuna'];
 

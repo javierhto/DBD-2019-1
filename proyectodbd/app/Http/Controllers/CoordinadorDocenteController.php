@@ -3,10 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Modules\CoordinadorDocente;
+use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class CoordinadorDocenteController extends Controller
 {
+
+    use AuthenticatesUsers;
+
+    function __construct()
+    {
+        $this->middleware('auth:coordinador',['only' => ['secret']]);
+    }
+    protected $redirectTo = '/coordinador/coordinadorHome';
+    
+    public function showLoginForm()
+    {
+        return view('coordinador.coordinadorLogin');
+    }
+    
+    public function guard()
+    {
+        return Auth::guard('coordinador');
+    }
+
+    public function secret()
+    {
+        return view('coordinador.coordinadorHome');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
