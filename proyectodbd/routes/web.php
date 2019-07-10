@@ -14,6 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/accesoNegado', function () {
+    return view('accesoNegado');
+})->name('accesoNegado');
 /*
 Route::resource('alumno', 'AlumnoController')->parameters(['alumno' => 'id']);
 //Alumno->Carrera
