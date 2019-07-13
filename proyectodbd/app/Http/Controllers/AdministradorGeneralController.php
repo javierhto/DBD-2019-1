@@ -12,10 +12,7 @@ class AdministradorGeneralController extends Controller
 {
     use AuthenticatesUsers;
 
-    function __construct()
-    {
-        $this->middleware('auth:admin',['only' => ['secret']]);
-    }
+
     protected $redirectTo = '/admin/adminHome';
     
     public function showLoginForm()

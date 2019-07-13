@@ -64,22 +64,37 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Administrador
 Route::get('admin/adminLogin','AdministradorGeneralController@showLoginForm');
 Route::post('admin/adminLogin','AdministradorGeneralController@login');
-Route::get('admin/adminHome','AdministradorGeneralController@secret');
+//Rutas protegidas por guardian de admin (solo posibles acceder a ellas logeado como admin)
+Route::group(['middleware' => ['auth:admin']], function() {
+	Route::get('admin/adminHome','AdministradorGeneralController@secret');
+});
+
 
 //Profesor
 Route::get('profesor/profesorLogin','ProfesorController@showLoginForm');
 Route::post('profesor/profesorLogin','ProfesorController@login');
-Route::get('profesor/profesorHome','ProfesorController@secret');
+//Rutas protegidas por guardian de profesor (solo posibles acceder a ellas logeado como profesor)
+Route::group(['middleware' => ['auth:profesor']], function() {
+	Route::get('profesor/profesorHome','ProfesorController@secret');
+});
+
 
 //Alumno
 Route::get('alumno/alumnoLogin','AlumnoController@showLoginForm');
 Route::post('alumno/alumnoLogin','AlumnoController@login');
-Route::get('alumno/alumnoHome','AlumnoController@secret');
+//Rutas protegidas por guardian de alumno (solo posibles acceder a ellas logeado como alumno)
+Route::group(['middleware' => ['auth:alumno']], function() {
+	Route::get('alumno/alumnoHome','AlumnoController@secret');
+	Route::get('alumno/alumnoHorario','AlumnoController@horario');
+});
 
 //CoordinadorDocente
 Route::get('coordinador/coordinadorLogin','CoordinadorDocenteController@showLoginForm');
 Route::post('coordinador/coordinadorLogin','CoordinadorDocenteController@login');
-Route::get('coordinador/coordinadorHome','CoordinadorDocenteController@secret');
+//Rutas protegidas por guardian de Coordinador (solo posibles acceder a ellas logeado como Coordinador)
+Route::group(['middleware' => ['auth:coordinador']], function() {
+	Route::get('coordinador/coordinadorHome','CoordinadorDocenteController@secret');
+});
 
 
 

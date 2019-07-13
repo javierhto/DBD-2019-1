@@ -13,10 +13,7 @@ class ProfesorController extends Controller
 
     use AuthenticatesUsers;
 
-    function __construct()
-    {
-        $this->middleware('auth:profesor',['only' => ['secret']]);
-    }
+
     protected $redirectTo = '/profesor/profesorHome';
     
     public function showLoginForm()

@@ -14,11 +14,12 @@ class AlumnoController extends Controller
 {
 
     use AuthenticatesUsers;
-
+/*
     function __construct()
     {
         $this->middleware('auth:alumno',['only' => ['secret']]);
     }
+    */
     protected $redirectTo = '/alumno/alumnoHome';
     
     public function showLoginForm()
@@ -36,6 +37,10 @@ class AlumnoController extends Controller
         return view('alumno.alumnoHome');
     }
 
+    public function horario()
+    {
+        return view('alumno.alumnoHorario');
+    }
 
     /**
      * Display a listing of the resource.

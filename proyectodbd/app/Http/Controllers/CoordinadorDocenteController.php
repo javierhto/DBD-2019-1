@@ -13,10 +13,7 @@ class CoordinadorDocenteController extends Controller
 
     use AuthenticatesUsers;
 
-    function __construct()
-    {
-        $this->middleware('auth:coordinador',['only' => ['secret']]);
-    }
+
     protected $redirectTo = '/coordinador/coordinadorHome';
     
     public function showLoginForm()
