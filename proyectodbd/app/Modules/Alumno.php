@@ -3,6 +3,7 @@
 namespace App\Modules;
 
 use Illuminate\Notifications\Notifiable;
+use App\Modules\Comuna;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Alumno extends Authenticatable
@@ -10,12 +11,7 @@ class Alumno extends Authenticatable
     use Notifiable;
     protected $guard ='alumno';
     protected $table = 'alumno';
-    protected $fillable =['numero_matricula','fecha_nacimiento','nombre','email',
-                        'direccion','telefono','celular','password','jornada',
-                            'situacion','ano_ingreso','ultima_matricula','nivel_actual',
-                            'avance','eficiencia','asignaturas_aprobadas','PPA',
-                            'id_comuna','id_carrera'
-                            ];
+    protected $fillable =['direccion','telefono','celular','password','id_comuna'];
  
     public function comuna() {
     	return $this->belongsTo('App\Modules\Comuna');

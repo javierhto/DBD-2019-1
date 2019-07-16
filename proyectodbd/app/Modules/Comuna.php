@@ -3,11 +3,15 @@
 namespace App\Modules;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use App\Modules\Alumno;
 
 class Comuna extends Model
 {
-    //
+    
     protected $table = 'comuna';
+    protected $nombre;
+    protected $id_region;
     protected $fillable =['nombre','id_region'];
     
     public function region() {

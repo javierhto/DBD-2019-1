@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\Alumno;
+use App\Modules\Comuna;
 use App\Modules\AlumnoCarrera;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class AlumnoController extends Controller
     }
     */
     protected $redirectTo = '/alumno/alumnoHome';
-    
+
     public function showLoginForm()
     {
         return view('alumno.alumnoLogin');
@@ -93,10 +94,7 @@ class AlumnoController extends Controller
      * @param  \App\Modules\Alumno  $alumno
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alumno $alumno)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -105,38 +103,35 @@ class AlumnoController extends Controller
      * @param  \App\Modules\Alumno  $alumno
      * @return \Illuminate\Http\Response
      */
+
+
+
+    public function edit()
+    {
+        $comunas = Comuna::all();
+        return view('alumno.alumnoEdit', compact('comunas'));
+    }
+
+
     public function update(Request $request, $id)
     {
+        
         $alumno = Alumno::findOrFail($id);
         $outcome = $alumno->fill($this->validate($request,[
-            'numero_matricula'=> 'required',
-            'fecha_nacimiento'=> 'required',
-            'nombre'=> 'required',
-            'correo'=> 'required',
             'direccion'=> 'required',
             'telefono'=> 'required',
             'celular'=> 'required',
-            'contrasena'=> 'required',
-            'jornada'=> 'required',
-            'situacion'=> 'required',
-            'ano_ingreso'=> 'required',
-            'ultima_matricula'=> 'required',
-            'avance'=> 'required',
-            'eficiencia'=> 'required',
-            'asignaturas_aprobadas'=> 'required',
-            'nivel_actual'=> 'required',
-            'PPA'=> 'required',
+            'password'=> 'required',
             'id_comuna'=> 'required',
-            'id_carrera'=> 'required'
 
         ]))->save();
         if($outcome)
         {
-            return 'Alumno Actualizado';
+            return back()->with('success_message','Actualizado con éxito!');
         }
         else
         {
-            return 'Error, no se pudo actualizar alumno';
+            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
         }
         
     }

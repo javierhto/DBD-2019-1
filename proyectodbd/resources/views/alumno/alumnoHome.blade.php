@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+ 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -17,8 +17,10 @@
                     Bienvenido Alumno, su numero de telefono es:  {{ Auth::user()->celular }}
 
                     <br><a class="navbar-brand" href="{{ url('/alumno/alumnoHorario') }}">
-                         VER HORARIO
-                    
+                         VER HORARIO                    
+                        </a>
+                    <br><a class="navbar-brand" href="{{ url('/alumno/alumnoEdit') }}">
+                         EDITAR PERFIL
                         </a>
                 </div>
             </div>

@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/accesoNegado', function () {
-    return view('accesoNegado');
-})->name('accesoNegado');
+
 /*
 Route::resource('alumno', 'AlumnoController')->parameters(['alumno' => 'id']);
 //Alumno->Carrera
@@ -57,7 +55,9 @@ Route::resource('tarjetaCredito', 'TarjetaCreditoController')->parameters(['tarj
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/accesoNegado', function () {
+    return view('accesoNegado');
+})->name('accesoNegado');
 
 
 
@@ -86,6 +86,9 @@ Route::post('alumno/alumnoLogin','AlumnoController@login');
 Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('alumno/alumnoHome','AlumnoController@secret');
 	Route::get('alumno/alumnoHorario','AlumnoController@horario');
+	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
+	Route::patch('/alumno/alumnoEdit/{id}','AlumnoController@update');
+
 });
 
 //CoordinadorDocente
