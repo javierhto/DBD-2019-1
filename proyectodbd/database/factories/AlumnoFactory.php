@@ -17,7 +17,7 @@ $factory->define(App\Modules\Alumno::class, function (Faker $faker) {
         'direccion' => $faker->address,
         'telefono' => $faker->unique()->randomNumber($nbDigits = 8),
         'celular' => $faker->unique()->randomNumber($nbDigits = 8),
-        'password' => bcrypt("test123"),
+        'password' => bcrypt('test123'),
         'jornada' => $faker->randomElement(['diurno','vespertino']),
         'situacion' => $faker->randomElement(['regular','egresado', 'retirado']),
         'ano_ingreso' => $faker->numberBetween($min = 2011, $max = 2019),

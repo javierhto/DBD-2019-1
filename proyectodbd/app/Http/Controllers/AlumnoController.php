@@ -23,6 +23,35 @@ class AlumnoController extends Controller
     */
     protected $redirectTo = '/alumno/alumnoHome';
 
+
+
+    //Fuciones que redireccionan a vistas alumnos
+    public function cuenta($id)
+    {
+        $alumno = Alumno::find($id);
+        return view('alumno.cuenta')->with('alumno', $alumno);
+    }
+
+    public function horario()
+    {
+        return view('alumno.horario');
+    }
+
+    public function asignaturas()
+    {
+        return view('alumno.asignaturas');
+    }
+
+    public function pagos()
+    {
+        return view('alumno.pagos');
+    }
+
+    public function documentos()
+    {
+        return view('alumno.documentos');
+    }
+    
     public function showLoginForm()
     {
         return view('alumno.alumnoLogin');

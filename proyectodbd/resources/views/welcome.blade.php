@@ -68,7 +68,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    A ECHARSE EL RAMO
+                    LOA
                 </div>
 
                 <div class="links">
