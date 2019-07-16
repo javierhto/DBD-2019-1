@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.homestudent')
 
 @section('content')
 <div class="container">
@@ -14,12 +14,8 @@
                         </div>
                     @endif
 
-                    Bienvenido Alumno, su numero de telefono es:  {{ Auth::user()->celular }}
+                    Bienvenido {{ Auth::user()->nombre }}.
 
-                    <br><a class="navbar-brand" href="{{ url('/alumno/alumnoHorario') }}">
-                         VER HORARIO
-                    
-                        </a>
                 </div>
             </div>
         </div>

@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/accesoNegado', function () {
     return view('accesoNegado');
 })->name('accesoNegado');
+
 /*
 Route::resource('alumno', 'AlumnoController')->parameters(['alumno' => 'id']);
 //Alumno->Carrera
@@ -86,6 +87,7 @@ Route::post('alumno/alumnoLogin','AlumnoController@login');
 Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('alumno/alumnoHome','AlumnoController@secret');
 	Route::get('alumno/alumnoHorario','AlumnoController@horario');
+	Route::get('alumno/alumnoDatosP','AlumnoController@datosPersonales');
 });
 
 //CoordinadorDocente

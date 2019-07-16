@@ -42,6 +42,18 @@ class AlumnoController extends Controller
         return view('alumno.alumnoHorario');
     }
 
+    public function datosCurriculares()
+    {
+
+        return view('alumno.alumnoDatosC');
+    }
+
+    public function datosPersonales()
+    {
+        
+        return view('alumno.alumnoDatosP');
+    }
+
     /**
      * Display a listing of the resource.
      *
