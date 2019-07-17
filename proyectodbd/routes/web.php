@@ -101,3 +101,14 @@ Route::post('coordinador/coordinadorLogin','CoordinadorDocenteController@login')
 Route::group(['middleware' => ['auth:coordinador']], function() {
 	Route::get('coordinador/coordinadorHome','CoordinadorDocenteController@secret');
 });
+
+
+
+Route::group(['middleware' => ['auth:alumno,coordinador,profesor,admin']], function() {
+
+	Route::get('/preenvio', 'correoController@index');
+	Route::post('/envio', 'correoController@enviarEmail');	
+
+});
+
+
