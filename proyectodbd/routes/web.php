@@ -100,5 +100,8 @@ Route::group(['middleware' => ['auth:coordinador']], function() {
 });
 
 
+Route::get('/preenvio', 'correoController@index');
+Route::post('/envio', 'correoController@enviarEmail');
+
 
 
