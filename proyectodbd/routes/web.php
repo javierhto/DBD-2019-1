@@ -87,9 +87,12 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('alumno/alumnoHome','AlumnoController@secret');
 	Route::get('alumno/alumnoHorario','AlumnoController@horario');
 	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
-	Route::patch('/alumno/alumnoEdit/{id}','AlumnoController@update');
+	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
+	//Route::patch('/alumno/alumnoEdit/{id}','AlumnoController@update')->parameters(['alumno' => 'id']);;
 
 });
+
+
 
 //CoordinadorDocente
 Route::get('coordinador/coordinadorLogin','CoordinadorDocenteController@showLoginForm');
@@ -98,7 +101,3 @@ Route::post('coordinador/coordinadorLogin','CoordinadorDocenteController@login')
 Route::group(['middleware' => ['auth:coordinador']], function() {
 	Route::get('coordinador/coordinadorHome','CoordinadorDocenteController@secret');
 });
-
-
-
-

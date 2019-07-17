@@ -38,22 +38,6 @@ class AlumnoController extends Controller
         return view('alumno.alumnoHome');
     }
 
-    public function horario()
-    {
-        return view('alumno.alumnoHorario');
-    }
-
-    public function datosCurriculares()
-    {
-
-        return view('alumno.alumnoDatosC');
-    }
-
-    public function datosPersonales()
-    {
-        
-        return view('alumno.alumnoDatosP');
-    }
 
     /**
      * Display a listing of the resource.
@@ -100,28 +84,16 @@ class AlumnoController extends Controller
         return Alumno::findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Modules\Alumno  $alumno
-     * @return \Illuminate\Http\Response
-     */
-   
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Modules\Alumno  $alumno
-     * @return \Illuminate\Http\Response
-     */
-
-
-
     public function edit()
     {
         $comunas = Comuna::all();
         return view('alumno.alumnoEdit', compact('comunas'));
+    }
+
+    public function perfil()
+    {
+        $comunas = Comuna::all();
+        return view('alumno.alumnoPerfil', compact('comunas'));
     }
 
 
@@ -133,7 +105,6 @@ class AlumnoController extends Controller
             'direccion'=> 'required',
             'telefono'=> 'required',
             'celular'=> 'required',
-            'password'=> 'required',
             'id_comuna'=> 'required',
 
         ]))->save();
