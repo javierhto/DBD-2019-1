@@ -85,7 +85,7 @@ Route::post('alumno/alumnoLogin','AlumnoController@login');
 //Rutas protegidas por guardian de alumno (solo posibles acceder a ellas logeado como alumno)
 Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('alumno/alumnoHome','AlumnoController@secret');
-	Route::get('alumno/alumnoHorario','AlumnoController@horario');
+	Route::get('alumno/alumnoHorario/{id}','AlumnoController@horario')->name('Horario');
 	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
 	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
 	//Route::patch('/alumno/alumnoEdit/{id}','AlumnoController@update')->parameters(['alumno' => 'id']);;

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Modules\Alumno;
 use App\Modules\Comuna;
 use App\Modules\AlumnoCarrera;
+use App\Modules\CoordinacionHorario;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 
 class AlumnoController extends Controller
@@ -37,6 +39,26 @@ class AlumnoController extends Controller
     {
         return view('alumno.alumnoHome');
     }
+
+    public function horario($id)
+    {
+        
+
+        $horarios = DB::table('alumno_coordinacion')
+        ->where('id_alumno', '=', $id)
+        ->join('coordinacion','coordinacion.id','=','alumno_coordinacion.id_coordinacion')
+        ->join('coordinacion_horario','coordinacion_horario.id_coordinacion','=','alumno_coordinacion.id_coordinacion')
+        ->join('horario','horario.id','=','coordinacion_horario.id_horario')
+        ->join('asignatura','asignatura.id','=','coordinacion.id_asignatura')
+        
+        ->get();
+
+        return view('alumno.alumnoHorario',compact('horarios'));
+    }
+
+/* agregar profesor a la consulta de arriba
+->join('coordinacion_profesor','coordinacion_profesor.id_coordinacion','=','coordinacion.id')
+        ->join('profesor','profesor.id','=','coordinacion_profesor.id_profesor')
 
 
     /**
