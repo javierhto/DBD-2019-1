@@ -105,9 +105,9 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {   
-        $nuevoAlumno=Alumno::create($request->all());
-        AlumnoCarrera::create(['id_alumno'=>$nuevoAlumno->id,'id_carrera'=>$nuevoAlumno->id_carrera]);
-        return "Alumno creado";
+        Alumno::create($request->all());
+        return redirect()->route('admin.AdminCreaAlumnos')
+                ->with('success','Alumno Creado');
         
     }
 

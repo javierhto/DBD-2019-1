@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Modules\AdministradorGeneral;
 use App\Modules\Comuna;
+use App\Modules\Alumno;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -101,6 +102,23 @@ class AdministradorGeneralController extends Controller
         return view('admin.adminPerfil', compact('comunas'));
         
         
+    }
+    public function MostrarAlumnos($id)
+    {
+        $Alumno = Alumno::findOrFail($id);
+        return view('admin.adminDetallesAlumno', compact('Alumno'));            
+    }
+
+
+    public function Alumnos()
+    {
+        $Alumnos = Alumno::latest()->paginate(5);
+        return view('admin.adminAlumnos', compact('Alumnos'))
+            ->with('i', (request()->input('page',1) -1 )*5);
+    }
+    public function CreaAlumnos()
+    {
+        return view('AdminCreaAlumno');
     }
 
     /**

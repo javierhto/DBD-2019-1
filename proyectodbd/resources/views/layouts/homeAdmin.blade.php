@@ -44,8 +44,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              Alumnos
+            <a class="nav-link" href="/admin/adminAlumnos">
+              Administrar Alumnos
             </a>
           </li>
           <li class="nav-item">
