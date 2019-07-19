@@ -42,8 +42,6 @@ class AlumnoController extends Controller
 
     public function horario($id)
     {
-        
-
         $horarios = DB::table('alumno_coordinacion')
         ->where('id_alumno', '=', $id)
         ->join('coordinacion','coordinacion.id','=','alumno_coordinacion.id_coordinacion')
@@ -54,6 +52,24 @@ class AlumnoController extends Controller
         ->get();
 
         return view('alumno.alumnoHorario',compact('horarios'));
+    }
+
+    public function calificaciones($id)
+    {
+
+        $profesor = DB::table('historial_alumno')
+        ->where('id_alumno', '=', $id)
+        ->join('coordinacion','coordinacion.id','=','historial_alumno.id_coordinacion')
+        ->join('profesor','profesor.id','=','coordinacion.id_profesor')
+        ->get();
+
+        $historial = DB::table('historial_alumno')
+        ->where('id_alumno', '=', $id)
+        ->join('coordinacion','coordinacion.id','=','historial_alumno.id_coordinacion')
+        ->join('asignatura','asignatura.id','=','coordinacion.id_asignatura')
+        ->get();
+
+        return view('alumno.alumnoCalificaciones',compact('historial', 'profesor'));
     }
 
 /* agregar profesor a la consulta de arriba
@@ -121,23 +137,11 @@ class AlumnoController extends Controller
 
     public function update(Request $request, $id)
     {
-        
         $alumno = Alumno::findOrFail($id);
-        $outcome = $alumno->fill($this->validate($request,[
-            'direccion'=> 'required',
-            'telefono'=> 'required',
-            'celular'=> 'required',
-            'id_comuna'=> 'required',
-
-        ]))->save();
-        if($outcome)
-        {
-            return back()->with('success_message','Actualizado con éxito!');
-        }
-        else
-        {
-            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
-        }
+        $alumno->update($request->all());
+        $comunas = Comuna::all();
+        return view('alumno.alumnoPerfil', compact('comunas'));
+        
         
     }
 

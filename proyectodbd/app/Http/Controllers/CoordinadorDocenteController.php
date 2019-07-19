@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\CoordinadorDocente;
+use App\Modules\Comuna;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -74,49 +75,28 @@ class CoordinadorDocenteController extends Controller
         return CoordinadorDocente::findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Modules\CoordinadorDocente  $coordinadorDocente
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CoordinadorDocente $coordinadorDocente)
+
+    public function edit()
     {
-        //
+        $comunas = Comuna::all();
+        return view('coordinador.coordinadorEdit', compact('comunas'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Modules\CoordinadorDocente  $coordinadorDocente
-     * @return \Illuminate\Http\Response
-     */
+    public function perfil()
+    {
+        $comunas = Comuna::all();
+        return view('coordinador.coordinadorPerfil', compact('comunas'));
+    }
+
+
     public function update(Request $request, $id)
     {
         $coordinador = CoordinadorDocente::findOrFail($id);
-        $outcome = $coordinador->fill($this->validate($request,[
-            'fecha_nacimiento'=> 'required',
-            'nombre'=> 'required',
-            'correo'=> 'required',
-            'direccion'=> 'required',
-            'telefono'=> 'required',
-            'celular'=> 'required',
-            'contrasena'=> 'required',
-            'situacion'=> 'required',
-            'fecha_ingreso'=> 'required',
-            'estado_cuenta'=> 'required',
-            'id_comuna'=> 'required'
-
-        ]))->save();
-        if($outcome)
-        {
-            return 'Coordinador docente Actualizado';
-        }
-        else
-        {
-            return 'Error, no se pudo actualizar Coordinador docente';
-        }
+        $coordinador->update($request->all());
+        $comunas = Comuna::all();
+        return view('coordinador.coordinadorPerfil', compact('comunas'));
+        
+        
     }
 
     /**
@@ -132,3 +112,4 @@ class CoordinadorDocenteController extends Controller
         return "Se elimino";
     }
 }
+

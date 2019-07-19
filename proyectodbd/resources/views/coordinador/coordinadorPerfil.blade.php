@@ -1,4 +1,4 @@
-@extends('layouts.homestudent')
+@extends('layouts.homeCoordinador')
 
 @section('content')
 
@@ -39,9 +39,6 @@
             			</div>
 			        </div>
 
-
-
-
 			        <div class="form-group row">			
            				<div class="col-sm-4  text-md-right">
           					{{ __('Telefono: ') }}
@@ -64,7 +61,7 @@
 
 						 
              <div class="modal-footer" align="left">
-                    <button type="button" class="button btn-success btn-galaxy" onclick="window.location='{{ url("/alumno/alumnoEdit") }}'">
+                    <button type="button" class="button btn-success btn-galaxy" onclick="window.location='{{ url("/coordinador/coordinadorEdit") }}'">
                     Editar Perfil
                   </button>
                 </div>          

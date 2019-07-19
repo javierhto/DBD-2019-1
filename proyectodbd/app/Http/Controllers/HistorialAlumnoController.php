@@ -75,7 +75,9 @@ class HistorialAlumnoController extends Controller
             'id_alumno'=> 'required',
             'id_profesor'=> 'required',
             'id_asignatura'=> 'required',
-            'id_coordinacion'=> 'required'
+            'id_coordinacion'=> 'required',
+            'notaCatedra' => 'required',
+            'notaLaboratorio' => 'required',
         ]))->save();
         if($outcome)
         {

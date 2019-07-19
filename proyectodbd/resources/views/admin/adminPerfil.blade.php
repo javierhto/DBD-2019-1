@@ -1,4 +1,4 @@
-@extends('layouts.homestudent')
+@extends('layouts.homeAdmin')
 
 @section('content')
 
@@ -40,18 +40,6 @@
 			        </div>
 
 
-
-
-			        <div class="form-group row">			
-           				<div class="col-sm-4  text-md-right">
-          					{{ __('Telefono: ') }}
-          				</div>
-
-            			<div class="col-sm-4">
-                			{{Auth::user()->telefono}}
-            			</div>
-			        </div>
-
 			        <div class="form-group row">			
            				<div class="col-sm-4  text-md-right">
           					{{ __('Celular: ') }}
@@ -64,7 +52,7 @@
 
 						 
              <div class="modal-footer" align="left">
-                    <button type="button" class="button btn-success btn-galaxy" onclick="window.location='{{ url("/alumno/alumnoEdit") }}'">
+                    <button type="button" class="button btn-success btn-galaxy" onclick="window.location='{{ url("/admin/adminEdit") }}'">
                     Editar Perfil
                   </button>
                 </div>          

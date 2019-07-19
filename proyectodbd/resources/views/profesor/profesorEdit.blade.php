@@ -1,14 +1,14 @@
-@extends('layouts.homestudent')
+@extends('layouts.homeProfesor')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                	Actualizar Usuario: {{ Auth::user()->nombre }}
+                	Actualizar Profesor {{ Auth::user()->nombre }}
                 </div>
                 	<div class="card-body">
-                    <form action="/alumno/alumnoEdit/{{ Auth::user()->id }}" method="post">
+                    <form action="/profesor/profesorEdit/{{ Auth::user()->id }}" method="post">
  					            
   						        @csrf          			
                       @method('PUT')

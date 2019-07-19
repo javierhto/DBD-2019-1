@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEvaluacionTable extends Migration
+class CreateFileTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateEvaluacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('evaluacion', function (Blueprint $table) {
+        Schema::create('file', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('file');
             $table->timestamps();
-            $table->string('nombre');
-            // Cambiado tipo integer -> string
-            $table->float('nota');
-            $table->string('tipo');
-            $table->float('ponderacion');
         });
     }
 
@@ -31,6 +27,6 @@ class CreateEvaluacionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('evaluacion');
+        Schema::dropIfExists('file');
     }
 }

@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Modules\Profesor;
+use App\Modules\Comuna;
+use App\Modules\Alumno;
+use App\Modules\Coordinacion;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Modules\CoordinacionProfesor;
+use App\Modules\CoordinacionHorario;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use DB;
 class ProfesorController extends Controller
 {
 
@@ -29,6 +35,47 @@ class ProfesorController extends Controller
     public function secret()
     {
         return view('profesor.profesorHome');
+    }
+
+
+    public function horario($id)
+    {
+        $horarios = DB::table('coordinacion')
+        ->where('id_profesor', '=', $id)
+        ->join('coordinacion_horario','coordinacion_horario.id_coordinacion','=','coordinacion.id')
+        ->join('horario','horario.id','=','coordinacion_horario.id_horario')
+        ->join('asignatura','asignatura.id','=','coordinacion.id_asignatura')
+        ->get();
+
+        return view('profesor.profesorHorario',compact('horarios'));
+    }
+
+    public function cursos($id)
+    {
+        $cursos = DB::table('coordinacion')
+        ->where('id_profesor', '=', $id)
+        ->join('asignatura','asignatura.id','=','coordinacion.id_asignatura')
+        ->join('coordinacion_horario','coordinacion_horario.id_coordinacion','=','coordinacion.id')
+        ->get();
+
+        return view('profesor.profesorCursos',compact('cursos'));
+    }
+
+    public function admincurso($id)
+    {
+        $coord = Coordinacion::findOrFail($id);
+        $alumnos = DB::table('alumno_coordinacion')
+        ->where('id_coordinacion', '=', $id)
+        ->join('alumno','alumno.id','=','alumno_coordinacion.id_alumno')
+        ->get();
+        return view('profesor.profesorAdminCurso',compact('alumnos','coord'));
+    }
+
+    public function agregaNota($id_alumno,$id_coordinacion)
+    {
+        $alumno = Alumno::findOrFail($id_alumno);
+        $coord = Coordinacion::findOrFail($id_coordinacion);
+        return view('profesor.profesorNuevaNota',compact('alumno','coord'));
     }
 
     /**
@@ -79,44 +126,27 @@ class ProfesorController extends Controller
      * @param  \App\Modules\Profesor  $profesor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profesor $profesor)
+    public function edit()
     {
-        //
+        $comunas = Comuna::all();
+        return view('profesor.profesorEdit', compact('comunas'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Modules\Profesor  $profesor
-     * @return \Illuminate\Http\Response
-     */
+    public function perfil()
+    {
+        $comunas = Comuna::all();
+        return view('profesor.profesorPerfil', compact('comunas'));
+    }
+
+
     public function update(Request $request, $id)
     {
-        $profe = Profesor::findOrFail($id);
-        $outcome = $profe->fill($this->validate($request,[
-            'fecha_nacimiento'=> 'required',
-            'nombre'=> 'required',
-            'correo'=> 'required',
-            'direccion'=> 'required',
-            'telefono'=> 'required',
-            'celular'=> 'required',
-            'contrasena'=> 'required',
-            'jornada'=> 'required',
-            'situacion'=> 'required',
-            'fecha_ingreso'=> 'required',
-            'estado_cuenta'=> 'required',
-            'grado'=> 'required',
-            'id_comuna'=> 'required'
-        ]))->save();
-        if($outcome)
-        {
-            return 'Profesor Actualizado';
-        }
-        else
-        {
-            return 'Error, no se pudo actualizar Profesor';
-        }
+        $profesor = Profesor::findOrFail($id);
+        $profesor->update($request->all());
+        $comunas = Comuna::all();
+        return view('profesor.profesorPerfil', compact('comunas'));
+        
+        
     }
 
     /**
