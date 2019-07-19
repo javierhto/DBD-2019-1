@@ -128,6 +128,11 @@ class AlumnoController extends Controller
         return view('alumno.alumnoEdit', compact('comunas'));
     }
 
+    public function datos()
+    {
+        return view('alumno.alumnoDatos');
+    }
+
     public function perfil()
     {
         $comunas = Comuna::all();
