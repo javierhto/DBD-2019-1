@@ -1,14 +1,14 @@
-@extends('layouts.homestudent')
+@extends('layouts.homeAdmin')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                	Actualizar Usuario: {{ Auth::user()->nombre }}
+                	Actualizar Usuario {{ Auth::user()->nombre }}
                 </div>
                 	<div class="card-body">
-                    <form action="/alumno/alumnoEdit/{{ Auth::user()->id }}" method="post">
+                    <form action="/admin/adminEdit/{{ Auth::user()->id }}" method="post">
  					            
   						        @csrf          			
                       @method('PUT')
@@ -38,15 +38,6 @@
             				</div>
 			          	</div>
 
-          				<div class="form-group row">
-            				<label for="telefono" class="col-sm-4 col-form-label text-md-right">
-				            	{{ __('Telefono') }}
-            				</label>
-            				<div class="col-md-6">
-                				<input id="telefono" name="telefono" type="text" class="form-control" value="{{ Auth::user()-> telefono }}" required autofocus>
-            				</div>
-          				</div>
-
 						      <div class="form-group row">
             				<label for="celular" class="col-sm-4 col-form-label text-md-right">
               					{{ __('Celular') }}
@@ -60,7 +51,7 @@
 	          					Guardar cambios
 	          				</button>
 	          				
-	          				<button type="button" class="btn btn-danger btn-galaxy" data-dismiss="modal" onClick= "window.location='{{ url("/alumno/alumnoPerfil") }}' ">
+	          				<button type="button" class="btn btn-danger btn-galaxy" data-dismiss="modal" onClick= "window.location='{{ url("/admin/adminPerfil") }}' ">
 	          					Volver
 	          				</button>
         				</div>      		

@@ -66,7 +66,10 @@ Route::get('admin/adminLogin','AdministradorGeneralController@showLoginForm');
 Route::post('admin/adminLogin','AdministradorGeneralController@login');
 //Rutas protegidas por guardian de admin (solo posibles acceder a ellas logeado como admin)
 Route::group(['middleware' => ['auth:admin']], function() {
+	Route::put('admin/adminEdit/{id}','AdministradorGeneralController@update');
 	Route::get('admin/adminHome','AdministradorGeneralController@secret');
+	Route::get('admin/adminEdit', 'AdministradorGeneralController@edit');
+	Route::get('admin/adminPerfil', 'AdministradorGeneralController@perfil');
 });
 
 
@@ -75,14 +78,16 @@ Route::get('profesor/profesorLogin','ProfesorController@showLoginForm');
 Route::post('profesor/profesorLogin','ProfesorController@login');
 //Rutas protegidas por guardian de profesor (solo posibles acceder a ellas logeado como profesor)
 Route::group(['middleware' => ['auth:profesor']], function() {
+	Route::put('profesor/profesorEdit/{id}','ProfesorController@update');
 	Route::get('profesor/profesorHome','ProfesorController@secret');
 	Route::get('profesor/profesorHorario/{id}','ProfesorController@horario')->name('HorarioProfe');
 	Route::get('profesor/profesorCursos/{id}','ProfesorController@cursos')->name('CursosProfe');
 	Route::get('profesor/profesorAdminCurso/{id}','ProfesorController@admincurso')->name('AdminCursoProfe');
 	Route::get('profesor/profesorNuevaNota/{id_alumno}/{id_coordinacion}','ProfesorController@agregaNota')->name('NuevaNotaProfe');
-	Route::post('profesor/profesorNuevaNota/{id_alumno}/{id_asignatura}','EvaluacionController@store');
+	Route::put('profesor/profesorNuevaNota/{id_alumno}/{id_asignatura}','EvaluacionController@store');
 	Route::get('profesor/profesorEdit', 'ProfesorController@edit');
-	Route::get('/profesor/profesorExito', function () {
+	Route::get('profesor/profesorPerfil', 'ProfesorController@perfil');
+	Route::get('profesor/profesorExito', function () {
     	return view('profesor.profesorExito');	});
 Route::get('/profesor/profesorError', function () {
     return view('profesor.profesorError');});	
@@ -94,12 +99,12 @@ Route::get('alumno/alumnoLogin','AlumnoController@showLoginForm');
 Route::post('alumno/alumnoLogin','AlumnoController@login');
 //Rutas protegidas por guardian de alumno (solo posibles acceder a ellas logeado como alumno)
 Route::group(['middleware' => ['auth:alumno']], function() {
+	Route::put('alumno/alumnoEdit/{id}','AlumnoController@update');
 	Route::get('alumno/alumnoHome','AlumnoController@secret');
 	Route::get('alumno/alumnoHorario/{id}','AlumnoController@horario')->name('Horario');
 	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
 	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
 	Route::get('/alumno/alumnoCalificaciones/{id}', 'AlumnoController@calificaciones')->name('Historial');
-	//Route::patch('/alumno/alumnoEdit/{id}','AlumnoController@update')->parameters(['alumno' => 'id']);;
 
 });
 
@@ -110,7 +115,10 @@ Route::get('coordinador/coordinadorLogin','CoordinadorDocenteController@showLogi
 Route::post('coordinador/coordinadorLogin','CoordinadorDocenteController@login');
 //Rutas protegidas por guardian de Coordinador (solo posibles acceder a ellas logeado como Coordinador)
 Route::group(['middleware' => ['auth:coordinador']], function() {
+	Route::put('coordinador/coordinadorEdit/{id}','CoordinadorDocenteController@update');
 	Route::get('coordinador/coordinadorHome','CoordinadorDocenteController@secret');
+	Route::get('coordinador/coordinadorEdit', 'CoordinadorDocenteController@edit');
+	Route::get('coordinador/coordinadorPerfil', 'CoordinadorDocenteController@perfil');
 });
 
 

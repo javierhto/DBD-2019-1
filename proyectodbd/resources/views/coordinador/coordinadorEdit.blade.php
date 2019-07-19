@@ -1,14 +1,14 @@
-@extends('layouts.homestudent')
+@extends('layouts.homeCoordinador')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                	Actualizar Usuario: {{ Auth::user()->nombre }}
+                	Actualizar Coordinador Docente {{ Auth::user()->nombre }}
                 </div>
                 	<div class="card-body">
-                    <form action="/alumno/alumnoEdit/{{ Auth::user()->id }}" method="post">
+                    <form action="/coordinador/coordinadorEdit/{{ Auth::user()->id }}" method="post">
  					            
   						        @csrf          			
                       @method('PUT')
@@ -60,7 +60,7 @@
 	          					Guardar cambios
 	          				</button>
 	          				
-	          				<button type="button" class="btn btn-danger btn-galaxy" data-dismiss="modal" onClick= "window.location='{{ url("/alumno/alumnoPerfil") }}' ">
+	          				<button type="button" class="btn btn-danger btn-galaxy" data-dismiss="modal" onClick= "window.location='{{ url("/coordinador/coordinadorPerfil") }}' ">
 	          					Volver
 	          				</button>
         				</div>      		

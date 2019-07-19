@@ -137,22 +137,10 @@ class AlumnoController extends Controller
 
     public function update(Request $request, $id)
     {
-        
         $alumno = Alumno::findOrFail($id);
-        $outcome = $alumno->fill($this->validate($request,[
-            'direccion'=> 'required',
-            'telefono'=> 'required',
-            'celular'=> 'required',
-            'id_comuna'=> 'required',
-        ]))->save();
-        if($outcome)
-        {
-            return back()->with('success_message','Actualizado con éxito!');
-        }
-        else
-        {
-            return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
-        }
+        $alumno->update($request->all());
+        $comunas = Comuna::all();
+        return view('alumno.alumnoPerfil', compact('comunas'));
         
         
     }

@@ -9,12 +9,9 @@ class Profesor extends Authenticatable
     use Notifiable;
     protected $guard ='profesor';
     protected $table = 'profesor';
-    protected $fillable =['fecha_nacimiento','nombre','email','direccion',
-                            'telefono','celular','password','jornada',
-                            'situacion','fecha_ingreso','estado_cuenta','grado_academico',
-                            'id_comuna'];
+    protected $fillable =['direccion','telefono','celular','id_comuna'];
 
-    //FALTA LA COORDINACION DEL PROFE
+
 
     public function comuna() {
     	return $this->belongsTo('App\Modules\Comuna');
