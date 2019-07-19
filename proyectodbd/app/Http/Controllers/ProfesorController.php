@@ -88,6 +88,16 @@ class ProfesorController extends Controller
         return Profesor::all();
     }
 
+
+    public function BandejaEntrada($id)
+    {
+        $mensajes = DB::table('mensaje')
+        ->where('id_profesor', '=', $id)        
+        ->get();
+
+        return view('profesor.profesorMensajes',compact('mensajes'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
