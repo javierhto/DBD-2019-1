@@ -79,10 +79,13 @@ Route::group(['middleware' => ['auth:profesor']], function() {
 	Route::get('profesor/profesorHorario/{id}','ProfesorController@horario')->name('HorarioProfe');
 	Route::get('profesor/profesorCursos/{id}','ProfesorController@cursos')->name('CursosProfe');
 	Route::get('profesor/profesorAdminCurso/{id}','ProfesorController@admincurso')->name('AdminCursoProfe');
-	Route::get('profesor/profesorNuevaNota/{id}','ProfesorController@agregaNota')->name('NuevaNotaProfe');
-	Route::post('profesor/profesorNuevaNota/{id}','EvaluacionController@store');
+	Route::get('profesor/profesorNuevaNota/{id_alumno}/{id_coordinacion}','ProfesorController@agregaNota')->name('NuevaNotaProfe');
+	Route::post('profesor/profesorNuevaNota/{id_alumno}/{id_asignatura}','EvaluacionController@store');
 	Route::get('profesor/profesorEdit', 'ProfesorController@edit');
-	
+	Route::get('/profesor/profesorExito', function () {
+    	return view('profesor.profesorExito');	});
+Route::get('/profesor/profesorError', function () {
+    return view('profesor.profesorError');});	
 });
 
 

@@ -32,7 +32,7 @@
                               </td>
 
                               <td class="align-middle">
-                                <a class="nav-link" href="{{ route ('NuevaNotaProfe', $alumno->id_alumno)}}"> 
+                                <a class="nav-link" href="{{ route ('NuevaNotaProfe', ['id_alumno' =>  $alumno->id_alumno, 'id_coordinacion' => $coord->id_asignatura ])}}"> 
                                   ACCEDER
                                 </a>
                                  
