@@ -48,7 +48,7 @@
       <ul class="nav navbar-nav d-md-down-none">
         <li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item">
-        <a href="#">Profesor</a>
+        <a href="#">Coordinador</a>
         </li>
       </ul>
       <ul class="nav navbar-nav ml-auto">
@@ -114,34 +114,17 @@
         <nav class="sidebar-nav">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="/profesor/profesorPerfil">
+              <a class="nav-link" href="/coordinador/coordinadorPerfil">
                 <i class="nav-icon icon-user"></i> Datos personales
               </a>
             </li>
 
-            <li class="nav-title">Otros datos</li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route ('HorarioProfe',[Auth::user()->id])}}">
-                <i class="nav-icon icon-calendar"></i> Horario</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route ('CursosProfe',[Auth::user()->id])}}">
-                <i class="nav-icon icon-info"></i> Cursos</a>
-            </li>
-
-            <li class="nav-title">Otros</li>
 
             <li class="nav-item">
               <a class="nav-link" href="/preenvio">
                 <i class="nav-icon icon-info"></i> Correo</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route ('BandejaEntradaProfe',[Auth::user()->id])}}">
-                <i class="nav-icon icon-info"></i> Mensajes</a>
-            </li>
-            
 
             <li class="nav-item">
               <a class="nav-link" href="{{ route('logout') }}"

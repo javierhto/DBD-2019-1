@@ -1,4 +1,4 @@
-@extends('layouts.homeCoordinador')
+@extends('layouts.layoutCoordinador')
 
 @section('content')
 
