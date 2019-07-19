@@ -1,4 +1,4 @@
-@extends('layouts.homestudent')
+@extends('layouts.layoutAlumno')
 
 @section('content')
 <form class=""  action="{{URL::to('/alumno/alumnoArchivos')}}" enctype="multipart/form-data" method="post">

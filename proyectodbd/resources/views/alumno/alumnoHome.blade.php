@@ -1,4 +1,4 @@
-@extends('layouts.homestudent')
+@extends('layouts.layoutAlumno')
  
 @section('content')
 <div class="container">

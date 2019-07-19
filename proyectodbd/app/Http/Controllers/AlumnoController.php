@@ -34,11 +34,6 @@ class AlumnoController extends Controller
         return view('alumno.cuenta')->with('alumno', $alumno);
     }
 
-    public function horario()
-    {
-        return view('alumno.horario');
-    }
-
     public function asignaturas()
     {
         return view('alumno.asignaturas');

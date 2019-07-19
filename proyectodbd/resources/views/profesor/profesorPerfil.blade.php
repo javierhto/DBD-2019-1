@@ -1,4 +1,4 @@
-@extends('layouts.homeProfesor')
+@extends('layouts.layoutProfesor')
 
 @section('content')
 
