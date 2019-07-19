@@ -72,7 +72,6 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{url('/admin/adminLogin')}}">ADMINISTRADOR</a>
                     <a href="{{url('/profesor/profesorLogin')}}">PROFESOR</a>
                     <a href="{{url('/coordinador/coordinadorLogin')}}">COORDINADOR DOCENTE</a>
                     <a href="{{url('/alumno/alumnoLogin')}}">ALUMNO</a>

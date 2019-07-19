@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ ('Iniciar sesión DE admin') }}</div>
+                <div class="card-header">{{ ('Iniciar sesión como Administrador') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('/admin/adminLogin') }}">
