@@ -71,6 +71,15 @@ class AlumnoController extends Controller
 
         return view('alumno.alumnoCalificaciones',compact('historial', 'profesor'));
     }
+    
+    public function BandejaEntrada($id)
+    {
+        $mensajes = DB::table('mensaje')
+        ->where('id_alumno', '=', $id)        
+        ->get();
+
+        return view('alumno.alumnoMensajes',compact('mensajes'));
+    }
 
 /* agregar profesor a la consulta de arriba
 ->join('coordinacion_profesor','coordinacion_profesor.id_coordinacion','=','coordinacion.id')
