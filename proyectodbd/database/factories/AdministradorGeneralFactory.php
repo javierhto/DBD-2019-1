@@ -11,7 +11,7 @@ $factory->define(App\Modules\AdministradorGeneral::class, function (Faker $faker
             'email' => $faker->unique()->safeEmail,
             'direccion' => $faker->address,
             'celular' => $faker->unique()->randomNumber($nbDigits = 8),
-            'password' => $faker->unique()->password,
+            'password' => bcrypt("test123"),
             'jornada' => $faker->randomElement(['completa','media','horas']),
             'situacion' => $faker->randomElement(['regular']), //Meter mas cosas
             'fecha_ingreso' => $faker->date($format = 'Y-m-d', $max = 'now'),

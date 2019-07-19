@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Modules\Profesor;
+use App\Modules\Alumno;
+use App\Modules\Coordinacion;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Modules\CoordinacionProfesor;
@@ -60,17 +62,19 @@ class ProfesorController extends Controller
 
     public function admincurso($id)
     {
+        $coord = Coordinacion::findOrFail($id);
         $alumnos = DB::table('alumno_coordinacion')
         ->where('id_coordinacion', '=', $id)
         ->join('alumno','alumno.id','=','alumno_coordinacion.id_alumno')
         ->get();
-        return view('profesor.profesorAdminCurso',compact('alumnos'));
+        return view('profesor.profesorAdminCurso',compact('alumnos','coord'));
     }
 
-    public function agregaNota($id)
+    public function agregaNota($id_alumno,$id_coordinacion)
     {
-        $alumno = Profesor::findOrFail($id);
-        return view('profesor.profesorNuevaNota',compact('alumno'));
+        $alumno = Alumno::findOrFail($id_alumno);
+        $coord = Coordinacion::findOrFail($id_coordinacion);
+        return view('profesor.profesorNuevaNota',compact('alumno','coord'));
     }
 
     /**

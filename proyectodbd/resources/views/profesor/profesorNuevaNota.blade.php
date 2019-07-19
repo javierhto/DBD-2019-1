@@ -15,7 +15,7 @@
                     	</div>
                 	@endif               
 
-                <form action="/profesor/profesorNuevaNota/{{$alumno->id}}" method="post">
+                <form action="/profesor/profesorNuevaNota/{{$alumno->id}}/{{$coord->id}}" method="post">
                       @csrf               
                     <div class="form-group row">
                     <label for="tipo" class="col-sm-4 col-form-label text-md-right">
