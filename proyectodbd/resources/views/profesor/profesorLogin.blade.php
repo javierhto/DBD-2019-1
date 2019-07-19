@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ ('Iniciar sesión de Profesor') }}</div>
+                <div class="card-header">{{ ('Iniciar sesión como Profesor') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('/profesor/profesorLogin') }}">
@@ -35,18 +35,6 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Recordar') }}
-                                    </label>
-                                </div>
                             </div>
                         </div>
 
