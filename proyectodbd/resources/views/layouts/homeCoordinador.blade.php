@@ -50,34 +50,21 @@
             </a>
           </li>-->
           <li class="nav-item">
-            <a class="nav-link" href="/alumno/alumnoPerfil">
+            <a class="nav-link" href="/coordinador/coordinadorPerfil">
               Datos Personales
             </a>
           </li>
+
+          
           <li class="nav-item">
-            <a class="nav-link" href="/alumno/alumnoDatos">
-              Datos Curriculares
+            <a class="nav-link" href="#">
+              Horario
             </a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" href="#">
-              Malla
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route ('Historial',[Auth::user()->id])}}">
-              Calificaciones
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route ('Horario',[Auth::user()->id])}}">
-              Horario
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              Cursos Actuales
+              Modificar Cursos
             </a>
           </li>
           <li class="nav-item">
@@ -93,11 +80,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/preenvio">
               Mandar Correo
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/alumno/alumnoArchivos">
-              Archivos
             </a>
           </li>
           <li class="nav-item">

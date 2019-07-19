@@ -6,21 +6,24 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Auth;
 
 class correo extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $request;
+    public $content;
+    public $subject;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(request $request)
+    public function __construct($content, $subject)
     {
-        $this->request  = $request;
+        $this->content = $content;
+        $this->subject = $subject;
     }
 
     /**
@@ -30,6 +33,10 @@ class correo extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.contentCorreo');
+        
+        return $this->view('emails.email')
+                    ->subject($this->subject)
+                    ->from(Auth::user()->email);
+                    
     }
 }

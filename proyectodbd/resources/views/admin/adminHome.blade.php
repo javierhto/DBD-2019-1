@@ -1,11 +1,11 @@
-@extends('layouts.app')
-
+@extends('layouts.homeAdmin')
+ 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Inicio de Administrador</div>
+                <div class="card-header">Inicio de Administrador </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    Bienvenido Administrador, su numero de telefono es:  {{ Auth::user()->celular }}
+                    Bienvenido, DIOS
+
+                    
                 </div>
             </div>
         </div>

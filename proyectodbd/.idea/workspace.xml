@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7761c629-cc97-4a8a-aac3-ecdfeec1ab2e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/correoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/correoController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,19 +75,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b67528fc-ec66-41ce-914e-583be2596f93/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="das://b67528fc-ec66-41ce-914e-583be2596f93/database/homestead/schema/public/table/alumno">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state projectRestartId="7269aa45-7733-47b1-84e1-f3bc1eada241">
+            <state projectRestartId="508159fb-f268-4f19-b124-637f74f17ee4">
               <filtering>
                 <filter text="" />
               </filtering>
@@ -125,9 +117,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="DBE.Init.BalloonShown" value="true" />
@@ -136,12 +126,13 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="true" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="GoToSymbol.includeLibraries" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PostgreSQL" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Fingeso" />
     <property name="settings.editor.selected.configurable" value="database.main2" />
   </component>
   <component name="RunDashboard">
@@ -167,11 +158,12 @@
       <option name="presentableId" value="Default" />
       <updated>1559618408387</updated>
       <workItem from="1559618432063" duration="269000" />
+      <workItem from="1563391751714" duration="107000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="269000" />
+    <option name="totallyTimeSpent" value="376000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -186,7 +178,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Database" order="0" sideWeight="0.4968153" visible="true" weight="0.21522693" />
+      <window_info content_ui="combo" id="Database" order="0" sideWeight="0.4968153" visible="true" weight="0.21449487" />
       <window_info id="Favorites" order="1" sideWeight="0.50318474" side_tool="true" weight="0.24962178" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -203,7 +195,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Database Console" order="11" visible="true" weight="0.3276923" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="11" visible="true" weight="0.3276923" />
       <window_info anchor="bottom" id="SQL Generator" order="12" weight="0.638535" />
       <window_info anchor="right" content_ui="combo" id="Project" order="0" sideWeight="0.49923196" weight="0.048411496" />
       <window_info anchor="right" id="Structure" order="1" sideWeight="0.50076807" side_tool="true" weight="0.24962178" />
@@ -291,15 +283,6 @@
     <entry file="das://b67528fc-ec66-41ce-914e-583be2596f93/database/homestead/schema/public/table/region.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="das://b67528fc-ec66-41ce-914e-583be2596f93/database/homestead/schema/public/table/alumno">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="7269aa45-7733-47b1-84e1-f3bc1eada241">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://b67528fc-ec66-41ce-914e-583be2596f93/database/homestead/schema/public/table/profesor">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state projectRestartId="597e3786-7365-48c7-9aae-340195402c81">
@@ -339,9 +322,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b67528fc-ec66-41ce-914e-583be2596f93/console_1.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b67528fc-ec66-41ce-914e-583be2596f93/console_1.sql" />
     <entry file="das://b67528fc-ec66-41ce-914e-583be2596f93/database/homestead/schema/public/table/prerequisito">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state projectRestartId="9c9070dc-a628-43a0-a7ef-c58c54e77f93">
@@ -413,10 +394,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b67528fc-ec66-41ce-914e-583be2596f93/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b67528fc-ec66-41ce-914e-583be2596f93/console.sql" />
+    <entry file="das://b67528fc-ec66-41ce-914e-583be2596f93/database/homestead/schema/public/table/alumno">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="508159fb-f268-4f19-b124-637f74f17ee4">
+          <filtering>
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>

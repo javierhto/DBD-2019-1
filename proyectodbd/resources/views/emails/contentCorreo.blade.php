@@ -23,8 +23,8 @@
   <br />
   <br />
   <div class="container box">
-   <h3 align="center">Prototipo de Envio</h3><br />
-   <!--@if (count($errors) > 0)
+   <h3 align="center">Contenido</h3><br />
+   @if (count($errors) > 0)
     <div class="alert alert-danger">
      <button type="button" class="close" data-dismiss="alert">×</button>
      <ul>
@@ -39,20 +39,20 @@
     <button type="button" class="close" data-dismiss="alert">×</button>
            <strong>{{ $message }}</strong>
    </div>
-   @endif -->
+   @endif
    <form method="post" action="{{url('/envio')}}">
     {{ csrf_field() }}
     <div class="form-group">
      <label>Nombre:</label>
-     <input type="text" name="name" class="form-control" value="" />
+     <input type="text" name="name" class="form-control"/>
     </div>
     <div class="form-group">
      <label>Email destinatorio: </label>
-     <input type="text" name="email" class="form-control" value="" />
+     <input type="text" name="email" class="form-control"/>
     </div>
     <div class="form-group">
      <label>Mensaje: </label>
-     <textarea name="message" class="form-control"></textarea>
+     <textarea name="content" class="form-control"></textarea>
     </div>
     <div class="form-group">
      <input type="submit" name="send" class="btn btn-info" value="Enviar" />

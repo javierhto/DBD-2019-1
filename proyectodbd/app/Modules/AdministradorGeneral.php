@@ -11,10 +11,7 @@ class AdministradorGeneral extends Authenticatable
     protected $guard ='admin';
 
     protected $table = 'administrador_general';
-    protected $fillable =['nombre','email','direccion',
-							'celular','password','jornada','situacion',
-							'fecha_ingreso','id_comuna'
-							];
+    protected $fillable =['direccion', 'celular','id_comuna'];
 
     public function comuna() {
     	return $this->belongsTo('App\Modules\Comuna');

@@ -10,10 +10,7 @@ class CoordinadorDocente extends Authenticatable
     use Notifiable;
     protected $guard ='coordinador';
     protected $table = 'coordinador_docente';
-	protected $fillable =['nombre','fecha_nacimiento','email','direccion',
-							'telefono','celular','password','jornada','situacion',
-							'fecha_ingreso','estado_cuenta','id_comuna'
-							];
+	protected $fillable =['direccion','telefono','celular','id_comuna'];
 
 
     public function comuna() {

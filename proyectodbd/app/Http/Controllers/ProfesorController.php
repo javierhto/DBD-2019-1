@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Modules\Profesor;
+use App\Modules\Comuna;
 use App\Modules\Alumno;
 use App\Modules\Coordinacion;
 use App\Http\Requests;
@@ -125,44 +126,27 @@ class ProfesorController extends Controller
      * @param  \App\Modules\Profesor  $profesor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profesor $profesor)
+    public function edit()
     {
-        //
+        $comunas = Comuna::all();
+        return view('profesor.profesorEdit', compact('comunas'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Modules\Profesor  $profesor
-     * @return \Illuminate\Http\Response
-     */
+    public function perfil()
+    {
+        $comunas = Comuna::all();
+        return view('profesor.profesorPerfil', compact('comunas'));
+    }
+
+
     public function update(Request $request, $id)
     {
-        $profe = Profesor::findOrFail($id);
-        $outcome = $profe->fill($this->validate($request,[
-            'fecha_nacimiento'=> 'required',
-            'nombre'=> 'required',
-            'correo'=> 'required',
-            'direccion'=> 'required',
-            'telefono'=> 'required',
-            'celular'=> 'required',
-            'contrasena'=> 'required',
-            'jornada'=> 'required',
-            'situacion'=> 'required',
-            'fecha_ingreso'=> 'required',
-            'estado_cuenta'=> 'required',
-            'grado'=> 'required',
-            'id_comuna'=> 'required'
-        ]))->save();
-        if($outcome)
-        {
-            return 'Profesor Actualizado';
-        }
-        else
-        {
-            return 'Error, no se pudo actualizar Profesor';
-        }
+        $profesor = Profesor::findOrFail($id);
+        $profesor->update($request->all());
+        $comunas = Comuna::all();
+        return view('profesor.profesorPerfil', compact('comunas'));
+        
+        
     }
 
     /**
