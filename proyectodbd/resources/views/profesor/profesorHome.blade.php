@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.homeProfesor')
 
 @section('content')
 <div class="container">
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Bienvenido Profesor, su numero de telefono es:  {{ Auth::user()->celular }}
+                    Bienvenido Profesor :  {{ Auth::user()->nombre }}
                 </div>
             </div>
         </div>

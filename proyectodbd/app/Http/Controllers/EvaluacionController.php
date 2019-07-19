@@ -27,15 +27,24 @@ class EvaluacionController extends Controller
         //
     }
 
+    
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        return Evaluacion::create($request->all());
+        //dd($request->tipo);
+        $nota = new Evaluacion;
+        $nota->tipo = $request->input('tipo');
+        $nota->ponderacion = $request->input('ponderacion');
+        $nota->id_asignatura = $id;
+        $nota->nombre = $request->input('nombre');
+        $nota->save();
+        return 'guardadi=';
     }
 
     /**

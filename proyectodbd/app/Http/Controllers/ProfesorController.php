@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Modules\Profesor;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Modules\CoordinacionProfesor;
+use App\Modules\CoordinacionHorario;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use DB;
 class ProfesorController extends Controller
 {
 
@@ -29,6 +32,45 @@ class ProfesorController extends Controller
     public function secret()
     {
         return view('profesor.profesorHome');
+    }
+
+
+    public function horario($id)
+    {
+        $horarios = DB::table('coordinacion')
+        ->where('id_profesor', '=', $id)
+        ->join('coordinacion_horario','coordinacion_horario.id_coordinacion','=','coordinacion.id')
+        ->join('horario','horario.id','=','coordinacion_horario.id_horario')
+        ->join('asignatura','asignatura.id','=','coordinacion.id_asignatura')
+        ->get();
+
+        return view('profesor.profesorHorario',compact('horarios'));
+    }
+
+    public function cursos($id)
+    {
+        $cursos = DB::table('coordinacion')
+        ->where('id_profesor', '=', $id)
+        ->join('asignatura','asignatura.id','=','coordinacion.id_asignatura')
+        ->join('coordinacion_horario','coordinacion_horario.id_coordinacion','=','coordinacion.id')
+        ->get();
+
+        return view('profesor.profesorCursos',compact('cursos'));
+    }
+
+    public function admincurso($id)
+    {
+        $alumnos = DB::table('alumno_coordinacion')
+        ->where('id_coordinacion', '=', $id)
+        ->join('alumno','alumno.id','=','alumno_coordinacion.id_alumno')
+        ->get();
+        return view('profesor.profesorAdminCurso',compact('alumnos'));
+    }
+
+    public function agregaNota($id)
+    {
+        $alumno = Profesor::findOrFail($id);
+        return view('profesor.profesorNuevaNota',compact('alumno'));
     }
 
     /**
