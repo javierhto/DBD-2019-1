@@ -11,7 +11,7 @@ class Alumno extends Authenticatable
     use Notifiable;
     protected $guard ='alumno';
     protected $table = 'alumno';
-    protected $fillable =['direccion','telefono','celular','password','id_comuna'];
+    protected $fillable =['direccion','telefono','celular','id_comuna'];
  
     public function comuna() {
     	return $this->belongsTo('App\Modules\Comuna');

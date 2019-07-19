@@ -1,7 +1,4 @@
-@extends('layouts.app')
-
-
-
+@extends('layouts.homestudent')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -49,15 +46,14 @@
             				</div>
           				</div>
 
-						<div class="form-group row">
+						      <div class="form-group row">
             				<label for="celular" class="col-sm-4 col-form-label text-md-right">
               					{{ __('Celular') }}
             				</label>
             				<div class="col-md-6">
                 				<input id="celular" name="celular" type="text" class="form-control" value="{{ Auth::user()-> celular }}" required autofocus>
             				</div>
-          				</div>
-        
+          				</div>          
         				<div class="modal-footer">
 	          				<button type="submit" class="btn btn-success btn-galaxy">
 	          					Guardar cambios
@@ -66,12 +62,11 @@
 	          				<button type="button" class="btn btn-danger btn-galaxy" data-dismiss="modal" onClick='history.go(-1);'>
 	          					Volver
 	          				</button>
-        				</div>
-      				
-					</form>
-                  </div>
-            	</div>
-            </div>
+        				</div>      		
+				    </form>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 @endsection

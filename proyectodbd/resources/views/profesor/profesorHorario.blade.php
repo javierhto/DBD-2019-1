@@ -1,4 +1,4 @@
-@extends('layouts.homestudent')
+@extends('layouts.homeProfesor')
 
 @section('content')
 <div class="container">
@@ -119,8 +119,7 @@
                             <thead class="thead-dark text-center">
                                 <tr>
                                     <td class="align-middle"> Codigo </td>
-                                    <td class="align-middle"> Asignatura </td>
-                                    <td class="align-middle"> T-E-L </td>                                  
+                                    <td class="align-middle"> Asignatura </td>                                  
                                 </tr>
                         </thead>
                         <tbody class="text-center align-middle">
@@ -133,10 +132,6 @@
 
                               <td class="align-middle">
                                 {{ $horario->nombre }}
-                              </td>
-
-                              <td class="align-middle">
-                                {{ $horario->T }}-{{ $horario->E }}-{{ $horario->L }}
                               </td>
                             </tr>
                             @endforeach

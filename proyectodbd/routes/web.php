@@ -76,6 +76,13 @@ Route::post('profesor/profesorLogin','ProfesorController@login');
 //Rutas protegidas por guardian de profesor (solo posibles acceder a ellas logeado como profesor)
 Route::group(['middleware' => ['auth:profesor']], function() {
 	Route::get('profesor/profesorHome','ProfesorController@secret');
+	Route::get('profesor/profesorHorario/{id}','ProfesorController@horario')->name('HorarioProfe');
+	Route::get('profesor/profesorCursos/{id}','ProfesorController@cursos')->name('CursosProfe');
+	Route::get('profesor/profesorAdminCurso/{id}','ProfesorController@admincurso')->name('AdminCursoProfe');
+	Route::get('profesor/profesorNuevaNota/{id}','ProfesorController@agregaNota')->name('NuevaNotaProfe');
+	Route::post('profesor/profesorNuevaNota/{id}','EvaluacionController@store');
+	Route::get('profesor/profesorEdit', 'ProfesorController@edit');
+	
 });
 
 
@@ -85,9 +92,10 @@ Route::post('alumno/alumnoLogin','AlumnoController@login');
 //Rutas protegidas por guardian de alumno (solo posibles acceder a ellas logeado como alumno)
 Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('alumno/alumnoHome','AlumnoController@secret');
-	Route::get('alumno/alumnoHorario','AlumnoController@horario');
+	Route::get('alumno/alumnoHorario/{id}','AlumnoController@horario')->name('Horario');
 	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
-	Route::patch('/alumno/alumnoEdit/{id}','AlumnoController@update');
+	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
+	//Route::patch('/alumno/alumnoEdit/{id}','AlumnoController@update')->parameters(['alumno' => 'id']);;
 
 	Route::get('alumno/cuenta/{id}','AlumnoController@cuenta');			// vista - Cuenta personal
 	Route::get('alumno/asignaturas','AlumnoController@asignaturas');	// vista - Asignaturas
@@ -95,6 +103,8 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('alumno/pagos','AlumnoController@pagos');				// vista - Pagos
 	Route::get('alumno/documentos','AlumnoController@documentos');		// vista - Documentos
 });
+
+
 
 //CoordinadorDocente
 Route::get('coordinador/coordinadorLogin','CoordinadorDocenteController@showLoginForm');
@@ -105,5 +115,12 @@ Route::group(['middleware' => ['auth:coordinador']], function() {
 });
 
 
+
+Route::group(['middleware' => ['auth:alumno,coordinador,profesor,admin']], function() {
+
+	Route::get('/preenvio', 'correoController@index');
+	Route::post('/envio', 'correoController@enviarEmail');	
+
+});
 
 

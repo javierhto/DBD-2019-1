@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Modules\Alumno;
 use App\Modules\Comuna;
 use App\Modules\AlumnoCarrera;
+use App\Modules\CoordinacionHorario;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 
 class AlumnoController extends Controller
@@ -67,22 +69,24 @@ class AlumnoController extends Controller
         return view('alumno.alumnoHome');
     }
 
-    public function horario()
+    public function horario($id)
     {
-        return view('alumno.alumnoHorario');
-    }
-
-    public function datosCurriculares()
-    {
-
-        return view('alumno.alumnoDatosC');
-    }
-
-    public function datosPersonales()
-    {
+        $horarios = DB::table('alumno_coordinacion')
+        ->where('id_alumno', '=', $id)
+        ->join('coordinacion','coordinacion.id','=','alumno_coordinacion.id_coordinacion')
+        ->join('coordinacion_horario','coordinacion_horario.id_coordinacion','=','alumno_coordinacion.id_coordinacion')
+        ->join('horario','horario.id','=','coordinacion_horario.id_horario')
+        ->join('asignatura','asignatura.id','=','coordinacion.id_asignatura')
         
-        return view('alumno.alumnoDatosP');
+        ->get();
+
+        return view('alumno.alumnoHorario',compact('horarios'));
     }
+
+/* agregar profesor a la consulta de arriba
+->join('coordinacion_profesor','coordinacion_profesor.id_coordinacion','=','coordinacion.id')
+        ->join('profesor','profesor.id','=','coordinacion_profesor.id_profesor')
+
 
     /**
      * Display a listing of the resource.
@@ -129,28 +133,16 @@ class AlumnoController extends Controller
         return Alumno::findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Modules\Alumno  $alumno
-     * @return \Illuminate\Http\Response
-     */
-   
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Modules\Alumno  $alumno
-     * @return \Illuminate\Http\Response
-     */
-
-
-
     public function edit()
     {
         $comunas = Comuna::all();
         return view('alumno.alumnoEdit', compact('comunas'));
+    }
+
+    public function perfil()
+    {
+        $comunas = Comuna::all();
+        return view('alumno.alumnoPerfil', compact('comunas'));
     }
 
 
@@ -162,7 +154,6 @@ class AlumnoController extends Controller
             'direccion'=> 'required',
             'telefono'=> 'required',
             'celular'=> 'required',
-            'password'=> 'required',
             'id_comuna'=> 'required',
 
         ]))->save();
