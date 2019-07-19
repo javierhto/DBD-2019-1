@@ -42,8 +42,6 @@ class AlumnoController extends Controller
 
     public function horario($id)
     {
-        
-
         $horarios = DB::table('alumno_coordinacion')
         ->where('id_alumno', '=', $id)
         ->join('coordinacion','coordinacion.id','=','alumno_coordinacion.id_coordinacion')

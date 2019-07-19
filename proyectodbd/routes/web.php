@@ -76,6 +76,13 @@ Route::post('profesor/profesorLogin','ProfesorController@login');
 //Rutas protegidas por guardian de profesor (solo posibles acceder a ellas logeado como profesor)
 Route::group(['middleware' => ['auth:profesor']], function() {
 	Route::get('profesor/profesorHome','ProfesorController@secret');
+	Route::get('profesor/profesorHorario/{id}','ProfesorController@horario')->name('HorarioProfe');
+	Route::get('profesor/profesorCursos/{id}','ProfesorController@cursos')->name('CursosProfe');
+	Route::get('profesor/profesorAdminCurso/{id}','ProfesorController@admincurso')->name('AdminCursoProfe');
+	Route::get('profesor/profesorNuevaNota/{id}','ProfesorController@agregaNota')->name('NuevaNotaProfe');
+	Route::post('profesor/profesorNuevaNota/{id}','EvaluacionController@store');
+	Route::get('profesor/profesorEdit', 'ProfesorController@edit');
+	
 });
 
 
