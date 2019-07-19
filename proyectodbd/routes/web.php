@@ -89,6 +89,7 @@ Route::group(['middleware' => ['auth:profesor']], function() {
 	Route::get('profesor/profesorNuevaNota/{id_alumno}/{id_coordinacion}','ProfesorController@agregaNota')->name('NuevaNotaProfe');
 	Route::put('profesor/profesorNuevaNota/{id_alumno}/{id_asignatura}','EvaluacionController@store');
 	Route::get('profesor/profesorEdit', 'ProfesorController@edit');
+	Route::get('/profesor/profesorMensajes/{id}', 'ProfesorController@BandejaEntrada')->name('BandejaEntradaProfe');
 	Route::get('profesor/profesorPerfil', 'ProfesorController@perfil');
 	Route::get('profesor/profesorExito', function () {
     	return view('profesor.profesorExito');	});
@@ -109,7 +110,7 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
 	Route::get('/alumno/alumnoDatos', 'AlumnoController@datos');
 	Route::get('/alumno/alumnoCalificaciones/{id}', 'AlumnoController@calificaciones')->name('Historial');
-	Route::get('/alumno/alumnoMensajes/{id}', 'AlumnoController@BandejaEntrada')->name('BandejaEntrada');
+	Route::get('/alumno/alumnoMensajes/{id}', 'AlumnoController@BandejaEntrada')->name('BandejaEntradaAlumno');
 
 	Route::get('/alumno/alumnoArchivos','fileController@alumnoArchivos');
 	Route::post('/alumno/alumnoArchivos','fileController@store');
