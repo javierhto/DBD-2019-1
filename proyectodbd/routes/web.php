@@ -96,6 +96,8 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
 	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
 	Route::get('/alumno/alumnoCalificaciones/{id}', 'AlumnoController@calificaciones')->name('Historial');
+	Route::get('/alumno/alumnoArchivos','fileController@alumnoArchivos');
+	Route::post('/alumno/alumnoArchivos','fileController@store');
 	//Route::patch('/alumno/alumnoEdit/{id}','AlumnoController@update')->parameters(['alumno' => 'id']);;
 
 });
