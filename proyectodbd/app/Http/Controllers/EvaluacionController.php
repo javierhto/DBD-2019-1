@@ -35,16 +35,28 @@ class EvaluacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, $id_alumno, $id_asignatura)
     {
         //dd($request->tipo);
         $nota = new Evaluacion;
         $nota->tipo = $request->input('tipo');
         $nota->ponderacion = $request->input('ponderacion');
-        $nota->id_asignatura = $id;
+        $nota->id_asignatura = $id_asignatura;
+        $nota->id_alumno = $id_alumno;
         $nota->nombre = $request->input('nombre');
+        $nota->nota = $request->input('nota');
         $nota->save();
-        return 'guardadi=';
+
+        if($nota == true)
+        {
+            //return view('modules.others.checkin.confirmation');
+            return view('profesor.profesorExito');;
+        }
+        else
+        {
+            return view('profesor.profesorError');
+        }
+        
     }
 
     /**
