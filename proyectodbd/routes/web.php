@@ -70,6 +70,9 @@ Route::group(['middleware' => ['auth:admin']], function() {
 	Route::get('admin/adminHome','AdministradorGeneralController@secret');
 	Route::get('admin/adminEdit', 'AdministradorGeneralController@edit');
 	Route::get('admin/adminPerfil', 'AdministradorGeneralController@perfil');
+	Route::get('admin/adminDetallesAlumno/{id}', 'AdministradorGeneralController@MostrarAlumnos')->name('mostrarAlumnos');
+	Route::get('admin/adminAlumnos', 'AdministradorGeneralController@Alumnos')->name('AdminAlumnos');
+	Route::get('admin/adminCreaAlumno', 'AdministradorGeneralController@CreaAlumnos')->name('AdminCreaAlumno');
 });
 
 
