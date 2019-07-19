@@ -18,6 +18,7 @@ class CreateEvaluacionTable extends Migration
             $table->timestamps();
             $table->string('nombre');
             // Cambiado tipo integer -> string
+            $table->float('nota');
             $table->string('tipo');
             $table->float('ponderacion');
         });

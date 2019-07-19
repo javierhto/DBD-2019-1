@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('alumno/alumnoHorario/{id}','AlumnoController@horario')->name('Horario');
 	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
 	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
+	Route::get('/alumno/alumnoCalificaciones/{id}', 'AlumnoController@calificaciones')->name('Historial');
 	//Route::patch('/alumno/alumnoEdit/{id}','AlumnoController@update')->parameters(['alumno' => 'id']);;
 
 	Route::get('alumno/cuenta/{id}','AlumnoController@cuenta');			// vista - Cuenta personal

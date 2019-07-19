@@ -83,6 +83,24 @@ class AlumnoController extends Controller
         return view('alumno.alumnoHorario',compact('horarios'));
     }
 
+    public function calificaciones($id)
+    {
+
+        $profesor = DB::table('historial_alumno')
+        ->where('id_alumno', '=', $id)
+        ->join('coordinacion','coordinacion.id','=','historial_alumno.id_coordinacion')
+        ->join('profesor','profesor.id','=','coordinacion.id_profesor')
+        ->get();
+
+        $historial = DB::table('historial_alumno')
+        ->where('id_alumno', '=', $id)
+        ->join('coordinacion','coordinacion.id','=','historial_alumno.id_coordinacion')
+        ->join('asignatura','asignatura.id','=','coordinacion.id_asignatura')
+        ->get();
+
+        return view('alumno.alumnoCalificaciones',compact('historial', 'profesor'));
+    }
+
 /* agregar profesor a la consulta de arriba
 ->join('coordinacion_profesor','coordinacion_profesor.id_coordinacion','=','coordinacion.id')
         ->join('profesor','profesor.id','=','coordinacion_profesor.id_profesor')
@@ -155,7 +173,6 @@ class AlumnoController extends Controller
             'telefono'=> 'required',
             'celular'=> 'required',
             'id_comuna'=> 'required',
-
         ]))->save();
         if($outcome)
         {
@@ -165,6 +182,7 @@ class AlumnoController extends Controller
         {
             return back()->with('success_message','Ha ocurrido un error en la Base de Datos al actualizar!');
         }
+        
         
     }
 
