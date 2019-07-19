@@ -105,12 +105,10 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
 	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
 	Route::get('/alumno/alumnoCalificaciones/{id}', 'AlumnoController@calificaciones')->name('Historial');
-<<<<<<< HEAD
-=======
+
 	Route::get('/alumno/alumnoArchivos','fileController@alumnoArchivos');
 	Route::post('/alumno/alumnoArchivos','fileController@store');
 	//Route::patch('/alumno/alumnoEdit/{id}','AlumnoController@update')->parameters(['alumno' => 'id']);;
->>>>>>> 02d2dbb618f704f06d6c3bf5d23a6a8812bd8fb5
 
 });
 
