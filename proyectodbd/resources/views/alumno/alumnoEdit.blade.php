@@ -59,7 +59,7 @@
 	          					Guardar cambios
 	          				</button>
 	          				
-	          				<button type="button" class="btn btn-danger btn-galaxy" data-dismiss="modal" onClick='history.go(-1);'>
+	          				<button type="button" class="btn btn-danger btn-galaxy" data-dismiss="modal" onClick="window.location='{{ url("/alumno/alumnoPerfil") }}'">
 	          					Volver
 	          				</button>
         				</div>      		

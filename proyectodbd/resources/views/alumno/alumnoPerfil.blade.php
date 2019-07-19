@@ -62,15 +62,12 @@
             			</div>
 			        </div>
 
-
-			        <div class="form-group row">			
-            			<div class="col-sm-4">
-                			<a class="navbar-brand" href="{{ url('/alumno/alumnoEdit') }}">
-                        		EDITAR PERFIL
-                        	</a>
-            			</div>
-			        </div>
 						 
+             <div class="modal-footer" align="left">
+                    <button type="button" class="button btn-success btn-galaxy" onclick="window.location='{{ url("/alumno/alumnoEdit") }}'">
+                    Editar Perfil
+                  </button>
+                </div>          
 
 			    </div>                    
             </div>

@@ -8,8 +8,8 @@ class HistorialAlumno extends Model
 {
     //
     protected $table = 'historial_alumno';
-    protected $fillable =['semestre','id_alumno','id_asignatura','id_profesor',
-   					 'id_coordinacion'];
+    protected $fillable =['id_alumno','id_asignatura','id_profesor',
+   					 'id_coordinacion','notaCatedra','notaLaboratorio'];
     
     public function alumno() {
     	return $this->belongsTo('App\Modules\Alumno');

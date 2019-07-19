@@ -19,6 +19,11 @@ class AddForeignKeyEvaluacionTable extends Migration
             $table->foreign('id_asignatura')
                     ->references('id')->on('asignatura')
                     ->onDelete('cascade');
+
+            $table->bigInteger('id_alumno')->unsigned()->nullable();
+            $table->foreign('id_alumno')
+                    ->references('id')->on('alumno')
+                    ->onDelete('cascade');
         });
     }
 
