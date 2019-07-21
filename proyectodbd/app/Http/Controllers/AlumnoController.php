@@ -128,6 +128,8 @@ class AlumnoController extends Controller
      */
     public function create()
     {
+        $comunas = Comuna::all();
+        return view('admin.adminCreaAlumno', compact('comunas'));
     }
 
     /**
@@ -139,9 +141,8 @@ class AlumnoController extends Controller
     public function store(Request $request)
     {   
         Alumno::create($request->all());
-        return redirect()->route('admin.AdminCreaAlumnos')
-                ->with('success','Alumno Creado');
-        
+        return redirect()->route('AdminAlumnos')
+                        ->with('success', 'Alumno Creado');        
     }
 
     /**
@@ -152,13 +153,49 @@ class AlumnoController extends Controller
      */
     public function show($id)
     {
-        return Alumno::findOrFail($id);
+        $alumno = Alumno::findOrFail($id);
+
+        return view('admin.adminDetallesAlumno', compact('alumno'));
     }
 
     public function edit()
     {
+        
         $comunas = Comuna::all();
         return view('alumno.alumnoEdit', compact('comunas'));
+    }
+
+    public function editAlumno($id)
+    {
+        $alumno = Alumno::findOrFail($id);
+        $comunas = Comuna::all();
+        return view('admin.adminModificaAlumno', compact('comunas','alumno'));
+    }
+    public function updateAlumno(Request $request, $id)
+    {
+        $alumno = Alumno::findOrFail($id);
+        $alumno->nombre = $request->get('nombre');
+        $alumno->numero_matricula = $request->get('numero_matricula');
+        $alumno->fecha_nacimiento = $request->get('fecha_nacimiento');
+        $alumno->email = $request->get('email');
+        $alumno->direccion = $request->get('direccion');
+        $alumno->telefono = $request->get('telefono');
+        $alumno->celular = $request->get('celular');
+        $alumno->jornada = $request->get('jornada');
+        $alumno->situacion = $request->get('situacion');
+        $alumno->ano_ingreso = $request->get('ano_ingreso');
+        $alumno->ultima_matricula = $request->get('ultima_matricula');
+        $alumno->nivel_actual = $request->get('nivel_actual');
+        $alumno->avance = $request->get('avance');
+        $alumno->eficiencia = $request->get('eficiencia');
+        $alumno->asignaturas_aprobadas = $request->get('asignaturas_aprobadas');
+        $alumno->PPA = $request->get('PPA');
+        $alumno->save();
+
+        return redirect()->route('AdminAlumnos')
+                        ->with('success', 'Alumno Modificado');
+        
+        
     }
 
     public function datos()
@@ -193,8 +230,8 @@ class AlumnoController extends Controller
     {
         $alumno = Alumno::findOrFail($id);
         $alumno->delete();
-
-        
-        return "Se elimino [Alumno]";
+        return redirect()->route('AdminAlumnos')
+                        ->with('success', 'Alumno Eliminado con exito');
     }
 }
+

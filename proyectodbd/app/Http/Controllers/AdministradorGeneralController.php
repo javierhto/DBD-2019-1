@@ -112,14 +112,13 @@ class AdministradorGeneralController extends Controller
 
     public function Alumnos()
     {
-        $Alumnos = Alumno::latest()->paginate(5);
-        return view('admin.adminAlumnos', compact('Alumnos'))
+        $alumnos = Alumno::latest()->paginate(5);
+        return view('admin.adminAlumnos', compact('alumnos'))
             ->with('i', (request()->input('page',1) -1 )*5);
     }
-    public function CreaAlumnos()
-    {
-        return view('AdminCreaAlumno');
-    }
+
+
+    
 
     /**
      * Remove the specified resource from storage.

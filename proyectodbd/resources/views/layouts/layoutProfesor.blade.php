@@ -48,14 +48,14 @@
       <ul class="nav navbar-nav d-md-down-none">
         <li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item">
-        <a href="#">Profesor</a>
+        <a href="/profesor/profesorPerfil">Profesor</a>
         </li>
       </ul>
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item d-md-down-none">
           <a class="nav-link" href="#">
             <i class="icon-bell"></i>
-            <span class="badge badge-pill badge-danger">5</span>
+            <span class="badge badge-pill badge-danger">3</span>
           </a>
         </li>
 

@@ -70,9 +70,15 @@ Route::group(['middleware' => ['auth:admin']], function() {
 	Route::get('admin/adminHome','AdministradorGeneralController@secret');
 	Route::get('admin/adminEdit', 'AdministradorGeneralController@edit');
 	Route::get('admin/adminPerfil', 'AdministradorGeneralController@perfil');
-	Route::get('admin/adminDetallesAlumno/{id}', 'AdministradorGeneralController@MostrarAlumnos')->name('mostrarAlumnos');
+	Route::get('admin/adminDetallesAlumno/{id}', 'AlumnoController@show')->name('mostrarAlumno');
+	Route::put('admin/adminModificaAlumno/{id}', 'AlumnoController@updateAlumno');
+	Route::delete('admin/adminEliminaAlumno/{id}', 'AlumnoController@destroy');
+	Route::get('admin/adminModificaAlumno/{id}', 'AlumnoController@EditAlumno')->name('modificarAlumno');
+	Route::get('admin/adminEliminaAlumno/{id}', 'AlumnoController@MostrarAlumnos')->name('eliminarAlumno');
 	Route::get('admin/adminAlumnos', 'AdministradorGeneralController@Alumnos')->name('AdminAlumnos');
-	Route::get('admin/adminCreaAlumno', 'AdministradorGeneralController@CreaAlumnos')->name('AdminCreaAlumno');
+	Route::post('admin/adminCreaAlumno', 'AlumnoController@store')->name('GuardaAlumno');
+	Route::get('admin/adminCreaAlumno', 'AlumnoController@create')->name('AdminCreaAlumno');
+
 });
 
 
@@ -87,7 +93,7 @@ Route::group(['middleware' => ['auth:profesor']], function() {
 	Route::get('profesor/profesorCursos/{id}','ProfesorController@cursos')->name('CursosProfe');
 	Route::get('profesor/profesorAdminCurso/{id}','ProfesorController@admincurso')->name('AdminCursoProfe');
 	Route::get('profesor/profesorNuevaNota/{id_alumno}/{id_coordinacion}','ProfesorController@agregaNota')->name('NuevaNotaProfe');
-	Route::put('profesor/profesorNuevaNota/{id_alumno}/{id_asignatura}','EvaluacionController@store');
+	Route::post('profesor/profesorNuevaNota/{id_alumno}/{id_asignatura}','EvaluacionController@store');
 	Route::get('profesor/profesorEdit', 'ProfesorController@edit');
 	Route::get('/profesor/profesorMensajes/{id}', 'ProfesorController@BandejaEntrada')->name('BandejaEntradaProfe');
 	Route::get('profesor/profesorPerfil', 'ProfesorController@perfil');

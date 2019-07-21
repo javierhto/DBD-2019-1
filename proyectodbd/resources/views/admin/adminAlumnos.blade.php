@@ -14,17 +14,17 @@
                         </div>
                     @endif
 
-                <div class="col-sm-2">
-                    <a class="btn btn-sm btn-success" href="{{ route('admin.AdminCreaAlumno')}}"> Crear Alumno </a>
+                <div class="col-sm-5">
+                    <a class="btn btn-sm btn-success" href="{{ route('AdminCreaAlumno')}}"> Crear Alumno </a>
                 </div>
 
 
                 <table class="table table-hover table-sm">
                     <tr>
                         <th width = "50px"><b> NO. </b></th> 
-                        <th width = "300px"><b> Nombre Alumno </b></th>
+                        <th width = "200px"><b> Nombre Alumno </b></th>
                         <th ><b> Correo </b></th>
-                        <th width = "180px"><b> Accion </b></th>
+                        <th width = "200px"><b> Accion </b></th>
                     </tr>
                     
 
@@ -32,11 +32,14 @@
                         <tr>
                             <td ><b> {{++$i}}. </b></td> 
                             <td > {{ $alumno->nombre }} </td>
-                            <td > {{ $alumno->correo }} </td>
+                            <td > {{ $alumno->email }} </td>
                             <td > 
-                            <form class="" action="{{route('admin.eliminarAlumno',$alumno->id }}" method="post">
-                                <a class="btn btn-success" href="{{route('admin.mostrarAlumnos',$alumno->id)}}"> MOSTRAR </a>
-                                <a class="btn btn-sm-warning" href="{{route('admin.editarAlumnos',$alumno->id)}}"> EDITAR </a>
+                            <form action="{{ route('eliminarAlumno', $alumno->id) }}" method="post">
+                                <a class="btn btn-success" href="{{route('mostrarAlumno',$alumno->id)}}">    MOSTRAR 
+                                </a>
+                                <a class="btn btn-warning" href="{{route('modificarAlumno',$alumno->id)}}">
+                                    EDITAR
+                                </a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger"> ELIMINAR </button>
@@ -45,6 +48,7 @@
                         </tr>
                     @endforeach
                 </table>                
+                {!!$alumnos->links() !!}
                 </div>
             </div>
         </div>
