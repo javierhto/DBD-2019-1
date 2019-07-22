@@ -1,4 +1,4 @@
-@extends('layouts.homeAdmin')
+@extends('layouts.layoutAdmin')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -17,7 +17,7 @@
               					{{ __('Comuna') }}
             				</label>
             				<div class="col-md-6">
-                				<select id="comuna_id" name="comuna_id" class="form-control selectpicker custom-select" required >                    			
+                				<select id="comuna_id" name="comuna_id" class="form-control selectpicker custom-select" required >
                     				@foreach ($comunas as $comuna)
                     					<option value="{{ $comuna->id }}">
                       						{{ $comuna->nombre }}

@@ -154,7 +154,6 @@ class AlumnoController extends Controller
     public function show($id)
     {
         $alumno = Alumno::findOrFail($id);
-
         return view('admin.adminDetallesAlumno', compact('alumno'));
     }
 

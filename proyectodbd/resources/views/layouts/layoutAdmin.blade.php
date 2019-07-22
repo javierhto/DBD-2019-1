@@ -120,8 +120,16 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="admin/adminAlumnos">
+              <a class="nav-link" href="/admin/adminAlumnos">
                 <i class="nav-icon icon-info"></i> Administrar alumnos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/adminProfesores">
+                <i class="nav-icon icon-info"></i> Administrar profesores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/adminCoordinadores">
+                <i class="nav-icon icon-info"></i> Administrar Coordinadores Docentes</a>
             </li>
 
             <li class="nav-title">Otros</li>

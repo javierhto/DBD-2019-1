@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Modules\AdministradorGeneral;
 use App\Modules\Comuna;
 use App\Modules\Alumno;
+use App\Modules\Profesor;
+use App\Modules\CoordinadorDocente;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -116,6 +118,18 @@ class AdministradorGeneralController extends Controller
         return view('admin.adminAlumnos', compact('alumnos'))
             ->with('i', (request()->input('page',1) -1 )*5);
     }
+    public function Profesores()
+    {
+        $profesores = Profesor::latest()->paginate(5);
+        return view('admin.adminProfesores', compact('profesores'))
+            ->with('i', (request()->input('page',1) -1 )*5);
+    }
+    public function Coordinadores()
+    {
+        $coordinadores = CoordinadorDocente::latest()->paginate(5);
+        return view('admin.adminCoordinadores', compact('coordinadores'))
+            ->with('i', (request()->input('page',1) -1 )*5);
+    }
 
 
     
@@ -137,3 +151,4 @@ class AdministradorGeneralController extends Controller
 
 
 }
+

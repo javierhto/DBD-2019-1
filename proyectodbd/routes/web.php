@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth:admin']], function() {
 	Route::get('admin/adminHome','AdministradorGeneralController@secret');
 	Route::get('admin/adminEdit', 'AdministradorGeneralController@edit');
 	Route::get('admin/adminPerfil', 'AdministradorGeneralController@perfil');
+	//----Acciones hacia Alumnos
 	Route::get('admin/adminDetallesAlumno/{id}', 'AlumnoController@show')->name('mostrarAlumno');
 	Route::put('admin/adminModificaAlumno/{id}', 'AlumnoController@updateAlumno');
 	Route::delete('admin/adminEliminaAlumno/{id}', 'AlumnoController@destroy');
@@ -78,6 +79,24 @@ Route::group(['middleware' => ['auth:admin']], function() {
 	Route::get('admin/adminAlumnos', 'AdministradorGeneralController@Alumnos')->name('AdminAlumnos');
 	Route::post('admin/adminCreaAlumno', 'AlumnoController@store')->name('GuardaAlumno');
 	Route::get('admin/adminCreaAlumno', 'AlumnoController@create')->name('AdminCreaAlumno');
+	//----Acciones hacia Profesores
+	Route::get('admin/adminDetallesProfesor/{id}', 'ProfesorController@show')->name('mostrarProfesor');
+	Route::put('admin/adminModificaProfesor/{id}', 'ProfesorController@updateProfesor');
+	Route::delete('admin/adminEliminaProfesor/{id}', 'ProfesorController@destroy');
+	Route::get('admin/adminModificaProfesor/{id}', 'ProfesorController@EditProfesor')->name('modificarProfesor');
+	Route::get('admin/adminEliminaProfesor/{id}', 'ProfesorController@MostrarProfesores')->name('eliminarProfesor');
+	Route::get('admin/adminProfesores', 'AdministradorGeneralController@Profesores')->name('AdminProfesores');
+	Route::post('admin/adminCreaProfesor', 'ProfesorController@store')->name('GuardaProfesor');
+	Route::get('admin/adminCreaProfesor', 'ProfesorController@create')->name('AdminCreaProfesor');
+	//----Acciones hacia Coordinadores
+	Route::get('admin/adminDetallesCoordinador/{id}', 'CoordinadorDocenteController@show')->name('mostrarCoordinador');
+	Route::put('admin/adminModificaCoordinador/{id}', 'CoordinadorDocenteController@updateCoordinador');
+	Route::delete('admin/adminEliminaCoordinador/{id}', 'CoordinadorDocenteController@destroy');
+	Route::get('admin/adminModificaCoordinador/{id}', 'CoordinadorDocenteController@EditCoordinador')->name('modificarCoordinador');
+	Route::get('admin/adminEliminaCoordinador/{id}', 'CoordinadorDocenteController@MostrarCoordinadorres')->name('eliminarCoordinador');
+	Route::get('admin/adminCoordinadores', 'AdministradorGeneralController@Coordinadores')->name('AdminCoordinadores');
+	Route::post('admin/adminCreaCoordinador', 'CoordinadorDocenteController@store')->name('GuardaCoordinador');
+	Route::get('admin/adminCreaCoordinador', 'CoordinadorDocenteController@create')->name('AdminCreaCoordinador');
 
 });
 

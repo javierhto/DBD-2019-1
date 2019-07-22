@@ -9,7 +9,9 @@ class Profesor extends Authenticatable
     use Notifiable;
     protected $guard ='profesor';
     protected $table = 'profesor';
-    protected $fillable =['direccion','telefono','celular','id_comuna'];
+    protected $fillable =['nombre','email','direccion','celular','password','telefono','id_comuna',
+                            'jornada','situacion','fecha_ingreso',
+                            'fecha_nacimiento','estado_cuenta','grado_academico'];
 
 
 

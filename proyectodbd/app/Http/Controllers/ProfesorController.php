@@ -105,7 +105,8 @@ class ProfesorController extends Controller
      */
     public function create()
     {
-        //
+        $comunas = Comuna::all();
+        return view('admin.adminCreaProfesor', compact('comunas'));
     }
 
     /**
@@ -116,7 +117,9 @@ class ProfesorController extends Controller
      */
     public function store(Request $request)
     {
-        return Profesor::create($request->all());
+        Profesor::create($request->all());
+        return redirect()->route('AdminProfesores')
+                        ->with('success', 'Profesor Creado');        
     }
 
     /**
@@ -127,7 +130,8 @@ class ProfesorController extends Controller
      */
     public function show($id)
     {
-        return Profesor::findOrFail($id);
+        $profesor = Profesor::findOrFail($id);
+        return view('admin.adminDetallesProfesor', compact('profesor'));
     }
 
     /**
@@ -140,6 +144,12 @@ class ProfesorController extends Controller
     {
         $comunas = Comuna::all();
         return view('profesor.profesorEdit', compact('comunas'));
+    }
+    public function editProfesor($id)
+    {
+        $profesor = Profesor::findOrFail($id);
+        $comunas = Comuna::all();
+        return view('admin.adminModificaProfesor', compact('comunas','profesor'));
     }
 
     public function perfil()
@@ -155,6 +165,27 @@ class ProfesorController extends Controller
         $profesor->update($request->all());
         $comunas = Comuna::all();
         return view('profesor.profesorPerfil', compact('comunas'));
+            
+    }
+
+    public function updateProfesor(Request $request, $id)
+    {
+        $profesor = Profesor::findOrFail($id);
+        $profesor->nombre = $request->get('nombre');
+        $profesor->fecha_nacimiento = $request->get('fecha_nacimiento');
+        $profesor->email = $request->get('email');
+        $profesor->direccion = $request->get('direccion');
+        $profesor->telefono = $request->get('telefono');
+        $profesor->celular = $request->get('celular');
+        $profesor->jornada = $request->get('jornada');
+        $profesor->situacion = $request->get('situacion');
+        $profesor->fecha_ingreso = $request->get('fecha_ingreso');        
+        $profesor->estado_cuenta = $request->get('estado_cuenta');
+        $profesor->grado_academico = $request->get('grado_academico');
+        $profesor->save();
+
+        return redirect()->route('AdminProfesores')
+                        ->with('success', 'profesor Modificado');
         
         
     }
@@ -169,6 +200,7 @@ class ProfesorController extends Controller
     {
         $profesor = Profesor::findOrFail($id);
         $profesor->delete();
-        return "Se elimino";
+        return redirect()->route('AdminProfesores')
+                        ->with('success', 'Profesor Eliminado con exito');
     }
 }

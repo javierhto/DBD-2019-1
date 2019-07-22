@@ -1,4 +1,4 @@
-@extends('layouts.layoutAlumno')
+@extends('layouts.layoutAdmin')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -186,7 +186,7 @@
 	          					Guardar cambios
 	          				</button>
 	          				
-	          				<button type="button" class="btn btn-danger btn-galaxy" data-dismiss="modal" onClick= "window.location='{{ url("/alumno/alumnoPerfil") }}' ">
+	          				<button type="button" class="btn btn-danger btn-galaxy" data-dismiss="modal" onClick= "window.location='{{ url("/admin/adminAlumnos") }}' ">
 	          					Volver
 	          				</button>
         				</div>      		

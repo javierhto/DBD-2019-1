@@ -12,7 +12,7 @@ class Alumno extends Authenticatable
     protected $guard ='alumno';
     protected $table = 'alumno';
     //protected $fillable =['direccion','telefono','celular','id_comuna'];
-    protected $fillable =['nombre','email','direccion','celular','password','telefono','id_comuna','nombre',
+    protected $fillable =['nombre','email','direccion','celular','password','telefono','id_comuna',
                             'jornada','situacion','ano_ingreso','ultima_matricula','nivel_actual',
                             'eficiencia','asignaturas_aprobadas','PPA','numero_matricula',
                             'fecha_nacimiento','ano_ingreso','avance'];

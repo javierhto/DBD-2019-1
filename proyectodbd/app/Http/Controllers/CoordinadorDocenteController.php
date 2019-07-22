@@ -50,7 +50,8 @@ class CoordinadorDocenteController extends Controller
      */
     public function create()
     {
-        //
+        $comunas = Comuna::all();
+        return view('admin.adminCreaCoordinador', compact('comunas'));
     }
 
     /**
@@ -60,8 +61,10 @@ class CoordinadorDocenteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        return CoordinadorDocente::create($request->all());
+    {    
+        CoordinadorDocente::create($request->all());
+        return redirect()->route('AdminCoordinadores')
+                        ->with('success', 'Coordinador docente Creado');
     }
 
     /**
@@ -72,7 +75,8 @@ class CoordinadorDocenteController extends Controller
      */
     public function show($id)
     {
-        return CoordinadorDocente::findOrFail($id);
+        $coordinador = CoordinadorDocente::findOrFail($id);
+        return view('admin.adminDetallesCoordinador', compact('coordinador'));
     }
 
 
@@ -81,7 +85,12 @@ class CoordinadorDocenteController extends Controller
         $comunas = Comuna::all();
         return view('coordinador.coordinadorEdit', compact('comunas'));
     }
-
+    public function editCoordinador($id)
+    {
+        $coordinador = CoordinadorDocente::findOrFail($id);
+        $comunas = Comuna::all();
+        return view('admin.adminModificaCoordinador', compact('comunas','coordinador'));
+    }
     public function perfil()
     {
         $comunas = Comuna::all();
@@ -99,6 +108,27 @@ class CoordinadorDocenteController extends Controller
         
     }
 
+    public function updateCoordinador(Request $request, $id)
+    {
+        $coordinador = CoordinadorDocente::findOrFail($id);
+        $coordinador->nombre = $request->get('nombre');
+        $coordinador->fecha_nacimiento = $request->get('fecha_nacimiento');
+        $coordinador->email = $request->get('email');
+        $coordinador->direccion = $request->get('direccion');
+        $coordinador->telefono = $request->get('telefono');
+        $coordinador->celular = $request->get('celular');
+        $coordinador->jornada = $request->get('jornada');
+        $coordinador->situacion = $request->get('situacion');
+        $coordinador->fecha_ingreso = $request->get('fecha_ingreso');        
+        $coordinador->estado_cuenta = $request->get('estado_cuenta');
+        $coordinador->save();
+
+        return redirect()->route('AdminCoordinadores')
+                        ->with('success', 'Coordinador docente Modificado');
+        
+        
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -107,9 +137,10 @@ class CoordinadorDocenteController extends Controller
      */
     public function destroy($id)
     {
-        $coordinadorDocente = CoordinadorDocente::findOrFail($id);
-        $coordinadorDocente->delete();
-        return "Se elimino";
+        $coordinador = CoordinadorDocente::findOrFail($id);
+        $coordinador->delete();
+        return redirect()->route('AdminCoordinadores')
+                        ->with('success', 'Coordinador docente Eliminado con exito');
     }
 }
 

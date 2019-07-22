@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Detalles del alumno </div>
+                <div class="card-header">Detalles del coordinador </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -17,83 +17,59 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong> Nombre: </strong> {{$alumno->nombre}}
+                                <strong> Nombre: </strong> {{$coordinador->nombre}}
                             </div>
                         </div>  
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong> Correo: </strong> {{$alumno->email}}
+                                <strong> Correo: </strong> {{$coordinador->email}}
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong> Direccion: </strong> {{$alumno->direccion}}
+                                <strong> Direccion: </strong> {{$coordinador->direccion}}
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong> Fecha de Nacimiento: </strong> {{$alumno->fecha_nacimiento}}
+                                <strong> Fecha de Nacimiento: </strong> {{$coordinador->fecha_nacimiento}}
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong> Telefono: </strong> {{$alumno->telefono}}
+                                <strong> Telefono: </strong> {{$coordinador->telefono}}
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong> Celular: </strong> {{$alumno->celular}}
+                                <strong> Celular: </strong> {{$coordinador->celular}}
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong> Jornada: </strong> {{$alumno->jornada}}
+                                <strong> Jornada: </strong> {{$coordinador->jornada}}
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong> Situacion: </strong> {{$alumno->situacion}}
+                                <strong> Situacion: </strong> {{$coordinador->situacion}}
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong> Año de ingreso: </strong> {{$alumno->ano_ingreso}}
+                                <strong> Año de ingreso: </strong> {{$coordinador->fecha_ingreso}}
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <strong> Ultima matricula: </strong> {{$alumno->ultima_matricula}}
+                                <strong> Estado de cuenta: </strong> {{$coordinador->estado_cuenta}}
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <strong> Nivel actual: </strong> {{$alumno->nivel_actual}}
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <strong> Avance: </strong> {{$alumno->avance}}
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <strong> Eficiencia: </strong> {{$alumno->eficiencia}}
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <strong> Asignaturas Aprobadas: </strong> {{$alumno->asignaturas_aprobadas}}
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <strong> PPA: </strong> {{$alumno->PPA}}
-                            </div>
-                        </div>
+                        
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <a href="{{route('AdminAlumnos')}}" class="btn btn-sm btn-success">
+                                <a href="{{route('AdminCoordinadores')}}" class="btn btn-sm btn-success">
                                     VOLVER
                                 </a>
                             </div>
