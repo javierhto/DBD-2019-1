@@ -126,7 +126,7 @@ class AlumnoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function adminCreate()
     {
         $comunas = Comuna::all();
         return view('admin.adminCreaAlumno', compact('comunas'));
@@ -138,12 +138,32 @@ class AlumnoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function adminStore(Request $request)
     {   
         Alumno::create($request->all());
         return redirect()->route('AdminAlumnos')
                         ->with('success', 'Alumno Creado');        
     }
+
+    public function coordCreate()
+    {
+        $comunas = Comuna::all();
+        return view('coordinador.coordinadorCreaAlumno', compact('comunas'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function coordStore(Request $request)
+    {   
+        Alumno::create($request->all());
+        return redirect()->route('coordinadorAlumnos')
+                        ->with('success', 'Alumno Creado');        
+    }
+
 
     /**
      * Display the specified resource.
@@ -151,10 +171,16 @@ class AlumnoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showAdmin($id)
     {
         $alumno = Alumno::findOrFail($id);
         return view('admin.adminDetallesAlumno', compact('alumno'));
+    }
+
+    public function showCoord($id)
+    {
+        $alumno = Alumno::findOrFail($id);
+        return view('coordinador.coordinadorDetalleAlumno', compact('alumno'));
     }
 
     public function edit()

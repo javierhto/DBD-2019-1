@@ -103,7 +103,7 @@ class ProfesorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function adminCreate()
     {
         $comunas = Comuna::all();
         return view('admin.adminCreaProfesor', compact('comunas'));
@@ -115,10 +115,30 @@ class ProfesorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function adminStore(Request $request)
     {
         Profesor::create($request->all());
         return redirect()->route('AdminProfesores')
+                        ->with('success', 'Profesor Creado');        
+    }
+
+
+    public function coordCreate()
+    {
+        $comunas = Comuna::all();
+        return view('coordinador.coordinadorCreaProfesor', compact('comunas'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function coordStore(Request $request)
+    {
+        Profesor::create($request->all());
+        return redirect()->route('coordinadorProfesores')
                         ->with('success', 'Profesor Creado');        
     }
 
@@ -132,6 +152,12 @@ class ProfesorController extends Controller
     {
         $profesor = Profesor::findOrFail($id);
         return view('admin.adminDetallesProfesor', compact('profesor'));
+    }
+
+    public function showCoord($id)
+    {
+        $profesor = Profesor::findOrFail($id);
+        return view('coordinador.coordinadorDetalleProfesor', compact('profesor'));
     }
 
     /**

@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/try', 'DocumentoController@index')->name('fileIndex');
+Route::post('/try', 'DocumentoController@store')->name('fileUpload');
+Route::get('/try/{id}', 'DocumentoController@show')->name('fileDownload');
+
 
 /*
 Route::resource('alumno', 'AlumnoController')->parameters(['alumno' => 'id']);
@@ -71,14 +75,14 @@ Route::group(['middleware' => ['auth:admin']], function() {
 	Route::get('admin/adminEdit', 'AdministradorGeneralController@edit');
 	Route::get('admin/adminPerfil', 'AdministradorGeneralController@perfil');
 	//----Acciones hacia Alumnos
-	Route::get('admin/adminDetallesAlumno/{id}', 'AlumnoController@show')->name('mostrarAlumno');
+	Route::get('admin/adminDetallesAlumno/{id}', 'AlumnoController@showAdmin')->name('mostrarAlumno');
 	Route::put('admin/adminModificaAlumno/{id}', 'AlumnoController@updateAlumno');
 	Route::delete('admin/adminEliminaAlumno/{id}', 'AlumnoController@destroy');
 	Route::get('admin/adminModificaAlumno/{id}', 'AlumnoController@EditAlumno')->name('modificarAlumno');
 	Route::get('admin/adminEliminaAlumno/{id}', 'AlumnoController@MostrarAlumnos')->name('eliminarAlumno');
 	Route::get('admin/adminAlumnos', 'AdministradorGeneralController@Alumnos')->name('AdminAlumnos');
-	Route::post('admin/adminCreaAlumno', 'AlumnoController@store')->name('GuardaAlumno');
-	Route::get('admin/adminCreaAlumno', 'AlumnoController@create')->name('AdminCreaAlumno');
+	Route::post('admin/adminCreaAlumno', 'AlumnoController@adminStore')->name('GuardaAlumno');
+	Route::get('admin/adminCreaAlumno', 'AlumnoController@adminCreate')->name('AdminCreaAlumno');
 	//----Acciones hacia Profesores
 	Route::get('admin/adminDetallesProfesor/{id}', 'ProfesorController@show')->name('mostrarProfesor');
 	Route::put('admin/adminModificaProfesor/{id}', 'ProfesorController@updateProfesor');
@@ -86,8 +90,8 @@ Route::group(['middleware' => ['auth:admin']], function() {
 	Route::get('admin/adminModificaProfesor/{id}', 'ProfesorController@EditProfesor')->name('modificarProfesor');
 	Route::get('admin/adminEliminaProfesor/{id}', 'ProfesorController@MostrarProfesores')->name('eliminarProfesor');
 	Route::get('admin/adminProfesores', 'AdministradorGeneralController@Profesores')->name('AdminProfesores');
-	Route::post('admin/adminCreaProfesor', 'ProfesorController@store')->name('GuardaProfesor');
-	Route::get('admin/adminCreaProfesor', 'ProfesorController@create')->name('AdminCreaProfesor');
+	Route::post('admin/adminCreaProfesor', 'ProfesorController@adminStore')->name('GuardaProfesor');
+	Route::get('admin/adminCreaProfesor', 'ProfesorController@adminCreate')->name('AdminCreaProfesor');
 	//----Acciones hacia Coordinadores
 	Route::get('admin/adminDetallesCoordinador/{id}', 'CoordinadorDocenteController@show')->name('mostrarCoordinador');
 	Route::put('admin/adminModificaCoordinador/{id}', 'CoordinadorDocenteController@updateCoordinador');
@@ -137,8 +141,6 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('/alumno/alumnoCalificaciones/{id}', 'AlumnoController@calificaciones')->name('Historial');
 	Route::get('/alumno/alumnoMensajes/{id}', 'AlumnoController@BandejaEntrada')->name('BandejaEntradaAlumno');
 
-	Route::get('/alumno/alumnoArchivos','fileController@alumnoArchivos');
-	Route::post('/alumno/alumnoArchivos','fileController@store');
 	//Route::patch('/alumno/alumnoEdit/{id}','AlumnoController@update')->parameters(['alumno' => 'id']);;
 
 	Route::get('alumno/cuenta/{id}','AlumnoController@cuenta');			// vista - Cuenta personal
@@ -146,6 +148,11 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('alumno/horario','AlumnoController@horario');			// vista - Horario
 	Route::get('alumno/pagos','AlumnoController@pagos');				// vista - Pagos
 	Route::get('alumno/documentos','AlumnoController@documentos');		// vista - Documentos
+
+	// Rutas de desacarga de documentos
+	Route::get('/alumno/alumnoArchivos', 'DocumentoController@index')->name('fileIndex');
+	Route::post('/alumno/alumnoArchivos', 'DocumentoController@store')->name('fileUpload');
+	Route::get('/alumno/alumnoArchivos/{id}', 'DocumentoController@show')->name('fileDownload');
 });
 
 
@@ -159,6 +166,16 @@ Route::group(['middleware' => ['auth:coordinador']], function() {
 	Route::get('coordinador/coordinadorHome','CoordinadorDocenteController@secret');
 	Route::get('coordinador/coordinadorEdit', 'CoordinadorDocenteController@edit');
 	Route::get('coordinador/coordinadorPerfil', 'CoordinadorDocenteController@perfil');
+
+	Route::get('coordinador/coordinadorDetalleAlumno/{id}', 'AlumnoController@showCoord')->name('coordMostrarAlumno');
+	Route::get('coordinador/coordinadorAlumno', 'CoordinadorDocenteController@Alumnos')->name('coordinadorAlumnos');
+	Route::post('coordinador/coordinadorCreaAlumno', 'AlumnoController@coordStore')->name('coordGuardaAlumno');
+	Route::get('coordinador/coordinadorCreaAlumno', 'AlumnoController@coordCreate')->name('coordCreaAlumno');
+
+	Route::get('coordinador/coordinadorDetalleProfesor/{id}', 'ProfesorController@showCoord')->name('coordMostrarProfesor');
+	Route::get('coordinador/coordinadorProfesor', 'CoordinadorDocenteController@Profesores')->name('coordinadorProfesores');
+	Route::post('coordinador/coordinadorCreaProfesor', 'ProfesorController@coordStore')->name('coordGuardaProfesor');
+	Route::get('coordinador/coordinadorCreaProfesor', 'ProfesorController@coordCreate')->name('coordCreaProfesor');
 });
 
 
