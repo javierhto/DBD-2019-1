@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Bienvenido, DIOS
+                    Bienvenido Administrador
 
                     
                 </div>

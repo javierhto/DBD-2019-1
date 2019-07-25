@@ -98,6 +98,36 @@ Route::group(['middleware' => ['auth:admin']], function() {
 	Route::post('admin/adminCreaCoordinador', 'CoordinadorDocenteController@store')->name('GuardaCoordinador');
 	Route::get('admin/adminCreaCoordinador', 'CoordinadorDocenteController@create')->name('AdminCreaCoordinador');
 
+	//----Acciones hacia Las Asignaturas
+	Route::get('admin/adminDetallesAsignatura/{id}', 'AsignaturaController@showAsignatura')->name('mostrarAsignatura');
+	Route::put('admin/adminModificaAsignatura/{id}', 'AsignaturaController@updateAsignatura');
+	Route::delete('admin/adminEliminaAsignatura/{id}', 'AsignaturaController@destroy');
+	Route::get('admin/adminModificaAsignatura/{id}', 'AsignaturaController@EditAsignatura')->name('modificarAsignatura');
+	Route::get('admin/adminEliminaAsignatura/{id}', 'AsignaturaController@MostrarAsignatura')->name('eliminarAsignatura');
+	Route::get('admin/adminAsignaturas', 'AdministradorGeneralController@Asignaturas')->name('AdminAsignaturas');
+	Route::post('admin/adminCreaAsignatura', 'AsignaturaController@storeAdmin')->name('GuardaAsignatura');
+	Route::get('admin/adminCreaAsignatura', 'AsignaturaController@createAdmin')->name('AdminCreaAsignatura');
+
+	//----Acciones hacia Las Coordinaciones de una asignatura
+	Route::get('admin/adminDetallesCoordinacion/{id}', 'CoordinacionController@showCoordinacion')->name('mostrarCoordinacion');
+	Route::put('admin/adminModificaCoordinacion/{id}', 'CoordinacionController@updateCoordinacion');
+	Route::delete('admin/adminEliminaCoordinacion/{id}', 'CoordinacionController@destroy');
+	Route::get('admin/adminModificaCoordinacion/{id}', 'CoordinacionController@EditCoordinacion')->name('modificarCoordinacion');
+	Route::get('admin/adminEliminaCoordinacion/{id}', 'CoordinacionController@MostrarCoordinacion')->name('eliminarCoordinacion');
+	Route::get('admin/adminCoordinaciones/{id}', 'AdministradorGeneralController@Coordinaciones')->name('AdminCoordinacion');
+	Route::post('admin/adminCreaCoordinacion/{id}', 'CoordinacionController@storeAdmin')->name('GuardaCoordinacion');
+	Route::get('admin/adminCreaCoordinacion/{id}', 'CoordinacionController@createAdmin')->name('AdminCreaCoordinacion');
+
+	//----Acciones hacia Administradores
+	Route::get('admin/adminDetallesAdministrador/{id}', 'AdministradorGeneralController@show')->name('mostrarAdministrador');
+	Route::put('admin/adminModificaAdministrador/{id}', 'AdministradorGeneralController@updateAdministrador');
+	Route::delete('admin/adminEliminaAdministrador/{id}', 'AdministradorGeneralController@destroy');
+	Route::get('admin/adminModificaAdministrador/{id}', 'AdministradorGeneralController@EditAdministrador')->name('modificarAdministrador');
+	Route::get('admin/adminEliminaAdministrador/{id}', 'AdministradorGeneralController@MostrarAdministradores')->name('eliminarAdministrador');
+	Route::get('admin/adminAdministradores', 'AdministradorGeneralController@Administradores')->name('AdminAdministradores');
+	Route::post('admin/adminCreaAdministrador', 'AdministradorGeneralController@store')->name('GuardaAdministrador');
+	Route::get('admin/adminCreaAdministrador', 'AdministradorGeneralController@create')->name('AdminCreaAdministrador');
+
 });
 
 

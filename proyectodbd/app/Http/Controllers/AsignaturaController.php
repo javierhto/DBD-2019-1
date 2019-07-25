@@ -22,9 +22,9 @@ class AsignaturaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createAdmin()
     {
-        //
+        return view('admin.adminCreaAsignatura');
     }
 
     /**
@@ -33,9 +33,11 @@ class AsignaturaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeAdmin(Request $request)
     {
-        return Asignatura::create($request->all());
+        Asignatura::create($request->all());
+        return redirect()->route('AdminAsignaturas')
+                        ->with('success', 'Asignatura Creada');        
     }
 
     /**
@@ -44,9 +46,10 @@ class AsignaturaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showAsignatura($id)
     {
-        return Asignatura::findOrFail($id);
+        $asignatura = Asignatura::findOrFail($id);
+        return view('admin.adminDetallesAsignatura', compact('asignatura'));
     }
 
     /**
@@ -58,6 +61,11 @@ class AsignaturaController extends Controller
     public function edit(Asignatura $asignatura)
     {
         //
+    }
+    public function editAsignatura($id)
+    {
+        $asignatura = Asignatura::findOrFail($id);        
+        return view('admin.adminModificaAsignatura', compact('asignatura'));
     }
 
     /**
@@ -88,6 +96,24 @@ class AsignaturaController extends Controller
         }
     }
 
+
+    public function updateAsignatura(Request $request, $id)
+    {
+        $asignatura = Asignatura::findOrFail($id);
+        $asignatura->nombre = $request->get('nombre');
+        $asignatura->nivel = $request->get('nivel');
+        $asignatura->T = $request->get('T');
+        $asignatura->E = $request->get('E');
+        $asignatura->L = $request->get('L');
+        
+        $asignatura->save();
+
+        return redirect()->route('AdminAsignaturas')
+                        ->with('success', 'Asignatura Modificado');
+        
+        
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -98,6 +124,7 @@ class AsignaturaController extends Controller
     {
         $asignatura = Asignatura::findOrFail($id);
         $asignatura->delete();
-        return "Se elimino";
+        return redirect()->route('AdminAsignaturas')
+                        ->with('success', 'Asignatura Eliminado con exito');
     }
 }

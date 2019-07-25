@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Modules\AdministradorGeneral;
 use App\Modules\Comuna;
+use App\Modules\Asignatura;
 use App\Modules\Alumno;
 use App\Modules\Profesor;
+use App\Modules\Coordinacion;
 use App\Modules\CoordinadorDocente;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class AdministradorGeneralController extends Controller
 {
@@ -52,7 +55,8 @@ class AdministradorGeneralController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        $comunas = Comuna::all();
+        return view('admin.adminCreaAdministrador', compact('comunas'));
     }
 
     /**
@@ -63,7 +67,9 @@ class AdministradorGeneralController extends Controller
      */
     public function store(Request $request)
     {
-        return AdministradorGeneral::create($request->all());
+        AdministradorGeneral::create($request->all());
+        return redirect()->route('AdminAdministradores')
+                        ->with('success', 'Administrador Creado');
     }
 
     /**
@@ -74,7 +80,9 @@ class AdministradorGeneralController extends Controller
      */
     public function show($id)
     {
-        return AdministradorGeneral::findOrFail($id);
+        $administrador = AdministradorGeneral::findOrFail($id);
+
+        return view('admin.adminDetallesAdministrador', compact('administrador'));
     }
 
     /**
@@ -89,6 +97,13 @@ class AdministradorGeneralController extends Controller
         return view('admin.adminEdit', compact('comunas'));
     }
 
+
+    public function editAdministrador($id)
+    {
+        $administrador = AdministradorGeneral::findOrFail($id);
+        $comunas = Comuna::all();
+        return view('admin.adminModificaAdministrador', compact('comunas','administrador'));
+    }
     public function perfil()
     {
         $comunas = Comuna::all();
@@ -102,8 +117,15 @@ class AdministradorGeneralController extends Controller
         $admin->update($request->all());
         $comunas = Comuna::all();
         return view('admin.adminPerfil', compact('comunas'));
-        
-        
+    }
+
+
+    public function updateAdministrador(Request $request, $id)
+    {
+        $admin = AdministradorGeneral::findOrFail($id);
+        $admin->update($request->all());
+        return redirect()->route('AdminAdministradores')
+                        ->with('success', 'Administrador Modificado');
     }
     public function MostrarAlumnos($id)
     {
@@ -131,6 +153,32 @@ class AdministradorGeneralController extends Controller
             ->with('i', (request()->input('page',1) -1 )*5);
     }
 
+    public function Coordinaciones($id)
+    {
+        $asignatura = Asignatura::findOrFail($id);
+        $coordinaciones = DB::table('coordinacion')
+        ->where('id_asignatura', '=', $id)        
+        ->get();
+        $profesores = Profesor::all();
+        return view('admin.adminCoordinaciones',compact('coordinaciones','profesores','asignatura'));
+    }
+
+
+
+    public function Asignaturas()
+    {
+        $asignaturas = Asignatura::latest()->paginate(5);
+        return view('admin.adminAsignaturas', compact('asignaturas'))
+            ->with('i', (request()->input('page',1) -1 )*5);
+    }
+
+    public function Administradores()
+    {
+        $administradores = AdministradorGeneral::latest()->paginate(5);
+        return view('admin.adminAdministradores', compact('administradores'))
+            ->with('i', (request()->input('page',1) -1 )*5);
+    }
+
 
     
 
@@ -144,7 +192,7 @@ class AdministradorGeneralController extends Controller
     {
         $administrador = AdministradorGeneral::findOrFail($id);
         $administrador->delete();
-        return "Se elimino";
+        return redirect()->route('AdminAdministradores');
     }
 
 
