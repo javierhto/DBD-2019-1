@@ -1,4 +1,4 @@
-@extends('layouts.layoutAlumno')
+@extends('layouts.homestudent')
 
 @section('content')
 <form action="{{ route('fileUpload') }}" enctype="multipart/form-data" method="post">

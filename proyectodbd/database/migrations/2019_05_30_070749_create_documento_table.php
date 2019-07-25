@@ -17,9 +17,7 @@ class CreateDocumentoTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('nombre');
-            $table->date('fecha');
-            //cambiado json -> string
-            $table->string('documento');
+            $table->string('path');
         });
     }
 

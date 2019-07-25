@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Modules\CoordinadorDocente;
 use App\Modules\Comuna;
+use App\Modules\Alumno;
+use App\Modules\Profesor;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -127,6 +129,20 @@ class CoordinadorDocenteController extends Controller
                         ->with('success', 'Coordinador docente Modificado');
         
         
+    }
+
+    public function Alumnos()
+    {
+        $alumnos = Alumno::latest()->paginate(5);
+        return view('coordinador.coordinadorAlumno', compact('alumnos'))
+            ->with('i', (request()->input('page',1) -1 )*5);
+    }
+
+    public function Profesores()
+    {
+        $profesores = Profesor::latest()->paginate(5);
+        return view('coordinador.coordinadorProfesor', compact('profesores'))
+            ->with('i', (request()->input('page',1) -1 )*5);
     }
 
     /**

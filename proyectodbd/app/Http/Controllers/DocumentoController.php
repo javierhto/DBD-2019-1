@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Modules\Documento;
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentoController extends Controller
 {
@@ -14,7 +16,8 @@ class DocumentoController extends Controller
      */
     public function index()
     {
-        return Documento::all();
+        $documentos = Documento::orderBy('created_at', 'DESC')->paginate(10);
+        return view('alumno.alumnoArchivos', ['documentos' => $documentos]);
     }
 
     /**
@@ -35,7 +38,13 @@ class DocumentoController extends Controller
      */
     public function store(Request $request)
     {
-        return Documento::create($request->all());
+        $upload = $request->file('file');
+        $path = $upload->store('public/storage');
+        $file = Documento::create([
+            'nombre' => $upload->getClientOriginalName(),
+            'path' => $path
+        ]);
+        return redirect('/try');
     }
 
     /**
@@ -46,7 +55,8 @@ class DocumentoController extends Controller
      */
     public function show($id)
     {
-        return Documento::findOrFail($id);
+        $doc = Documento::findOrFail($id);
+        return Storage::download($doc->path, $doc->nombre);
     }
 
     /**

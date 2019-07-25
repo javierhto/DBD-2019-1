@@ -119,6 +119,17 @@
               </a>
             </li>
 
+            <li class="nav-item">
+              <a class="nav-link" href="/coordinador/coordinadorAlumno">
+                <i class="nav-icon icon-info"></i> Alumnos</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/coordinador/coordinadorProfesor">
+                <i class="nav-icon icon-info"></i> Profesores</a>
+            </li>
+
+
 
             <li class="nav-item">
               <a class="nav-link" href="/preenvio">
