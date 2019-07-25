@@ -132,6 +132,11 @@
             </li>
 
             <li class="nav-item">
+              <a class="nav-link" href="{{ route ('RamosAutomaticos',[Auth::user()->id])}}">
+                <i class="nav-icon icon-info"></i> Horarios posibles</a>
+            </li>
+
+            <li class="nav-item">
               <a class="nav-link" href="{{ route ('Historial',[Auth::user()->id])}}">
                 <i class="nav-icon icon-calculator"></i> Notas</a>
             </li>

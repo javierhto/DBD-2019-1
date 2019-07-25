@@ -165,6 +165,7 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::put('alumno/alumnoEdit/{id}','AlumnoController@update');
 	Route::get('alumno/alumnoHome','AlumnoController@secret');
 	Route::get('alumno/alumnoHorario/{id}','AlumnoController@horario')->name('Horario');
+	Route::get('alumno/alumnoRamosAutomaticos/{id}','AlumnoController@ramosAutomaticos')->name('RamosAutomaticos');
 	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
 	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
 	Route::get('/alumno/alumnoDatos', 'AlumnoController@datos');
