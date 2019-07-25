@@ -152,8 +152,12 @@ Route::group(['middleware' => ['auth:profesor']], function() {
 	Route::get('profesor/profesorPerfil', 'ProfesorController@perfil');
 	Route::get('profesor/profesorExito', function () {
     	return view('profesor.profesorExito');	});
-Route::get('/profesor/profesorError', function () {
-    return view('profesor.profesorError');});	
+	Route::get('/profesor/profesorError', function () {
+    	return view('profesor.profesorError');});
+	Route::get('/profesor/profesorArchivos','ProfesorController@documentos');
+	Route::get('/profesor/profesorArchivos', 'DocumentoController@profesorIndex')->name('fileIndexProfesor');
+	Route::post('/profesor/profesorArchivos', 'DocumentoController@profesorStore')->name('fileUploadProfesor');
+	Route::get('/profesor/profesorArchivos/{id}', 'DocumentoController@show')->name('fileDownload');
 });
 
 
@@ -181,8 +185,8 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('alumno/documentos','AlumnoController@documentos');		// vista - Documentos
 
 	// Rutas de desacarga de documentos
-	Route::get('/alumno/alumnoArchivos', 'DocumentoController@index')->name('fileIndex');
-	Route::post('/alumno/alumnoArchivos', 'DocumentoController@store')->name('fileUpload');
+	Route::get('/alumno/alumnoArchivos', 'DocumentoController@alumnoIndex')->name('fileIndex');
+	Route::post('/alumno/alumnoArchivos', 'DocumentoController@alumnoStore')->name('fileUpload');
 	Route::get('/alumno/alumnoArchivos/{id}', 'DocumentoController@show')->name('fileDownload');
 });
 
@@ -197,16 +201,44 @@ Route::group(['middleware' => ['auth:coordinador']], function() {
 	Route::get('coordinador/coordinadorHome','CoordinadorDocenteController@secret');
 	Route::get('coordinador/coordinadorEdit', 'CoordinadorDocenteController@edit');
 	Route::get('coordinador/coordinadorPerfil', 'CoordinadorDocenteController@perfil');
-
+	// Rutas de Alumno
 	Route::get('coordinador/coordinadorDetalleAlumno/{id}', 'AlumnoController@showCoord')->name('coordMostrarAlumno');
 	Route::get('coordinador/coordinadorAlumno', 'CoordinadorDocenteController@Alumnos')->name('coordinadorAlumnos');
 	Route::post('coordinador/coordinadorCreaAlumno', 'AlumnoController@coordStore')->name('coordGuardaAlumno');
 	Route::get('coordinador/coordinadorCreaAlumno', 'AlumnoController@coordCreate')->name('coordCreaAlumno');
-
+	// Rutas de Profesor
 	Route::get('coordinador/coordinadorDetalleProfesor/{id}', 'ProfesorController@showCoord')->name('coordMostrarProfesor');
 	Route::get('coordinador/coordinadorProfesor', 'CoordinadorDocenteController@Profesores')->name('coordinadorProfesores');
 	Route::post('coordinador/coordinadorCreaProfesor', 'ProfesorController@coordStore')->name('coordGuardaProfesor');
 	Route::get('coordinador/coordinadorCreaProfesor', 'ProfesorController@coordCreate')->name('coordCreaProfesor');
+	// Rutas de asignatura
+	Route::get('coordinador/coordinadorDetalleAsignatura/{id}', 'AsignaturaController@coordShowAsignatura')->name('mostrarAsignaturaCoord');
+	Route::put('coordinador/coordinadorModificaAsignatura/{id}', 'AsignaturaController@coordUpdateAsignatura');
+	Route::delete('coordinador/coordinadorEliminaAsignatura/{id}', 'AsignaturaController@coordDestroy');
+	Route::get('coordinador/coordinadorModificaAsignatura/{id}', 'AsignaturaController@coordEditAsignatura')->name('modificarAsignaturaCoord');
+	Route::get('coordinador/coordinadorEliminaAsignatura/{id}', 'AsignaturaController@MostrarAsignatura')->name('eliminarAsignaturaCoord');
+	Route::get('coordinador/coordinadorAsignaturas', 'CoordinadorDocenteController@Asignaturas')->name('AsignaturasCoord');
+	Route::post('coordinador/coordinadorCreaAsignatura', 'AsignaturaController@coordStoreAdmin')->name('GuardaAsignaturaCoord');
+	Route::get('coordinador/coordinadorCreaAsignatura', 'AsignaturaController@coordCreateAdmin')->name('CreaAsignaturaCoord');
+	// Rutas de Coordinaciones de una asignatura
+	Route::get('coordinador/coordinadorDetalleCoordinacion/{id}', 'CoordinacionController@coordShowCoordinacion')->name('mostrarCoordinacionCoord');
+	Route::put('coordinador/coordinadorModificaCoordinacion/{id}', 'CoordinacionController@coordUpdateCoordinacion');
+	Route::delete('coordinador/coordinadorEliminaCoordinacion/{id}', 'CoordinacionController@coordDestroy');
+	Route::get('coordinador/coordinadorModificaCoordinacion/{id}', 'CoordinacionController@coordEditCoordinacion')->name('modificarCoordinacionCoord');
+	Route::get('coordinador/coordinadorEliminaCoordinacion/{id}', 'CoordinacionController@MostrarCoordinacion')->name('eliminarCoordinacionCoord');
+	Route::get('coordinador/coordinadorCoordinaciones/{id}', 'CoordinadorDocenteController@Coordinaciones')->name('CoordinacionCoord');
+	Route::post('coordinador/coordinadorCreaCoordinacion/{id}', 'CoordinacionController@coordStoreAdmin')->name('GuardaCoordinacionCoord');
+	Route::get('coordinador/coordinadorCreaCoordinacion/{id}', 'CoordinacionController@coordCreateAdmin')->name('CreaCoordinacionCoord');
+	// Rutas a horarios
+	Route::delete('coordinador/coordinadorEliminaHorario/{id1}/{id2}', 'CoordinacionHorarioController@coordDestroy');
+	Route::get('coordinador/coordinadorEliminaHorario/{id1}/{id2}', 'CoordinacionHorarioController@MostrarHorario')->name('eliminarHorarioCoord');
+	Route::post('coordinador/coordinadorCreaHorario/{id}', 'CoordinacionHorarioController@coordStore')->name('GuardaHorarioCoord');
+	// Rutas a archivos
+	Route::get('/coordinador/coordinadorArchivos','CoordinadorDocenteController@documentos');
+	Route::get('/coordinador/coordinadorArchivos', 'DocumentoController@coordinadorIndex')->name('fileIndexCoord');
+	Route::post('/coordinador/coordinadorArchivos', 'DocumentoController@coordinadorStore')->name('fileUploadCoord');
+	Route::get('/coordinador/coordinadorArchivos/{id}', 'DocumentoController@show')->name('fileDownload');
+
 });
 
 

@@ -47,7 +47,7 @@ class AlumnoController extends Controller
 
     public function documentos()
     {
-        return view('alumno.documentos');
+        return view('alumno.alumnoArchivos');
     }
     
     public function showLoginForm()

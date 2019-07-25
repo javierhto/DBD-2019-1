@@ -6,10 +6,12 @@ use App\Modules\CoordinadorDocente;
 use App\Modules\Comuna;
 use App\Modules\Alumno;
 use App\Modules\Profesor;
+use App\Modules\Asignatura;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class CoordinadorDocenteController extends Controller
 {
@@ -34,6 +36,10 @@ class CoordinadorDocenteController extends Controller
         return view('coordinador.coordinadorHome');
     }
 
+    public function documentos()
+    {
+        return view('coordinador.coordinadorArchivos');
+    }
 
     /**
      * Display a listing of the resource.
@@ -143,6 +149,23 @@ class CoordinadorDocenteController extends Controller
         $profesores = Profesor::latest()->paginate(5);
         return view('coordinador.coordinadorProfesor', compact('profesores'))
             ->with('i', (request()->input('page',1) -1 )*5);
+    }
+
+    public function Asignaturas()
+    {
+        $asignaturas = Asignatura::latest()->paginate(5);
+        return view('coordinador.coordinadorAsignaturas', compact('asignaturas'))
+            ->with('i', (request()->input('page',1) -1 )*5);
+    }
+
+    public function Coordinaciones($id)
+    {
+        $asignatura = Asignatura::findOrFail($id);
+        $coordinaciones = DB::table('coordinacion')
+        ->where('id_asignatura', '=', $id)        
+        ->get();
+        $profesores = Profesor::all();
+        return view('coordinador.coordinadorCoordinaciones',compact('coordinaciones','profesores','asignatura'));
     }
 
     /**
