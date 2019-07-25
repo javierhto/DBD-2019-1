@@ -39,7 +39,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand" href="#">
-        <img class="navbar-brand-full" src="{{asset('admin/img/brand/logoLoa.png')}}" width="89" height="25" alt="Loa Logo">
+        <img class="navbar-brand-full" src="{{asset('admin/img/brand/logoLoa.png')}}" width="89" height="25" alt="Loa Logo" href="alumno/alumnoHome">
         <img class="navbar-brand-minimized" src="{{asset('admin/img/brand/loa.png')}}" width="30" height="30" alt="CoreUI Logo">
       </a>
       <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
@@ -132,15 +132,15 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="{{ route ('Historial',[Auth::user()->id])}}">
+              <a class="nav-link" href="{{ route ('Historial',[Auth::user()->id]) }}">
                 <i class="nav-icon icon-calculator"></i> Notas</a>
             </li>
 
             <li class="nav-title">Otros</li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="nav-icon icon-info"></i> Pagos</a>
+              <a class="nav-link" href="{{ route ('Tarjetas',[Auth::user()->id])}}">
+                <i class="nav-icon icon-info"></i> Tarjetas asociadas</a>
             </li>
 
             <li class="nav-item">

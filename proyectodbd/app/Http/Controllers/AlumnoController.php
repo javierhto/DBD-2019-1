@@ -39,9 +39,12 @@ class AlumnoController extends Controller
         return view('alumno.asignaturas');
     }
 
-    public function pagos()
+    public function tarjetas($id)
     {
-        return view('alumno.pagos');
+        $tarjetas = DB::table('tarjeta_credito')
+        ->where('id_alumno', '=', $id)
+        ->get();
+        return view('alumno.tarjetas', compact('tarjetas'));
     }
 
     public function documentos()

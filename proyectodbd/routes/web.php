@@ -168,6 +168,13 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
 	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
 	Route::get('/alumno/alumnoDatos', 'AlumnoController@datos');
+	
+	Route::get('/alumno/alumnoTarjetas/{id}', 'AlumnoController@tarjetas')->name('Tarjetas');
+	Route::get('/alumno/crearTarjeta', 'TarjetaCreditoController@crearTarjeta')->name('crearTarjeta');
+	Route::post('/alumno/creaAlumno/{id}', 'TarjetaCreditoController@alumnoStore')->name('guardarTarjeta');
+	Route::delete('/alumno/alumnoTarjetas/{tarjeta}', 'TarjetaCreditoController@destroy')->name('eliminarTarjeta');
+
+
 	Route::get('/alumno/alumnoCalificaciones/{id}', 'AlumnoController@calificaciones')->name('Historial');
 	Route::get('/alumno/alumnoMensajes/{id}', 'AlumnoController@BandejaEntrada')->name('BandejaEntradaAlumno');
 
