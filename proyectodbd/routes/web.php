@@ -228,6 +228,10 @@ Route::group(['middleware' => ['auth:coordinador']], function() {
 	Route::get('coordinador/coordinadorCoordinaciones/{id}', 'CoordinadorDocenteController@Coordinaciones')->name('CoordinacionCoord');
 	Route::post('coordinador/coordinadorCreaCoordinacion/{id}', 'CoordinacionController@coordStoreAdmin')->name('GuardaCoordinacionCoord');
 	Route::get('coordinador/coordinadorCreaCoordinacion/{id}', 'CoordinacionController@coordCreateAdmin')->name('CreaCoordinacionCoord');
+	// Rutas a horarios
+	Route::delete('coordinador/coordinadorEliminaHorario/{id1}/{id2}', 'CoordinacionHorarioController@coordDestroy');
+	Route::get('coordinador/coordinadorEliminaHorario/{id1}/{id2}', 'CoordinacionHorarioController@MostrarHorario')->name('eliminarHorarioCoord');
+	Route::post('coordinador/coordinadorCreaHorario/{id}', 'CoordinacionHorarioController@coordStore')->name('GuardaHorarioCoord');
 	// Rutas a archivos
 	Route::get('/coordinador/coordinadorArchivos','CoordinadorDocenteController@documentos');
 	Route::get('/coordinador/coordinadorArchivos', 'DocumentoController@coordinadorIndex')->name('fileIndexCoord');
