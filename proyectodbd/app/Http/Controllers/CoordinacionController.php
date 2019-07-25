@@ -37,6 +37,13 @@ class CoordinacionController extends Controller
         return view('admin.adminCreaCoordinacion',compact('profesores','asignatura'));
     }
 
+    public function coordCreateAdmin($id)
+    {
+        $profesores = Profesor::all();
+        $asignatura = Asignatura::findOrFail($id);        
+        return view('coordinador.coordinadorCreaCoordinacion',compact('profesores','asignatura'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -70,6 +77,25 @@ class CoordinacionController extends Controller
         return view('admin.adminCoordinaciones',compact('coordinaciones','profesores','asignatura'));
     }
 
+    public function coordStoreAdmin(Request $request, $id)
+    {
+
+        $coordinacion = new Coordinacion;
+        $coordinacion->semestre = $request->input('semestre');
+        $coordinacion->laboratorio = $request->input('laboratorio');
+        $coordinacion->cupo = $request->input('cupo');
+        $coordinacion->id_asignatura = $id;
+        $coordinacion->id_profesor =  $request->input('id_profesor');
+        $coordinacion->save();
+
+        $asignatura = Asignatura::findOrFail($id);
+        $coordinaciones = DB::table('coordinacion')
+        ->where('id_asignatura', '=', $id)        
+        ->get();
+        $profesores = Profesor::all();
+        return view('coordinador.coordinadorCoordinaciones',compact('coordinaciones','profesores','asignatura'));
+    }
+
     /**
      * Display the specified resource.
      *
@@ -87,6 +113,13 @@ class CoordinacionController extends Controller
         $profesores = Profesor::all();
         $coordinacion = Coordinacion::findOrFail($id);
         return view('admin.adminDetallesCoordinacion', compact('coordinacion','profesores'));
+    }
+
+    public function coordShowCoordinacion($id)
+    {
+        $profesores = Profesor::all();
+        $coordinacion = Coordinacion::findOrFail($id);
+        return view('coordinador.coordinadorDetalleCoordinacion', compact('coordinacion','profesores'));
     }
 
     /**
@@ -107,6 +140,13 @@ class CoordinacionController extends Controller
         $coordinacion = Coordinacion::findOrFail($id);        
         $profesores = Profesor::all();
         return view('admin.adminModificaCoordinacion', compact('coordinacion','profesores'));
+    }
+
+    public function coordEditCoordinacion($id)
+    {
+        $coordinacion = Coordinacion::findOrFail($id);        
+        $profesores = Profesor::all();
+        return view('coordinador.coordinadorModificaCoordinacion', compact('coordinacion','profesores'));
     }
 
     /**
@@ -153,12 +193,27 @@ class CoordinacionController extends Controller
         ->where('id_asignatura', '=', $coordinacion->id_asignatura)        
         ->get();
         $profesores = Profesor::all();
-        return view('admin.adminCoordinaciones',compact('coordinaciones','profesores','asignatura'));
-
-        
-        
+        return view('admin.adminCoordinaciones',compact('coordinaciones','profesores','asignatura'));     
     }
 
+
+    public function coordUpdateCoordinacion(Request $request, $id)
+    {
+        $coordinacion = Coordinacion::findOrFail($id);
+        $coordinacion->semestre = $request->get('semestre');
+        $coordinacion->laboratorio = $request->get('laboratorio');
+        $coordinacion->cupo = $request->get('cupo');
+        $coordinacion->id_profesor = $request->get('id_profesor');
+        
+        $coordinacion->save();
+
+        $asignatura = Asignatura::findOrFail($coordinacion->id_asignatura);
+        $coordinaciones = DB::table('coordinacion')
+        ->where('id_asignatura', '=', $coordinacion->id_asignatura)        
+        ->get();
+        $profesores = Profesor::all();
+        return view('coordinador.coordinadorCoordinaciones',compact('coordinaciones','profesores','asignatura'));     
+    }
 
 
     /**
@@ -177,9 +232,21 @@ class CoordinacionController extends Controller
         ->get();
         $asignatura = Asignatura::findOrFail($id_asignatura);
         
-
-        
         $profesores = Profesor::all();
         return view('admin.adminCoordinaciones',compact('coordinaciones','profesores','asignatura'));
+    }
+
+    public function coordDestroy($id)
+    {
+        $coordinacion = Coordinacion::findOrFail($id);
+        $id_asignatura = $coordinacion->id_asignatura;
+        $coordinacion->delete();
+        $coordinaciones = DB::table('coordinacion')
+        ->where('id_asignatura', '=', $id_asignatura)        
+        ->get();
+        $asignatura = Asignatura::findOrFail($id_asignatura);
+        
+        $profesores = Profesor::all();
+        return view('coordinador.coordinadorCoordinaciones',compact('coordinaciones','profesores','asignatura'));
     }
 }
