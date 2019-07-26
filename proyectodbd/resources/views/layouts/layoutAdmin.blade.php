@@ -139,6 +139,10 @@
               <a class="nav-link" href="/admin/adminAsignaturas">
                 <i class="nav-icon icon-info"></i> Administrar Asignaturas</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/adminFacultades">
+                <i class="nav-icon icon-info"></i> Administrar Facultades</a>
+            </li>
 
             <li class="nav-title">Otros</li>
 

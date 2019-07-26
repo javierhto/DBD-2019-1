@@ -14,10 +14,22 @@ class DocumentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function alumnoIndex()
     {
         $documentos = Documento::orderBy('created_at', 'DESC')->paginate(10);
         return view('alumno.alumnoArchivos', ['documentos' => $documentos]);
+    }
+
+    public function profesorIndex()
+    {
+        $documentos = Documento::orderBy('created_at', 'DESC')->paginate(10);
+        return view('profesor.profesorArchivos', ['documentos' => $documentos]);
+    }
+
+    public function coordinadorIndex()
+    {
+        $documentos = Documento::orderBy('created_at', 'DESC')->paginate(10);
+        return view('coordinador.coordinadorArchivos', ['documentos' => $documentos]);
     }
 
     /**
@@ -36,7 +48,7 @@ class DocumentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function alumnoStore(Request $request)
     {
         $upload = $request->file('file');
         $path = $upload->store('public/storage');
@@ -44,7 +56,29 @@ class DocumentoController extends Controller
             'nombre' => $upload->getClientOriginalName(),
             'path' => $path
         ]);
-        return redirect('/try');
+        return redirect('/alumno/alumnoArchivos');
+    }
+
+    public function profesorStore(Request $request)
+    {
+        $upload = $request->file('file');
+        $path = $upload->store('public/storage');
+        $file = Documento::create([
+            'nombre' => $upload->getClientOriginalName(),
+            'path' => $path
+        ]);
+        return redirect('/profesor/profesorArchivos');
+    }
+
+    public function coordinadorStore(Request $request)
+    {
+        $upload = $request->file('file');
+        $path = $upload->store('public/storage');
+        $file = Documento::create([
+            'nombre' => $upload->getClientOriginalName(),
+            'path' => $path
+        ]);
+        return redirect('/coordinador/coordinadorArchivos');
     }
 
     /**

@@ -37,6 +37,11 @@ class ProfesorController extends Controller
         return view('profesor.profesorHome');
     }
 
+    public function documentos()
+    {
+        return view('profesor.profesorArchivos');
+    }
+
 
     public function horario($id)
     {

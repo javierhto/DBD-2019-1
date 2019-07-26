@@ -44,10 +44,42 @@ class AlumnoCoordinacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_alumno, $id_coordinacion)
     {
-        $tomaRamo=AlumnoCoordinacion::create($request->all());
-        return "El alumno esta inscrito en este ramo";
+        $inscribir = new AlumnoCoordinacion;
+        $inscribir->id_alumno = $id_alumno;
+        $inscribir->id_coordinacion = $id_coordinacion; 
+        $inscribir->save();
+
+        set_time_limit(0);
+        $asignaturas = DB::table('alumno_carrera')
+        ->where('id_alumno', '=', $id_alumno)
+        ->join('plan_estudios','plan_estudios.id_carrera','=','alumno_carrera.id_carrera')
+        ->join('plan_estudios_asignatura','plan_estudios_asignatura.id_plan_estudios','=','plan_estudios.id')
+        ->join('asignatura','asignatura.id','=','plan_estudios_asignatura.id_asignatura')
+        ->get();
+
+
+        $horarios2 = DB::table('horario')
+        ->join('coordinacion_horario','coordinacion_horario.id_horario','=','horario.id')
+        ->get();
+
+        $profesores = DB::table('profesor')
+        ->join('coordinacion_profesor','coordinacion_profesor.id_profesor','=','profesor.id')
+        ->get();
+
+
+        $coordinaciones = Coordinacion::all();
+        $horarios = DB::table('alumno_coordinacion')
+        ->where('id_alumno', '=', $id_alumno)
+        ->join('coordinacion','coordinacion.id','=','alumno_coordinacion.id_coordinacion')
+        ->join('coordinacion_horario','coordinacion_horario.id_coordinacion','=','alumno_coordinacion.id_coordinacion')
+        ->join('horario','horario.id','=','coordinacion_horario.id_horario')
+        ->join('asignatura','asignatura.id','=','coordinacion.id_asignatura')
+        
+        ->get();
+        return view('alumno.inscripcion', compact('horarios','horarios2','asignaturas','profesores','coordinaciones'));
+
     }
 
     /**

@@ -97,31 +97,8 @@ class TarjetaCreditoController extends Controller
      */
     public function destroy($id)
     {
-        $tarjeta = TarjetaCredito::findOrFail($id);
-        $id_alumno = $tarjeta->id_alumno;
-        $tarjeta->delete();
-        return redirect()->route('Tarjetas', $id_alumno)
-                        ->with('success', 'Tarjeta eliminada');        
-    }
-
-    public function crearTarjeta()
-    {
-        return view('alumno.creaTarjeta');
-    }
-
-    public function alumnoStore(Request $request, $id)
-    {   
-        $Tarjeta = new TarjetaCredito;
-        $Tarjeta->id_alumno = $id;
-        $Tarjeta->numero= $request->input('numero');
-        $Tarjeta->nombre_titular= $request->input('nombre_titular');
-        $Tarjeta->fecha_expiracion= $request->input('fecha_expiracion');
-        $Tarjeta->pais_facturacion= $request->input('pais_facturacion');
-        $Tarjeta->ciudad_facturacion= $request->input('ciudad_facturacion');
-        $Tarjeta->direccion_facturacion= $request->input('direccion_facturacion');
-        $Tarjeta->save();
-        
-        return redirect()->route('Tarjetas', $id)
-                        ->with('success', 'Tarjeta creada');        
+        $tarjetaCredito = TarjetaCredito::findOrFail($id);
+        $tarjetaCredito->delete();
+        return "Se elimino";
     }
 }

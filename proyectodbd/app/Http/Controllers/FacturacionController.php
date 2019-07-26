@@ -4,35 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Modules\Facturacion;
 use Illuminate\Http\Request;
-use DB;
 
 class FacturacionController extends Controller
 {
-
-    public function pagos($id)
-    {
-        $pagadas = DB::table('facturacion')
-        ->where('id_alumno', '=', $id)
-        ->where('estado', '=', 'pagado')        
-        ->get();
-
-        $pendientes = DB::table('facturacion')
-        ->where('id_alumno', '=', $id)
-        ->where('estado', '=', 'pendiente')        
-        ->get();
-
-        return view('alumno.pagos',compact('pagadas', 'pendientes'));
-    }
-
-    public function pagar($id)
-    {
-        $facturacion = Facturacion::find($id);
-        $facturacion->estado = 'pagado';
-        $id_alumno = $facturacion->id_alumno;
-        $facturacion->save();
-        return redirect()->route('Pagos', $id_alumno)
-            ->with('success', 'Facturación pagada');    
-    }
     /**
      * Display a listing of the resource.
      *

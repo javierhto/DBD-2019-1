@@ -20,7 +20,7 @@
                                 <tr>
                                     <td class="align-middle"> Ramos a inscribir </td>
                                     <td class="align-middle"> Horario </td>
-                                    <td class="align-middle"> Desencribir </td>
+                                    <td class="align-middle"> Desinscribir </td>
                                 </tr>
                         </thead>
                         <tbody class="text-center align-middle">
@@ -64,6 +64,9 @@
                                             @foreach ($profesores as $profesor)
                                               @if($coordinacion->id == $profesor->id_coordinacion)
                                                 {{$profesor->nombre}} <br>
+                                                <form action="{{route('inscribirHorario', ['id_alumno' => Auth::user()->id, 'id_coordinacion' => $coordinacion->id])}}"  method="post">
+                                                <button type="submit" class="btn btn-sm btn-primary"> INSCRIBIR  </button>
+                                                </form>
 
                                               @endif
                                             @endforeach
@@ -167,8 +170,7 @@
                               <td class="align-middle"> 
 
                                   @foreach ($horarios as $horario)                      
-                                  @if($horario->dia == 'viernes' && $horario->bloque == $i)  
-                                    codigo:                 
+                                  @if($horario->dia == 'viernes' && $horario->bloque == $i)                 
                                     codigo:{{ $horario->id_asignatura }}             
                                     <br>
                                     sala: {{ $horario->sala }} <br>
@@ -256,7 +258,7 @@
                               <td class="align-middle">
                                 <form action="/alumno/eliminarRamo/{{Auth::user()->id}}/{{$horario->id_coordinacion}}" method="post">
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger"> ELIMINAR  </button>
+                                    <button type="submit" class="btn btn-sm btn-danger"> ELIMINAR </button>
                                 </form>
                               </td>
                             </tr>
