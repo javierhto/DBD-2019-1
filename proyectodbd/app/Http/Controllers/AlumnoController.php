@@ -6,7 +6,6 @@ use App\Modules\Alumno;
 use App\Modules\Comuna;
 use App\Modules\AlumnoCarrera;
 use App\Modules\CoordinacionHorario;
-use App\Modules\Coordinacion;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -40,14 +39,17 @@ class AlumnoController extends Controller
         return view('alumno.asignaturas');
     }
 
-    public function pagos()
+    public function tarjetas($id)
     {
-        return view('alumno.pagos');
+        $tarjetas = DB::table('tarjeta_credito')
+        ->where('id_alumno', '=', $id)
+        ->get();
+        return view('alumno.tarjetas', compact('tarjetas'));
     }
 
     public function documentos()
     {
-        return view('alumno.alumnoArchivos');
+        return view('alumno.documentos');
     }
     
     public function showLoginForm()

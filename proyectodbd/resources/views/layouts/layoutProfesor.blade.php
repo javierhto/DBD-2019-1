@@ -141,11 +141,6 @@
               <a class="nav-link" href="{{ route ('BandejaEntradaProfe',[Auth::user()->id])}}">
                 <i class="nav-icon icon-info"></i> Mensajes</a>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="/profesor/profesorArchivos">
-                <i class="nav-icon icon-info"></i> Documentos</a>
-            </li>
             
 
             <li class="nav-item">

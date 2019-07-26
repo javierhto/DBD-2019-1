@@ -256,7 +256,7 @@
                               <td class="align-middle">
                                 <form action="/alumno/eliminarRamo/{{Auth::user()->id}}/{{$horario->id_coordinacion}}" method="post">
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger"> ELIMINAR {{Auth::user()->id}} </button>
+                                    <button type="submit" class="btn btn-sm btn-danger"> ELIMINAR  </button>
                                 </form>
                               </td>
                             </tr>

@@ -129,19 +129,11 @@
                 <i class="nav-icon icon-info"></i> Profesores</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="/coordinador/coordinadorAsignaturas">
-                <i class="nav-icon icon-info"></i> Asignaturas</a>
-            </li>
+
 
             <li class="nav-item">
               <a class="nav-link" href="/preenvio">
                 <i class="nav-icon icon-info"></i> Correo</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="/coordinador/coordinadorArchivos">
-                <i class="nav-icon icon-info"></i> Documentos</a>
             </li>
 
 

@@ -183,12 +183,8 @@ Route::group(['middleware' => ['auth:profesor']], function() {
 	Route::get('profesor/profesorPerfil', 'ProfesorController@perfil');
 	Route::get('profesor/profesorExito', function () {
     	return view('profesor.profesorExito');	});
-	Route::get('/profesor/profesorError', function () {
-    	return view('profesor.profesorError');});
-	Route::get('/profesor/profesorArchivos','ProfesorController@documentos');
-	Route::get('/profesor/profesorArchivos', 'DocumentoController@profesorIndex')->name('fileIndexProfesor');
-	Route::post('/profesor/profesorArchivos', 'DocumentoController@profesorStore')->name('fileUploadProfesor');
-	Route::get('/profesor/profesorArchivos/{id}', 'DocumentoController@show')->name('fileDownload');
+Route::get('/profesor/profesorError', function () {
+    return view('profesor.profesorError');});	
 });
 
 
@@ -200,12 +196,24 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::put('alumno/alumnoEdit/{id}','AlumnoController@update');
 	Route::get('alumno/alumnoHome','AlumnoController@secret');
 	Route::get('alumno/alumnoHorario/{id}','AlumnoController@horario')->name('Horario');
+<<<<<<< HEAD
 	Route::get('alumno/alumnoRamosAutomaticos/{id}','AlumnoController@ramosAutomaticos')->name('RamosAutomaticos');
 	Route::get('alumno/inscripcion/{id}', 'AlumnoController@inscripsion')->name('Inscripsion');
 	Route::delete('alumno/eliminarRamo/{id_alumno}/{id_coordinacion}', 'AlumnoCoordinacionController@destroy');
+=======
+>>>>>>> e0e584213e9e86213c23d0828692f422c3ce8ec6
 	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
 	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
 	Route::get('/alumno/alumnoDatos', 'AlumnoController@datos');
+	
+	Route::get('/alumno/facturaciones/{id}', 'FacturacionController@pagos')->name('Pagos');
+	Route::post('/alumno/facturaciones/pagar/{id}', 'FacturacionController@pagar')->name('Pagar');
+	Route::get('/alumno/alumnoTarjetas/{id}', 'AlumnoController@tarjetas')->name('Tarjetas');
+	Route::get('/alumno/crearTarjeta', 'TarjetaCreditoController@crearTarjeta')->name('crearTarjeta');
+	Route::post('/alumno/creaAlumno/{id}', 'TarjetaCreditoController@alumnoStore')->name('guardarTarjeta');
+	Route::delete('/alumno/alumnoTarjetas/{tarjeta}', 'TarjetaCreditoController@destroy')->name('eliminarTarjeta');
+
+
 	Route::get('/alumno/alumnoCalificaciones/{id}', 'AlumnoController@calificaciones')->name('Historial');
 	Route::get('/alumno/alumnoMensajes/{id}', 'AlumnoController@BandejaEntrada')->name('BandejaEntradaAlumno');
 
@@ -218,8 +226,8 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('alumno/documentos','AlumnoController@documentos');		// vista - Documentos
 
 	// Rutas de desacarga de documentos
-	Route::get('/alumno/alumnoArchivos', 'DocumentoController@alumnoIndex')->name('fileIndex');
-	Route::post('/alumno/alumnoArchivos', 'DocumentoController@alumnoStore')->name('fileUpload');
+	Route::get('/alumno/alumnoArchivos', 'DocumentoController@index')->name('fileIndex');
+	Route::post('/alumno/alumnoArchivos', 'DocumentoController@store')->name('fileUpload');
 	Route::get('/alumno/alumnoArchivos/{id}', 'DocumentoController@show')->name('fileDownload');
 });
 
@@ -234,44 +242,16 @@ Route::group(['middleware' => ['auth:coordinador']], function() {
 	Route::get('coordinador/coordinadorHome','CoordinadorDocenteController@secret');
 	Route::get('coordinador/coordinadorEdit', 'CoordinadorDocenteController@edit');
 	Route::get('coordinador/coordinadorPerfil', 'CoordinadorDocenteController@perfil');
-	// Rutas de Alumno
+
 	Route::get('coordinador/coordinadorDetalleAlumno/{id}', 'AlumnoController@showCoord')->name('coordMostrarAlumno');
 	Route::get('coordinador/coordinadorAlumno', 'CoordinadorDocenteController@Alumnos')->name('coordinadorAlumnos');
 	Route::post('coordinador/coordinadorCreaAlumno', 'AlumnoController@coordStore')->name('coordGuardaAlumno');
 	Route::get('coordinador/coordinadorCreaAlumno', 'AlumnoController@coordCreate')->name('coordCreaAlumno');
-	// Rutas de Profesor
+
 	Route::get('coordinador/coordinadorDetalleProfesor/{id}', 'ProfesorController@showCoord')->name('coordMostrarProfesor');
 	Route::get('coordinador/coordinadorProfesor', 'CoordinadorDocenteController@Profesores')->name('coordinadorProfesores');
 	Route::post('coordinador/coordinadorCreaProfesor', 'ProfesorController@coordStore')->name('coordGuardaProfesor');
 	Route::get('coordinador/coordinadorCreaProfesor', 'ProfesorController@coordCreate')->name('coordCreaProfesor');
-	// Rutas de asignatura
-	Route::get('coordinador/coordinadorDetalleAsignatura/{id}', 'AsignaturaController@coordShowAsignatura')->name('mostrarAsignaturaCoord');
-	Route::put('coordinador/coordinadorModificaAsignatura/{id}', 'AsignaturaController@coordUpdateAsignatura');
-	Route::delete('coordinador/coordinadorEliminaAsignatura/{id}', 'AsignaturaController@coordDestroy');
-	Route::get('coordinador/coordinadorModificaAsignatura/{id}', 'AsignaturaController@coordEditAsignatura')->name('modificarAsignaturaCoord');
-	Route::get('coordinador/coordinadorEliminaAsignatura/{id}', 'AsignaturaController@MostrarAsignatura')->name('eliminarAsignaturaCoord');
-	Route::get('coordinador/coordinadorAsignaturas', 'CoordinadorDocenteController@Asignaturas')->name('AsignaturasCoord');
-	Route::post('coordinador/coordinadorCreaAsignatura', 'AsignaturaController@coordStoreAdmin')->name('GuardaAsignaturaCoord');
-	Route::get('coordinador/coordinadorCreaAsignatura', 'AsignaturaController@coordCreateAdmin')->name('CreaAsignaturaCoord');
-	// Rutas de Coordinaciones de una asignatura
-	Route::get('coordinador/coordinadorDetalleCoordinacion/{id}', 'CoordinacionController@coordShowCoordinacion')->name('mostrarCoordinacionCoord');
-	Route::put('coordinador/coordinadorModificaCoordinacion/{id}', 'CoordinacionController@coordUpdateCoordinacion');
-	Route::delete('coordinador/coordinadorEliminaCoordinacion/{id}', 'CoordinacionController@coordDestroy');
-	Route::get('coordinador/coordinadorModificaCoordinacion/{id}', 'CoordinacionController@coordEditCoordinacion')->name('modificarCoordinacionCoord');
-	Route::get('coordinador/coordinadorEliminaCoordinacion/{id}', 'CoordinacionController@MostrarCoordinacion')->name('eliminarCoordinacionCoord');
-	Route::get('coordinador/coordinadorCoordinaciones/{id}', 'CoordinadorDocenteController@Coordinaciones')->name('CoordinacionCoord');
-	Route::post('coordinador/coordinadorCreaCoordinacion/{id}', 'CoordinacionController@coordStoreAdmin')->name('GuardaCoordinacionCoord');
-	Route::get('coordinador/coordinadorCreaCoordinacion/{id}', 'CoordinacionController@coordCreateAdmin')->name('CreaCoordinacionCoord');
-	// Rutas a horarios
-	Route::delete('coordinador/coordinadorEliminaHorario/{id1}/{id2}', 'CoordinacionHorarioController@coordDestroy');
-	Route::get('coordinador/coordinadorEliminaHorario/{id1}/{id2}', 'CoordinacionHorarioController@MostrarHorario')->name('eliminarHorarioCoord');
-	Route::post('coordinador/coordinadorCreaHorario/{id}', 'CoordinacionHorarioController@coordStore')->name('GuardaHorarioCoord');
-	// Rutas a archivos
-	Route::get('/coordinador/coordinadorArchivos','CoordinadorDocenteController@documentos');
-	Route::get('/coordinador/coordinadorArchivos', 'DocumentoController@coordinadorIndex')->name('fileIndexCoord');
-	Route::post('/coordinador/coordinadorArchivos', 'DocumentoController@coordinadorStore')->name('fileUploadCoord');
-	Route::get('/coordinador/coordinadorArchivos/{id}', 'DocumentoController@show')->name('fileDownload');
-
 });
 
 
