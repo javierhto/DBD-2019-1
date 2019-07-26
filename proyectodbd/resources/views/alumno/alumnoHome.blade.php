@@ -14,6 +14,9 @@
                         </div>
                     @endif
 
+
+
+                    Bienvenido alumno
                     
                 </div>
             </div>

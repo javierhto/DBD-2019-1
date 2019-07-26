@@ -136,6 +136,11 @@
                 <i class="nav-icon icon-calculator"></i> Notas</a>
             </li>
 
+            <li class="nav-item">
+              <a class="nav-link" href="{{route ('Inscripsion', [Auth::user()->id])}}">
+                <i class="nav-icon icon-info"></i> Des/Inscripcion</a>
+            </li>
+
             <li class="nav-title">Otros</li>
 
             <li class="nav-item">

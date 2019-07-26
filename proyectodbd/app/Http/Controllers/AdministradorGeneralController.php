@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Modules\AdministradorGeneral;
 use App\Modules\Comuna;
 use App\Modules\Asignatura;
+use App\Modules\Facultad;
+use App\Modules\Carrera;
+use App\Modules\Departamento;
 use App\Modules\Alumno;
 use App\Modules\Profesor;
 use App\Modules\Coordinacion;
@@ -158,6 +161,21 @@ class AdministradorGeneralController extends Controller
         $asignatura = Asignatura::findOrFail($id);
         $coordinaciones = DB::table('coordinacion')
         ->where('id_asignatura', '=', $id)        
+        ->get();
+        $profesores = Profesor::all();
+        return view('admin.adminCoordinaciones',compact('coordinaciones','profesores','asignatura'));
+    }
+    public function Facultades()
+    {
+        $facultades = Facultad::latest()->paginate(5);
+        return view('admin.adminFacultades', compact('facultades'))
+            ->with('i', (request()->input('page',1) -1 )*5);
+    }
+    public function Departamentos($id)
+    {
+        $facultad = Facultad::findOrFail($id);
+        $departamentos = DB::table('departamento')
+        ->where('id_facultad', '=', $id)        
         ->get();
         $profesores = Profesor::all();
         return view('admin.adminCoordinaciones',compact('coordinaciones','profesores','asignatura'));
