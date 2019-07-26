@@ -66,7 +66,7 @@
                       </table> 
                       </center>
                       <br>
-                      {{$bandera="-"}}Algunas opciones de horarios son: 
+                      {{$bandera="-"}}Una opcion de horarios posible es: 
                       
                        <div class="table-responsive">
                       <center>

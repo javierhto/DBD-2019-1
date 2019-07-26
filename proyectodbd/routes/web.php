@@ -122,6 +122,37 @@ Route::group(['middleware' => ['auth:admin']], function() {
 	Route::post('admin/adminCreaCoordinacion/{id}', 'CoordinacionController@storeAdmin')->name('GuardaCoordinacion');
 	Route::get('admin/adminCreaCoordinacion/{id}', 'CoordinacionController@createAdmin')->name('AdminCreaCoordinacion');
 
+
+	//----Acciones hacia Las Facultades
+	Route::get('admin/adminDetallesFacultad/{id}', 'FacultadController@showFacultad')->name('mostrarFacultad');
+	Route::put('admin/adminModificaFacultad/{id}', 'FacultadController@updateFacultad');
+	Route::delete('admin/adminEliminaFacultad/{id}', 'FacultadController@destroy');
+	Route::get('admin/adminModificaFacultad/{id}', 'FacultadController@EditFacultad')->name('modificarFacultad');
+	Route::get('admin/adminEliminaFacultad/{id}', 'FacultadController@MostrarFacultad')->name('eliminarFacultad');
+	Route::get('admin/adminFacultades', 'AdministradorGeneralController@Facultades')->name('AdminFacultades');
+	Route::post('admin/adminCreaFacultad', 'FacultadController@storeAdmin')->name('GuardaFacultad');
+	Route::get('admin/adminCreaFacultad', 'FacultadController@createAdmin')->name('AdminCreaFacultad');
+
+	//----Acciones hacia Los departamentos
+	Route::get('admin/adminDetallesDepartamento/{id}', 'DepartamentoController@showDepartamento')->name('mostrarDepartamento');
+	Route::put('admin/adminModificaDepartamento/{id}', 'DepartamentoController@updateDepartamento');
+	Route::delete('admin/adminEliminaDepartamento/{id}', 'DepartamentoController@destroy');
+	Route::get('admin/adminModificaDepartamento/{id}', 'DepartamentoController@EditDepartamento')->name('modificarDepartamento');
+	Route::get('admin/adminEliminaDepartamento/{id}', 'DepartamentoController@MostrarDepartamento')->name('eliminarDepartamento');
+	Route::get('admin/adminDepartamentos/{id}', 'AdministradorGeneralController@Departamentos')->name('AdminDepartamento');
+	Route::post('admin/adminCreaDepartamento/{id}', 'DepartamentoController@storeAdmin')->name('GuardaDepartamento');
+	Route::get('admin/adminCreaDepartamento/{id}', 'DepartamentoController@createAdmin')->name('AdminCreaDepartamento');
+
+	//----Acciones hacia Las carreras
+	Route::get('admin/adminDetallesCarrera/{id}', 'CarreraController@showCarrera')->name('mostrarCarrera');
+	Route::put('admin/adminModificaCarrera/{id}', 'CarreraController@updateCarrera');
+	Route::delete('admin/adminEliminaCarrera/{id}', 'CarreraController@destroy');
+	Route::get('admin/adminModificaCarrera/{id}', 'CarreraController@EditCarrera')->name('modificarCarrera');
+	Route::get('admin/adminEliminaCarrera/{id}', 'CarreraController@MostrarCarrera')->name('eliminarCarrera');
+	Route::get('admin/adminCarreras/{id}', 'AdministradorGeneralController@Carreras')->name('AdminCarreras');
+	Route::post('admin/adminCreaCarrera/{id}', 'CarreraController@storeAdmin')->name('GuardaCarrera');
+	Route::get('admin/adminCreaCarrera/{id}', 'CarreraController@createAdmin')->name('AdminCreaCarrera');
+
 	//----Acciones hacia Administradores
 	Route::get('admin/adminDetallesAdministrador/{id}', 'AdministradorGeneralController@show')->name('mostrarAdministrador');
 	Route::put('admin/adminModificaAdministrador/{id}', 'AdministradorGeneralController@updateAdministrador');
@@ -170,6 +201,8 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('alumno/alumnoHome','AlumnoController@secret');
 	Route::get('alumno/alumnoHorario/{id}','AlumnoController@horario')->name('Horario');
 	Route::get('alumno/alumnoRamosAutomaticos/{id}','AlumnoController@ramosAutomaticos')->name('RamosAutomaticos');
+	Route::get('alumno/inscripcion/{id}', 'AlumnoController@inscripsion')->name('Inscripsion');
+	Route::delete('alumno/eliminarRamo/{id_alumno}/{id_coordinacion}', 'AlumnoCoordinacionController@destroy');
 	Route::get('/alumno/alumnoEdit', 'AlumnoController@edit');
 	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
 	Route::get('/alumno/alumnoDatos', 'AlumnoController@datos');

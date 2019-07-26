@@ -14,6 +14,27 @@
                         </div>
                     @endif
 
+
+
+
+                    <div class="table-responsive">
+                      <center>
+                        <table class="table table-bordered table-striped table-sm" id="dataTable" width="100%" cellspacing="0">
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <td class="align-middle"> IZQ </td>
+                                    <td class="align-middle"> DER </td>
+                                </tr>
+                        </thead>
+                        <tbody class="text-center align-middle">
+
+                                <td class="align-middle">DATOS IZQ </td>
+                                <td class="align-middle">DATOS DER    </td>
+
+                        </tbody>
+                      </table> 
+                      </center>
+                    </div>
                     
                 </div>
             </div>
