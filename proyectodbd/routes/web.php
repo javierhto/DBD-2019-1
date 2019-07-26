@@ -169,6 +169,8 @@ Route::group(['middleware' => ['auth:alumno']], function() {
 	Route::get('/alumno/alumnoPerfil', 'AlumnoController@perfil');
 	Route::get('/alumno/alumnoDatos', 'AlumnoController@datos');
 	
+	Route::get('/alumno/facturaciones/{id}', 'FacturacionController@pagos')->name('Pagos');
+	Route::post('/alumno/facturaciones/pagar/{id}', 'FacturacionController@pagar')->name('Pagar');
 	Route::get('/alumno/alumnoTarjetas/{id}', 'AlumnoController@tarjetas')->name('Tarjetas');
 	Route::get('/alumno/crearTarjeta', 'TarjetaCreditoController@crearTarjeta')->name('crearTarjeta');
 	Route::post('/alumno/creaAlumno/{id}', 'TarjetaCreditoController@alumnoStore')->name('guardarTarjeta');

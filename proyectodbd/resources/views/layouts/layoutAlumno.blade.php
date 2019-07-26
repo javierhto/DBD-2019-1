@@ -139,6 +139,11 @@
             <li class="nav-title">Otros</li>
 
             <li class="nav-item">
+              <a class="nav-link" href="{{ route ('Pagos',[Auth::user()->id])}}">
+                <i class="nav-icon icon-info"></i> Pagos</a>
+            </li>
+
+            <li class="nav-item">
               <a class="nav-link" href="{{ route ('Tarjetas',[Auth::user()->id])}}">
                 <i class="nav-icon icon-info"></i> Tarjetas asociadas</a>
             </li>
