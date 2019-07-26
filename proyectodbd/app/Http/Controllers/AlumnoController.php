@@ -67,6 +67,33 @@ class AlumnoController extends Controller
         return view('alumno.alumnoHome');
     }
 
+
+
+    public function ramosAutomaticos($id)
+    {
+        set_time_limit(0);
+        $asignaturas = DB::table('alumno_carrera')
+        ->where('id_alumno', '=', $id)
+        ->join('plan_estudios','plan_estudios.id_carrera','=','alumno_carrera.id_carrera')
+        ->join('plan_estudios_asignatura','plan_estudios_asignatura.id_plan_estudios','=','plan_estudios.id')
+        ->join('asignatura','asignatura.id','=','plan_estudios_asignatura.id_asignatura')
+        ->get();
+
+
+        $horarios = DB::table('horario')
+        ->join('coordinacion_horario','coordinacion_horario.id_horario','=','horario.id')
+        ->get();
+
+        $profesores = DB::table('profesor')
+        ->join('coordinacion_profesor','coordinacion_profesor.id_profesor','=','profesor.id')
+        ->get();
+
+
+        $coordinaciones = Coordinacion::all();
+        return view('alumno.alumnoRamosAutomaticos',compact('asignaturas','coordinaciones','horarios','profesores'));
+    }
+
+
     public function horario($id)
     {
         $horarios = DB::table('alumno_coordinacion')
