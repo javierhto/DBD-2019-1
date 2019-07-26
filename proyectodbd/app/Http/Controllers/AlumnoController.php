@@ -69,6 +69,7 @@ class AlumnoController extends Controller
 
     public function ramosAutomaticos($id)
     {
+        set_time_limit(0);
         $asignaturas = DB::table('alumno_carrera')
         ->where('id_alumno', '=', $id)
         ->join('plan_estudios','plan_estudios.id_carrera','=','alumno_carrera.id_carrera')

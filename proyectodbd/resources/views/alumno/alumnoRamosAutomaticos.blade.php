@@ -52,6 +52,7 @@
                                             @foreach ($profesores as $profesor)
                                               @if($coordinacion->id == $profesor->id_coordinacion)
                                                 {{$profesor->nombre}} <br>
+
                                               @endif
                                             @endforeach
                                         @endif
@@ -65,11 +66,8 @@
                       </table> 
                       </center>
                       <br>
-                      Algunas opciones de horarios son:
-
-
-
-
+                      {{$bandera="-"}}Algunas opciones de horarios son: 
+                      
                        <div class="table-responsive">
                       <center>
                         <table class="table table-bordered table-striped table-sm" id="dataTable" width="100%" cellspacing="0">
@@ -84,6 +82,8 @@
                                     <td class="align-middle"> Sabado </td>
                                 </tr>
                         </thead>
+                        
+                        
                         <tbody class="text-center align-middle">
                           @for($i = 1; $i<=9 ;$i++)
                             <tr>
@@ -94,15 +94,20 @@
                                   @foreach ($coordinaciones as $coordinacion)
                                     @if($coordinacion->id_asignatura == $asignatura->id_asignatura)
                                         @foreach ($horarios as $horario)
-                                          @if($coordinacion->id == $horario->id_coordinacion && $horario->dia == 'lunes' && $horario->bloque == $i)
-                                            codigo:{{ $asignatura->id_asignatura }}
-                                            <br>
-                                            sala: {{ $horario->sala }} 
+                                          @if($coordinacion->id == $horario->id_coordinacion)
+                                            @if($horario->dia == 'lunes' && $horario->bloque == $i && $bandera == "-")
+                                              codigo:{{ $coordinacion->id_asignatura }}
+                                              <br>
+                                              sala: {{ $horario->sala }} <br>
+                                              {{$asignatura-> id_asignatura = "X"}}
+                                              {{$bandera="X"}}
+                                            @endif
                                           @endif
                                         @endforeach
                                     @endif
                                   @endforeach
                                 @endforeach
+                                {{$bandera = "-"}}
                               </td>
 
 
@@ -113,16 +118,19 @@
                                       
                                         @foreach ($horarios as $horario)
                                           @if($coordinacion->id == $horario->id_coordinacion)
-                                            @if($horario->dia == 'martes' && $horario->bloque == $i)
-                                              codigo:{{ $asignatura->id_asignatura }}
+                                            @if($horario->dia == 'martes' && $horario->bloque == $i  && $bandera == "-")
+                                              codigo:{{ $coordinacion->id_asignatura }}
                                               <br>
-                                              sala: {{ $horario->sala }} <br>                                  
+                                              sala: {{ $horario->sala }} <br>
+                                              {{$asignatura-> id_asignatura = "X"}}
+                                              {{$bandera = "X"}}
                                             @endif
                                           @endif
                                         @endforeach
                                     @endif
                                   @endforeach
                                 @endforeach
+                                {{$bandera = "-"}}
 
                               </td>
 
@@ -134,16 +142,19 @@
                                       
                                         @foreach ($horarios as $horario)
                                           @if($coordinacion->id == $horario->id_coordinacion)
-                                            @if($horario->dia == 'miercoles' && $horario->bloque == $i)
-                                              codigo:{{ $asignatura->id_asignatura }}
+                                            @if($horario->dia == 'miercoles' && $horario->bloque == $i && $bandera == "-")
+                                              codigo:{{ $coordinacion->id_asignatura }}
                                               <br>
-                                              sala: {{ $horario->sala }} <br>                                  
+                                              sala: {{ $horario->sala }} <br>
+                                              {{$asignatura-> id_asignatura = "X"}}
+                                              {{$bandera = "X"}}
                                             @endif
                                           @endif
                                         @endforeach
                                     @endif
                                   @endforeach
                                 @endforeach
+                                {{$bandera = "-"}}
                                </td>
 
 
@@ -154,35 +165,41 @@
                                       
                                         @foreach ($horarios as $horario)
                                           @if($coordinacion->id == $horario->id_coordinacion)
-                                            @if($horario->dia == 'jueves' && $horario->bloque == $i)
-                                              codigo:{{ $asignatura->id_asignatura }}
+                                            @if($horario->dia == 'jueves' && $horario->bloque == $i && $bandera == "-")
+                                              codigo:{{ $coordinacion->id_asignatura }}
                                               <br>
-                                              sala: {{ $horario->sala }} <br>                                  
+                                              sala: {{ $horario->sala }} <br>
+                                              {{$asignatura-> id_asignatura = "X"}}
+                                              {{$bandera = "X"}}
                                             @endif
                                           @endif
                                         @endforeach
                                     @endif
                                   @endforeach
                                 @endforeach
+                                {{$bandera = "-"}}
 
                               </td>
                               <td class="align-middle"> 
-                                @foreach ($asignaturas as $asignatura)
+                                  @foreach ($asignaturas as $asignatura)
                                   @foreach ($coordinaciones as $coordinacion)
                                     @if($coordinacion->id_asignatura == $asignatura->id_asignatura)
                                       
                                         @foreach ($horarios as $horario)
                                           @if($coordinacion->id == $horario->id_coordinacion)
-                                            @if($horario->dia == 'viernes' && $horario->bloque == $i)
-                                              codigo:{{ $asignatura->id_asignatura }}
+                                            @if($horario->dia == 'viernes' && $horario->bloque == $i && $bandera == "-")
+                                              codigo:{{ $coordinacion->id_asignatura }}
                                               <br>
-                                              sala: {{ $horario->sala }} <br>                                  
+                                              sala: {{ $horario->sala }} <br>
+                                              {{$asignatura-> id_asignatura = "X"}}
+                                              {{$bandera = "X"}}
                                             @endif
                                           @endif
                                         @endforeach
                                     @endif
                                   @endforeach
                                 @endforeach
+                                {{$bandera = "-"}}
                                   
                                </td>
                               <td class="align-middle"> 
@@ -192,16 +209,19 @@
                                       
                                         @foreach ($horarios as $horario)
                                           @if($coordinacion->id == $horario->id_coordinacion)
-                                            @if($horario->dia == 'sabado' && $horario->bloque == $i)
-                                              codigo:{{ $asignatura->id_asignatura }}
+                                            @if($horario->dia == 'sabado' && $horario->bloque == $i && $bandera == "-")
+                                              codigo:{{ $coordinacion->id_asignatura }}
                                               <br>
                                               sala: {{ $horario->sala }} <br>                                  
+                                              {{$asignatura-> id_asignatura = "X"}}
+                                              {{$bandera = "X"}}
                                             @endif
                                           @endif
                                         @endforeach
                                     @endif
                                   @endforeach
                                 @endforeach
+                                {{$bandera = "-"}}
                                </td>
 
                             </tr>
@@ -210,10 +230,6 @@
                       </table> 
                       </center>
                     </div>
-
-
-
-                      
 
                 </div>
         	</div>
